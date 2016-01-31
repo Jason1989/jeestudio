@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.formengine" extends="struts-default" namespace="/formengine">          
+		
+		<global-results>
+		    <result name="login" type="redirect">/formengine/zsf_.action?sysName=empoy</result>
+		    <result name="logout" type="redirect">/pages/login.jsp</result>
+		    <result name="404">/common/jsp/notfund.jsp</result>
+		    <result name="BLANK_PAGE">/common/jsp/common_blank.jsp</result>	
+		    
+		</global-results>
+		
+		<!-- 列表页 -->
+		<action name="listPageAction" method="executeListPage" class="zxtlistPageAction">	
+    	 	 <result name="list-tab-easyui" >/common/jsp/easyui/ListTabPage.jsp</result>
+			 <result name="easyui-view" >/common/jsp/easyui/ListTabPage-view.jsp</result>
+			 <result name="list-tab-extjs" >/common/jsp/ext/ListTabPage.jsp</result>
+		</action>
+		<!-- 列表页 -->
+		<action name="listPageForSelectAction" method="executeListPage" class="zxtlistPageForSelectAction">	
+    	 	 <result name="list-tab-easyui" >/common/jsp/easyui/ListTabForSelectPage.jsp</result>
+			 <result name="easyui-view" >/common/jsp/easyui/ListTabPage-view.jsp</result>
+			 <result name="list-tab-extjs" >/common/jsp/ext/ListTabPage.jsp</result>
+		</action>
+		 <!-- Tree  -->
+		<action name="listPageActionTree" method="loadTreeDataAction" class="zxtlistPageAction"></action>	
+    	
+        
+		<!-- 编辑页 -->
+		<action name="editPageAction" method="executeEditPage" class="zxteditPageAction">	
+        	 <result name="preview-editPage" >/common/jsp/easyui/preview-editPage.jsp</result>
+         	 <result name="load-editPage" >/common/jsp/easyui/edit-load.jsp</result>
+         	 <result name="load-copyPage" >/common/jsp/easyui/copy-load.jsp</result>
+         	 <result name="loadTabEditPage" >/common/jsp/easyui/loadTab-edit.jsp</result>
+         	 <result name="curingPage" >/${pageUrl}</result>
+        </action>
+        
+        <!-- 详情页 -->
+		<action name="viewPageAction" method="executeViewPage" class="zxtviewPageAction">	
+         	<result name="view-page" >/common/jsp/easyui/view-page.jsp</result>
+	        <result name="preview-viewPage" >/common/jsp/easyui/preview-viewPage.jsp</result>
+	        <result name="loadTabViewPage" >/common/jsp/easyui/loadTab-view.jsp</result>
+	        <result name="curingPage" >/${pageUrl}</result>
+        </action>
+        
+        <!-- 登录页面 -->
+        <action name="loginAction" class="zxtloginAction"></action>
+        
+        <!-- 上传组件 -->
+        <action name="uploadFindAction" class="zxtUploadFindAction">
+        	<result name="success" type="stream">
+        		<param name="inputName">download</param>
+        		<param name="contentType">png/jpg/jpeg/gif/bmp</param>
+        		<param name="contentDisposition">
+        			attachment;filename="${downloadFileRealName}"
+        		</param>
+        	</result>
+        </action>
+        
+        <!--目前主要用于验证编码是否已存在-->
+        <action name="validate" class="validateAction"></action>
+    </package>
+</struts>

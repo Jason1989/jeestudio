@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select child.LCT_CODE,child.LCT_NAME,tb.NAME ,batch.LB_ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch,
+(select b.LB_ID, NAME =dbo.f_GetItemName(b.LB_ID) FROM dbo.LMS_BATCH b GROUP BY b.LB_ID)tb
+where task.TASK_ID=child.LCT_TASK_ID
+and batch.LB_CHILD_TASK_ID=child.LCT_ID
+and tb.LB_ID=batch.LB_ID
+and batch.LB_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT 技术依据,收样日期,  样品前处理条件,备注 FROM dbo.LMS_原始记录_基本表 where BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select detail.LBD_ORDER_ID,sam.LS_CODE,sam.LS_ID  from dbo.LMS_BATCH_DETAIL detail,dbo.LMS_SAMPLE sam
+where detail.LBD_SAM_ID=sam.LS_ID
+and detail.LBD_BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[
+
+SELECT 分析编号, 测定温度,相对偏差,备注,盐度,PH值,pk,非离子氨,测定值 FROM dbo.LMS_原始记录_样品表 where BATCH_ID='${ID}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<PaperSize width="16.14200787401575" height="11.693000000000001"/>
+<Margin top="0.27" left="0.7500000000000001" bottom="0.27" right="0.7500000000000001"/>
+</ReportSettings>
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[30,30,30,30,65,19,39,41,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,72,72,72,72,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="11" s="0">
+<O>
+<![CDATA[GBH-JLI-086                     非 离 子 氨 测 定 原 始 记 录（ 　     ）     2011-6-7修订版]]></O>
+<Expand/>
+</C>
+<C c="11" r="0">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="1" rs="2" s="1">
+<O>
+<![CDATA[基本情况]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" cs="2" s="1">
+<O>
+<![CDATA[任务单号]]></O>
+<Expand/>
+</C>
+<C c="3" r="1" cs="2" s="1">
+<O>
+<![CDATA[任务来源]]></O>
+<Expand/>
+</C>
+<C c="5" r="1" cs="4" s="1">
+<O>
+<![CDATA[技 术 依 据]]></O>
+<Expand/>
+</C>
+<C c="9" r="1" cs="2" s="1">
+<O>
+<![CDATA[计算日期]]></O>
+<Expand/>
+</C>
+<C c="11" r="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="2" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LCT_CODE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="2" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LCT_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="2" cs="4" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="技术依据"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="2" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="收样日期"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="11" r="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LB_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="9" s="1">
+<O>
+<![CDATA[非离子氨换算方法]]></O>
+<Expand/>
+</C>
+<C c="9" r="3" cs="2" s="1">
+<O>
+<![CDATA[备注]]></O>
+<Expand/>
+</C>
+<C c="11" r="3">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="4" cs="9" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="样品前处理条件"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="4" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="备注"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="11" r="4" s="4">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="5" cs="11" s="5">
+<O>
+<![CDATA[测   定   结   果]]></O>
+<Expand/>
+</C>
+<C c="11" r="5">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="6" s="1">
+<O>
+<![CDATA[分析编号]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="2" s="1">
+<O>
+<![CDATA[样品名称或编号]]></O>
+<Expand/>
+</C>
+<C c="3" r="6" s="1">
+<O>
+<![CDATA[测定温度（℃）]]></O>
+<Expand/>
+</C>
+<C c="4" r="6" s="1">
+<O>
+<![CDATA[盐度(‰)]]></O>
+<Expand/>
+</C>
+<C c="5" r="6" s="1">
+<O>
+<![CDATA[pH值]]></O>
+<Expand/>
+</C>
+<C c="6" r="6" s="1">
+<O>
+<![CDATA[氨氮测定值 (mg/L)]]></O>
+<Expand/>
+</C>
+<C c="7" r="6" s="1">
+<O>
+<![CDATA[pK]]></O>
+<Expand/>
+</C>
+<C c="8" r="6" s="1">
+<O>
+<![CDATA[非离子氨(mg/L)]]></O>
+<Expand/>
+</C>
+<C c="9" r="6" s="1">
+<O>
+<![CDATA[相对偏差 （％）]]></O>
+<Expand/>
+</C>
+<C c="10" r="6" s="1">
+<O>
+<![CDATA[备   注]]></O>
+<Expand/>
+</C>
+<C c="11" r="6">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LBD_ORDER_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="7" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LS_CODE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="测定温度"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds3" columnName="LBD_ORDER_ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="4" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="盐度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="5" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="PH值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="6" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="测定值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="pk"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="8" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="非离子氨"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="相对偏差"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="10" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="备注"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="11" r="7" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+<ReportWriteAttr>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL1">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_基本表"/>
+<ColumnConfig name="BATCH_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="11" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="收样日期" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="技术依据" isKey="false" skipUnmodified="false">
+<ColumnRow column="5" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="样品前处理条件" isKey="false" skipUnmodified="false">
+<ColumnRow column="0" row="4"/>
+</ColumnConfig>
+<ColumnConfig name="备注" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="4"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL2">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_样品表"/>
+<ColumnConfig name="BATCH_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="11" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="SAM_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="11" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="分析编号" isKey="true" skipUnmodified="false">
+<ColumnRow column="0" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="测定值" isKey="false" skipUnmodified="false">
+<ColumnRow column="6" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="相对偏差" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="备注" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="盐度" isKey="false" skipUnmodified="false">
+<ColumnRow column="4" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="PH值" isKey="false" skipUnmodified="false">
+<ColumnRow column="5" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="pk" isKey="false" skipUnmodified="false">
+<ColumnRow column="7" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="非离子氨" isKey="false" skipUnmodified="false">
+<ColumnRow column="8" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="测定温度" isKey="false" skipUnmodified="false">
+<ColumnRow column="3" row="7"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+</ReportWriteAttr>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy-MM-dd]]></Format>
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-256"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

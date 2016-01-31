@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select t.OID as COMPANY_ID,t.ONAME as COMPANY_NAME from T_ORGANIZATION t where t.OID = '${DEPT_ID}']]></Query>
+</TableData>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select y.DEPARTMENT,count(*) as NUMCOU from FND_YEAR_INVEST y where [YEAR]A like '%${YEAR}%' and DEPARTMENT = '${DEPT_ID}' and y.BUDGET_STATE = '1' group by y.DEPARTMENT]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select y.DEPARTMENT,count(*) as NUMCOU from FND_YEAR_INVEST y where [YEAR]A like '%${YEAR}%' and DEPARTMENT = '${DEPT_ID}' and y.BUDGET_STATE = '3' group by y.DEPARTMENT]]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select y.DEPARTMENT,count(*) as NUMCOU from FND_YEAR_INVEST y where [YEAR]A like '%${YEAR}%' and DEPARTMENT = '${DEPT_ID}' and y.BUDGET_STATE = '4' group by y.DEPARTMENT]]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[30,19,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[180,180,218,72,72,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" s="0">
+<O>
+<![CDATA[年度预算状态]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="0">
+<O>
+<![CDATA[年度预算数量]]></O>
+<Expand/>
+</C>
+<C c="2" r="0" s="0">
+<O>
+<![CDATA[单位]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" s="1">
+<O>
+<![CDATA[归档]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="NUMCOU"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[IF(LEN(NUMCOU)==0,0,NUMCOU)]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="COMPANY_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="2" s="1">
+<O>
+<![CDATA[变更中]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="NUMCOU"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<SelectCount type="5" serial=""/>
+<Result>
+<![CDATA[IF(LEN(NUMCOU)==0,0,NUMCOU)]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="COMPANY_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" s="1">
+<O>
+<![CDATA[变更完成]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="NUMCOU"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[IF(LEN(NUMCOU)==0,0,NUMCOU)]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="COMPANY_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[95,95,95,95,83,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<O>
+<![CDATA[请输入年份：]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="2">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.NumberEditor">
+<WidgetName name="YEAR"/>
+<WidgetAttr/>
+<NumberAttr allowDecimals="false" allowNegative="false"/>
+</Widget>
+</C>
+<C c="2" r="0" s="3">
+<O>
+<![CDATA[请选择部门：]]></O>
+<Expand/>
+</C>
+<C c="3" r="0" s="3">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.TreeComboBoxEditor">
+<WidgetName name="DEPT_ID"/>
+<WidgetAttr/>
+<Listener event="click">
+<JavaScript class="com.fr.report.js.JavaScriptImpl">
+<Parameters/>
+<Content>
+<![CDATA[null]]></Content>
+</JavaScript>
+</Listener>
+<Editable>
+<![CDATA[false]]></Editable>
+<TreeAttr/>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d is null]]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@1}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@2}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@3}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@4}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+</Widget>
+</C>
+<C c="4" r="0">
+<O>
+<![CDATA[查询]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+</Widget>
+</C>
+</CellElementList>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy年]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <package name="" extends="struts-default"  >
+ 		
+ 		<global-results>
+ 		  	<result name="login" type="redirect">/formengine/zsf_.action?sysName=empoy</result>
+		    <result name="logout" type="redirect">/pages/login.jsp</result>
+		    <result name="404">/common/jsp/notfund.jsp</result>	
+			<result name="json">/common/jsp/json.jsp</result>
+		</global-results>
+		<action name="dynamicQuery_*"  class="zxtqueryAction"  method="{1}" />
+		<action name="com_*"  class="zxtcomponentsAction"  method="{1}">
+			<result name="export" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="${downloadChineseFileName}"</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+		<action name="tab_*"  class="zxtTabPanelAction"  method="{1}" />
+		
+		<action name="zsf_*"  class="zxtSystemFrameAction"  method="{1}" >
+			<result name="frame" >/common/jsp/easyui/frame.jsp</result>
+			<result name="serviceSystemMenu" >/common/jsp/easyui/serviceSystemMenu.jsp</result>
+			<result name="view-page" >/common/jsp/easyui/view-page.jsp</result>
+			<result name="desktop" >/jquery-desktop/desktop.jsp</result>
+			<result name="shortcutsSetting" >/jquery-desktop/user-shortcuts-info.jsp</result>
+			<result name="authority" >/common/jsp/authority/authority-conf.jsp</result>
+			<result name="authority-att" >/common/jsp/authority/authority-att.jsp</result>
+			<result name="preview">/common/jsp/easyui/systemPreview.jsp</result>
+			<result name="regist">/common/jsp/easyui/register-index.jsp</result>
+			<result name="tipjsp">/pages/indexPage/index_tip.jsp</result>
+		</action>
+		
+		<action name="workItemInfo_*"  class="zxtWorkItemInfo"  method="{1}" >
+			<result name="workItemInfo" >/common/jsp/easyui/workflow/workflow-view.jsp</result>
+			<result name="workItemViewAll" >/common/jsp/easyui/workflow/workflowall.jsp</result>
+		</action>
+		
+		<!-- 前驱状态 多标签配置 -->
+		<action name="acttab_*"  class="zxtActivityTabAction"  method="{1}" >
+			<result name="tab" >/common/jsp/easyui/workflow/activity-tab.jsp</result>
+			<result name="editPage" >/common/jsp/easyui/workflow/update-activitytab.jsp</result>
+			<result name="editEvelset" >/common/jsp/easyui/workflow/workflow_evelset_form.jsp</result>
+		</action>
+		
+		<!-- 权限初始化框架 -->
+		<action name="ssoAction_*"  class="zxtSsoLoginAction"  method="{1}" >
+			<result name="frame" >/common/jsp/easyui/frame.jsp</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtFormFormAction" class="com.zxt.compplatform.form.action.FormAction" scope="prototype">
+		<property name="formService" ref="zxtFormFormService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService" />
+		<property name="validationRuleService" ref="zxtValidationruleValidationRuleService" />
+		<property name="dataDictionaryService" ref="zxtDictionaryDataDictionaryService" />
+		<property name="pageService" ref="zxtpageService" />
+		<property name="organizationService" ref="OrganizationService" />
+		<property name="queryXmlDataService" ref="zxtqueryXmlDataService" />
+		<property name="resolveObjectDefService" ref="zxtresolveObjectDefService" />
+	</bean>
+	<bean id="zxtFormFormService" class="com.zxt.compplatform.form.service.FormService">
+		<property name="formDao" ref="zxtFormFormDao" />
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService"></property>
+		<property name="pageService"  ref="zxtpageService"></property>
+	</bean>
+	<bean id="zxtFormFormDao" class="com.zxt.compplatform.form.dao.FormDao" parent="daoSupport">
+	</bean>
+	
+</beans>

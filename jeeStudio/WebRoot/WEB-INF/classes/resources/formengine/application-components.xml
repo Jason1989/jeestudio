@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+		
+	<!-- 附件表更新操作 -->
+	<bean id="zxtqueryAction" class="com.zxt.compplatform.formengine.action.QueryPageAction"></bean>
+	
+	<!-- 组件配置 -->
+	<bean id="zxtcomponentsAction" class="com.zxt.compplatform.formengine.action.ComponentsAction" scope="prototype" >
+		  <property name="componentsService" ref="zxtcomponentsService" ></property>
+		  <property name="queryXmlDataService" ref="zxtqueryXmlDataService" ></property>
+		  <property name="pageService" ref="zxtpageService" ></property>
+		  <property name="workFlowFrameService" ref="zxtWorkFlowFrameService"  ></property>
+		  <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+		  <property name="IDataDictionaryService" ref="zxtDictionaryDataDictionaryService" ></property>
+		  <!-- GUOWEIXIN 添加数据字典服务接口 -->
+		  <property name="sqlDicService" ref="zxtSqlDicService" />
+		  <!-- GUOWEIXIN 添加组件树持久化接口 -->
+		  <property name="componentsDao" ref="zxtcomponentsDao" ></property>	
+	</bean>
+	
+	<bean id="zxtcomponentsService" class="com.zxt.compplatform.formengine.service.impl.ComponentsServiceImpl">
+		  <property name="componentsDao" ref="zxtcomponentsDao" ></property>	
+		  <property name="componentsTreeDao" ref="zxtComponentsTreeDao" ></property>	
+		  <property name="IDataDictionaryService" ref="zxtDictionaryDataDictionaryService" ></property>	
+		  <property name="componentsTreeService" ref="zxtComponentsTreeService" ></property>
+		  <property name="tijiaoWorkFlowDaoImpl" ref="TijiaoWorkFlowDaoImpl" ></property>
+	</bean>
+	
+	<bean id="zxtcomponentsDao" class="com.zxt.compplatform.formengine.dao.impl.ComponentsDaoImpl">
+		  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		  <property name="systemFrameService" ref="zxtSystemFrameService"  ></property>
+		  <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+		  <property name="IDataDictionaryService" ref="zxtDictionaryDataDictionaryService" ></property>	
+		  <property name="zxtJDBCTemplate"><ref bean="zxtJDBCTemplate"/></property>
+	</bean>
+	
+	<!-- 标签页 工具类配置 -->
+	<bean id="zxttabPageUtil" class="com.zxt.compplatform.formengine.util.TabPageUtil">
+	      <property name="pageService" ref="zxtpageService" ></property>
+	      <property name="componentsService" ref="zxtcomponentsService"  ></property>
+	</bean>
+	
+	<!-- tree工具类配置 -->
+	<bean id="zxtComponentsTreeService" class="com.zxt.compplatform.formengine.service.impl.ComponentsTreeServiceImpl">
+	 	  <property name="componentsTreeDao" ref="zxtComponentsTreeDao" ></property>
+	 	  <property name="componentsDao" ref="zxtcomponentsDao" ></property>
+	 	  <property name="cacheService" ref="cacheService"></property>
+	 	  <property name="dictionaryCacheService" ref="dictionaryCacheServiceImpl"></property>
+	</bean>
+	
+	<bean id="zxtComponentsTreeDao" class="com.zxt.compplatform.formengine.dao.impl.ComponentsTreeDaoImpl">
+	 	  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+	 	  <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+
+	<!-- tabpanel -->
+	<bean id="zxtTabPanelAction" class="com.zxt.compplatform.formengine.action.TabPanelAction">
+	</bean>
+	
+	<!-- 引擎框架程序 -->
+	<bean id="zxtSystemFrameAction" class="com.zxt.compplatform.formengine.action.SystemFrameAction">
+	 	
+	 	<property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	    <property name="relationShipService" ref="zxtRelationShipServiceImpl"/>
+	    <property name="authorityFrameService" ref="zxtAuthorityFrameService" ></property>
+	    <property name="roleService" ref="zxtRoleServiceImpl" ></property>
+	</bean>
+	<bean id="zxtSystemFrameService" class="com.zxt.compplatform.formengine.service.impl.SystemFrameServiceImpl">
+		<property name="organizationService" ref="OrganizationService"></property><!-- GUOWEIXIN 引入组织机构的 -->
+	 	 <property name="systemFrameDao" ref="zxtSystemFrameDao" ></property>
+	 	 <property name="componentsDao" ref="zxtcomponentsDao" ></property>
+	 	 <property name="pageService" ref="zxtpageGenerateService"></property>
+	</bean>
+	<bean id="zxtSystemFrameDao" class="com.zxt.compplatform.formengine.dao.impl.SystemFrameDaoImpl">
+		<property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	 	<property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	 	<property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	 	<property name="zxtJDBCTemplate"><ref bean="zxtJDBCTemplate"/></property>
+	 	<property name="componentsDao" ref="zxtcomponentsDao" ></property>
+	</bean>
+	<!-- 工作项详情查询 -->
+	<bean id="zxtWorkItemInfo" class="com.zxt.compplatform.formengine.action.WorkItemInfoAction">
+	 	<property name="workItemInfoService" ref="zxtWorkItemServiceImpl" ></property>
+	</bean>
+	
+	<bean id="zxtWorkItemServiceImpl" class="com.zxt.compplatform.formengine.service.impl.WorkItemInfoServiceImpl">
+	 	<property name="workItemInfoDao" ref="zxtWorkItemDaoImpl"  ></property>
+		<property name="widfindpdidWorkFlowDao" ref="zxtWidfindpdidWorkFlowDaoImpl" ></property>
+	</bean>
+	
+	<bean id="zxtWorkItemDaoImpl" class="com.zxt.compplatform.formengine.dao.impl.WorkItemInfoDaoImpl">
+	 	  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		  <property name="systemFrameService" ref="zxtSystemFrameService"  ></property>
+		  <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+	
+	<!-- 前驱状态 多标签配置 -->
+	<bean id="zxtActivityTabAction" class="com.zxt.compplatform.workflow.action.ActivityTabAction">
+	 	<property name="activityTabService" ref="zxtActivityTabService" ></property>
+	 	<property name="componentsService" ref="zxtcomponentsService" ></property>
+	 	<property name="pageService" ref="zxtpageService" ></property>
+	</bean>
+	<bean id="zxtActivityTabService" class="com.zxt.compplatform.workflow.service.impl.ActivityTabServiceImpl">
+	 	<property name="activityTabDao" ref="zxtActivityTabDao"  ></property>
+	</bean>
+	<bean id="zxtActivityTabDao" class="com.zxt.compplatform.workflow.dao.impl.ActivityTabDaoImpl">
+	 	  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		  <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+	<!-- SSO  权限初始化框架 -->
+	<bean id="zxtSsoLoginAction" class="com.zxt.compplatform.authority.action.SsoLoginAction">
+	 	<property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	    <property name="relationShipService" ref="zxtRelationShipServiceImpl"/>
+	    <property name="authorityFrameService" ref="zxtAuthorityFrameService" ></property>
+	</bean>
+	<bean id="zxtAuthorityFrameService" class="com.zxt.compplatform.authority.service.impl.AuthorityFrameServiceImpl">
+	 	<property name="authorityFrameDao" ref="zxtAuthorityFrameDao"  ></property>
+	</bean>
+	<bean id="zxtAuthorityFrameDao" class="com.zxt.compplatform.authority.dao.impl.AuthorityFrameDaoImpl">
+	 	<property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		<property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+		<property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	</bean>
+	<!-- desktop 框架 -->
+	<bean id="zxtDesktopService" class="com.zxt.compplatform.formengine.service.impl.DeskTopServiceImpl">
+	 	<property name="deskTopDao" ref="zxtDesktopDao"  ></property>
+	</bean>
+	<bean id="zxtDesktopDao" class="com.zxt.compplatform.formengine.dao.impl.DeskTopDaoImpl">
+	 	<property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		<property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+	<!-- cookie -->
+	<bean id="zxtCookieIntererceptor"   class="com.zxt.compplatform.formengine.interceptor.CookieIntererceptor" >
+	
+	</bean>
+</beans>

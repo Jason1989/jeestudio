@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.datacolumn" extends="struts-default" namespace="/datacolumn">          
+        <action name="dataColumn" class="zxtDatacolumnDataColumnAction">	
+         	<result name="list">/pages/datatable/datacolumnlist.jsp</result>
+         	<result name="toadd">/pages/datatable/datacolumnadd.jsp</result>
+         	<result name="toupdate">/pages/datatable/datacolumnupdate.jsp</result> 
+         	<result name="toimport">/pages/datatable/datacolumnimport.jsp</result>
+         	<result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>

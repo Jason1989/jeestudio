@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-2.0.4.xsd">
+
+    <http auto-config='true'>
+    	<!-- 设置登陆页面  -->
+    	<intercept-url pattern="/formengine/zsf_.action*" access="IS_AUTHENTICATED_FULLY" />
+    	<intercept-url pattern="/pages/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    	<!-- 只要用户登录就可以访问某些资源，而不需要具体要求用户拥有哪些权限，这时候可以使用IS_AUTHENTICATED_FULLY -->
+    	<intercept-url pattern="/jquery-easyui-1.1.2/*" filters="none"/>
+    	<intercept-url pattern="/fckeditor*" filters="none"/>
+    	<intercept-url pattern="/images*" filters="none"/>
+    	<intercept-url pattern="/css*" filters="none"/>
+    	<intercept-url pattern="/js*" filters="none"/>
+    	<intercept-url pattern="/js*" filters="none"/>
+    	<intercept-url pattern="/common*" filters="none"/>
+    	<!--
+    	 -->
+    	<form-login login-page="/login.jsp"
+			authentication-failure-url="/login.jsp?error=true"
+			default-target-url="/formengine/zsf_.action" />
+		<!-- 理解下面标签的意义？？？？？？？？？？？？？？？？？？？？？session的管理：同一用户重复登陆 -->
+		<concurrent-session-control exception-if-maximum-exceeded="false" max-sessions="1" expired-url="/"/>
+    	<!-- 
+        <intercept-url pattern="/admin.jsp" access="ROLE_ADMIN" />
+        <intercept-url pattern="/**" access="ROLE_USER" />
+    	 -->
+    </http>
+    <!-- 异常处理 -->
+    <beans:bean class="org.springframework.security.ui.ExceptionTranslationFilter">
+    	<beans:property name="authenticationEntryPoint">
+    		<beans:bean class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+    			<beans:property name="loginFormUrl" value="/pages/login.jsp"/>
+    			<beans:property name="forceHttps" value="false"/>
+    		</beans:bean>
+    	</beans:property>
+    	<beans:property name="accessDeniedHandler">
+    		<beans:bean class="org.springframework.security.ui.AccessDeniedHandlerImpl">
+    			<beans:property name="errorPage" value="/common/jsp/accessIsDenied.jsp"></beans:property>
+    		</beans:bean>
+    	</beans:property>
+    </beans:bean>
+	
+    <!--  
+    <authentication-provider>
+        <user-service>
+            <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+            <user name="user" password="user" authorities="ROLE_USER" />
+        </user-service>
+     -->
+     <!-- 用户和角色的管理 -->
+     <!-- 
+     <jdbc-user-service data-source-ref="dataSource_flow"
+            users-by-username-query="select username,userpassword as password,'1' as enabled
+                                       from t_usertable
+                                      where username=?"
+            authorities-by-username-query="select u.username,r.rname as authority
+                                             from t_usertable u
+                                             join t_role_user ur
+                                               on u.userid=ur.userid
+                                             join t_role r
+                                               on r.rid = ur.rid
+                                            where u.username=?"/>
+      -->
+          <!-- 用户信息缓存 
+          <jdbc-user-service data-source-ref="dataSource_flow" cache-ref="userCache"/>
+          -->
+           <!-- 
+    </authentication-provider>
+            -->
+    
+    <!-- userService -->
+    <beans:bean id="userDetailsService" class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource_flow" />  
+        <beans:property name="usersByUsernameQuery" value="select username as account,userpassword as password,'1' as enabled
+                                       from t_usertable
+                                      where username=?">  
+        </beans:property>  
+        <beans:property name="authoritiesByUsernameQuery" value="select u.username as account,r.rname as authority
+                                             from t_usertable u
+                                             join t_role_user ur
+                                               on u.userid=ur.userid
+                                             join t_role r
+                                               on r.rid = ur.rid
+                                            where u.username=?">  
+        </beans:property>
+    </beans:bean>
+    
+    <!-- 资源的管理 -->
+    <beans:bean id="filterInvocationDefinitionSource"
+		class="com.zxt.compplatform.acegi.util.JdbcFilterInvocationDefinitionSourceFactoryBean">
+			<beans:property name="dataSource" ref="dataSource_flow"/>
+			<beans:property name="resourceQuery" value="
+			select res.resuri as res_string, 
+				   r.rname from t_role r 
+				   
+				   join t_role_url ru 
+				   on ru.role_id =r.rid 
+				   
+			       join eng_resources res 
+			       on ru.url_id = res.resid 
+			       
+			       where res.restype='3'
+			"/>
+	</beans:bean>
+	<!-- 验证用户身份，负责把身份的验证交给一个或者多个Provider
+		（认证提供者，有多个实现DaoAuthenticationProvider:负责提供用户信息，包括用户名和密码，用户名和密码的工作就交给UserDetailService（UserDetailService的接口实现有jdbcDaoImpl(通过数据库获取用户名和密码)和
+																									inMemeryDaoImpl(通过xml的定义的方式获取)）来做，
+							通过userCache（此接口的实现有：EhCacheBasedUserCache(基于ehcahce的开源项目进行缓存)和
+														nullUserCache(不缓存)）来存储用户的信息，
+							减少数据库的查询次数，用passwordEncoder(对用户输入的明文进行加密，acegi提供了三种加密方式，plainTextPasswordEncoder(默认不加密，返回明文)、
+																										ShaPasswordEncoder(哈希算法加密(sha))、
+																										d5PasswordEncoder(消息摘要[d5]加密))来进行加密,
+		anonymousAuthenticationProvider、
+		rememberMeAuthenticationProvider），
+		Provider都实现AuthenticationProvider接口，他其中有两个方法（authenticate()和support()）  -->
+    	<authentication-manager alias="authenticationManager"/>
+		<!-- 
+		 <beans:bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		 	<beans:property name="providers">
+		 		<beans:list>
+		 			<beans:ref local="daoAuthenticationProvider"/>
+		 		</beans:list>
+		 	</beans:property>
+		 </beans:bean>
+		 -->
+    <!-- 前台登录页面的设置，负责处理登录身份验证 -->
+	<beans:bean id="yewuLoginFilter" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilter"> 
+		<custom-filter before="AUTHENTICATION_PROCESSING_FILTER" /> 
+		<beans:property name="authenticationManager" ref="authenticationManager" /> 
+		<!-- 登录请求的页面，登录请求路径 -->
+		<beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
+		<!-- 登录成功的转向页面 -->
+		<beans:property name="defaultTargetUrl" value="/formengine/zsf_.action" />
+		<!-- 登录失败的时候的页面 -->
+		<beans:property name="authenticationFailureUrl" value="/pages/login.jsp?error=true" /> 
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+	</beans:bean>
+	<!-- 用户退出注销处理 bean -->
+	<beans:bean id="preLogoutFilter" class="org.springframework.security.ui.logout.LogoutFilter">    
+         <custom-filter before="LOGOUT_FILTER" />    
+         <beans:constructor-arg value="/pages/login.jsp" />    
+         <beans:constructor-arg>    
+             <beans:list>    
+                 <beans:bean    
+                     class="org.springframework.security.ui.logout.SecurityContextLogoutHandler" />    
+             </beans:list>    
+         </beans:constructor-arg>    
+         <beans:property name="filterProcessesUrl" value="/j_spring_security_logout" />    
+     </beans:bean>    
+
+	<!-- 替换原有的资源管理过滤器 -->
+	<beans:bean id="filterSecurityInterceptor"
+		class="org.springframework.security.intercept.web.FilterSecurityInterceptor" autowire="byType">
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" />
+		<beans:property name="objectDefinitionSource" ref="filterInvocationDefinitionSource" />
+	</beans:bean>
+	
+	<!-- 用户信息的缓存 -->
+	<beans:bean id="userCache" class="org.springframework.security.providers.dao.cache.EhCacheBasedUserCache">
+		<beans:property name="cache" ref="userEhCache_security"/>
+	</beans:bean>
+	<beans:bean id="cacheManager_security" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<beans:property name="configLocation" value="/WEB-INF/classes/ehcache_acegi.xml"/>
+	</beans:bean>
+	<beans:bean id="userEhCache_security" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<beans:property name="cacheManager" ref="cacheManager_security"/>
+		<beans:property name="cacheName" value="userCache"/>
+	</beans:bean>
+    <!-- 数据源 -->
+	 <beans:bean id="dataSource_flow" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <beans:property name="driverClassName" value="${driverClassName}"/>
+        <beans:property name="url" value="${url}"/>
+        <beans:property name="username" value="${userName}"/>
+        <beans:property name="password" value="${password}"/>
+    </beans:bean>
+     <!-- 自定义密码加密，获取用户名和密码信息 -->
+    <beans:bean id="daoAuthenticationProvider"  
+	    class="org.springframework.security.providers.dao.DaoAuthenticationProvider">  
+	    <custom-authentication-provider/>
+	    <beans:property name="userDetailsService" ref="userDetailsService" />  
+	    <beans:property name="userCache" ref="userCache" />  
+	    <beans:property name="passwordEncoder" ref="${passwordEncoder}"  />  
+	</beans:bean>  
+    <!-- 
+	  
+     -->
+    <beans:bean id="md5PasswordEncoder" class="com.zxt.compplatform.acegi.util.BaseMD5Encoder"/>
+    <beans:bean id="base64Encoder" class="com.zxt.compplatform.acegi.util.Base64Encoder"/>
+    
+    <beans:bean class="org.springframework.security.event.authentication.LoggerListener"/>
+    
+    <beans:bean class="org.springframework.security.event.authorization.LoggerListener"/>
+    
+    <!-- ×××××××××××××××××××××××××××××××××××××××××××  登陆到不同的系统××××××××××××××××××××××××××××××××××××××××××× -->
+     <!-- 业务系统登录页面的设置 
+		<beans:bean id="logicSystemLoginFilter" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilter"> 
+			<custom-filter before="AUTHENTICATION_PROCESSING_FILTER" /> 
+		<beans:property name="authenticationManager" ref="authenticationManager" /> 
+     -->
+		<!-- 登录请求的页面，登录请求路径 -->
+	<!-- 
+		<beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
+	 -->
+		<!-- 登录成功的转向页面 -->
+	<!-- 
+		<beans:property name="defaultTargetUrl" value="/index.jsp" />
+	 -->
+		<!-- 登录失败的时候的页面 --> 
+	<!-- 
+		<beans:property name="authenticationFailureUrl" value="/error.jsp" /> 
+			<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+		</beans:bean> 
+	 -->
+	
+	<!-- 后台构建平台用户登陆-->
+	<!-- 
+	<beans:bean id="compplatformLoginFilter" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilter">
+		<custom-filter position="AUTHENTICATION_PROCESSING_FILTER" />
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="filterProcessesUrl" value="/admin/login_action" />
+		<beans:property name="defaultTargetUrl" value="/admin/admin!loginSuccess.action" />
+		<beans:property name="authenticationFailureUrl" value="/admin/admin!loginError.action" />
+		<beans:property name="alwaysUseDefaultTargetUrl" value="true" />
+	</beans:bean>
+	 -->
+    <!-- ××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××××× -->
+    <beans:bean id="messageService" class="com.zxt.compplatform.acegi.util.MessageServiceImpl"/>
+</beans:beans>

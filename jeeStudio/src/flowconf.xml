@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flowConfig>
+	<rmiUrl>
+		<dbrmiurl>rmi://127.0.0.1:8020/rmi</dbrmiurl>
+		<monitorrmiurl>rmi://127.0.0.1:8020/monitorrmi</monitorrmiurl>
+		<orgrmiurl>rmi://127.0.0.1:8020/orgrmi</orgrmiurl>	
+	</rmiUrl>
+	<haclusterName>flowcluster</haclusterName>
+	<BroadcastPort>1327</BroadcastPort>
+  <SleepTime>10000</SleepTime>
+</flowConfig>

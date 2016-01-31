@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.framework.dictionary" extends="struts-default" namespace="/dictionary">          
+        <action name="dataDictionary" class="zxtDictionaryDataDictionaryAction">     
+        	<result name="main">/pages/dictionary/dictionaryman.jsp</result><!--GUOWEIXIN 数据字典  -->	
+         	<result name="list">/pages/dictionary/dictionarylist.jsp</result>
+         	<result name="sqllist">/pages/dictionary/sqllist.jsp</result>
+         	<result name="toadd">/pages/dictionary/dictionaryadd.jsp</result>
+         	<result name="toupdate">/pages/dictionary/dictionaryupdate.jsp</result>  
+         	<result name="toconfig">/pages/dictionary/dictionaryMagicConf.jsp</result>       	
+         	<result name="error">/index.jsp</result>
+        </action>
+        <action name="dictionaryGroup" class="zxtDictionaryDictionaryGroupAction">	
+         	<result name="list">/pages/dictionary/dictionarygrouplist.jsp</result>
+         	<result name="toadd">/pages/dictionary/dictionarygroupadd.jsp</result>
+         	<result name="toupdate">/pages/dictionary/dictionarygroupupdate.jsp</result>         	
+         	<result name="error">/index.jsp</result>
+        </action>
+        <action name="dictionaryCache_*" class="dictionaryCacheAction" method="{1}">
+        	<result name="toDictionarySettingPage">/pages/dictionary/cache/dicCacheSetting.jsp</result>
+        </action>
+    </package>
+</struts>

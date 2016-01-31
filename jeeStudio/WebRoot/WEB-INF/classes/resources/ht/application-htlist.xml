@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+    <bean id="planLimitDao" class="com.zxt.ht.dao.impl.PlanLimitDaoImpl" >
+     	<property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+	</bean>
+	
+	<bean id="planLimitSerice" class="com.zxt.ht.service.impl.PlanLimitSeriviceImpl">
+		<property name="planLimitDao" ref="planLimitDao"/>
+	</bean>
+	
+	
+	<bean id="SParmerAction" class="com.zxt.ht.action.SParmerAction">
+		<property name="planLimitSerice" ref="planLimitSerice"/>
+		
+	</bean>
+	
+</beans>

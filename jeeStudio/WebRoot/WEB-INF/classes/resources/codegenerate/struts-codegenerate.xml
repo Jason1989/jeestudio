@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts> 
+    <package name="com.zxt.compplatform.codegenerate.codeFactory" extends="struts-default" namespace="/codegenerate">          
+        <action name="codeGenerate" class="zxtCodegenerateCodeGenerateAction">	
+         	<result name="success">/pages/codegenerate/code_F_list.jsp</result>
+         	<result name="logs">/pages/codegenerate/code_F_log.jsp</result>
+         	<result name="detail">/pages/codegenerate/code_F_detail.jsp</result>
+         	<result name="goGenerate">/pages/codegenerate/code_F_generate.jsp</result>
+         	<result name="error">/index.jsp</result>
+        </action>
+        <!-- 生成引擎代码action  第一次固化 2012-11-20-->
+       <action name="engineCodeGenerate" class="zxtEngineCodeGenerateAction">	
+         	<result name="success">/pages/codegenerate/code_engine_list.jsp</result>
+         	<result name="logs">/pages/codegenerate/code_engine_log.jsp</result>
+         	<result name="detail">/pages/codegenerate/code_engine_detail.jsp</result>
+         	<result name="goGenerate">/pages/codegenerate/code_engine_generate.jsp</result>
+         	<result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>

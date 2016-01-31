@@ -1,0 +1,31 @@
+/*平台ORACLE数据库操作*/
+/*分为四步 */
+/*第1步：创建临时表空间  */
+create temporary tablespace zxtplat_kf_temp   
+tempfile 'D:\oracle\tablespace\zxtplat_kf_temp.dbf' 
+size 50m  
+autoextend on  
+next 50m maxsize 20480m  
+extent management local;  
+ 
+/*第2步：创建数据表空间  */
+create tablespace zxtplat_kf  
+logging  
+datafile 'D:\oracle\tablespace\zxtplat_kf.dbf' 
+size 50m  
+autoextend on  
+next 50m maxsize 20480m  
+extent management local;  
+ 
+/*第3步：创建用户并指定表空间  */
+create user zxtplat_kf identified by orcl  
+default tablespace zxtplat_kf  
+temporary tablespace zxtplat_kf_temp;  
+ 
+/*第4步：给用户授予权限 connect:登录权限  resource:可以创建簇、表、序列以及PL/SQL编程用方案对象，包括过程、程序包、触发器等*/
+grant connect,resource to zxtplat_kf;
+--视图授权 操作：
+grant  CREATE VIEW to zxtplat_kf
+/*第5步：在CMD命令中执行：
+ imp  --> 用户名 -->密码  --> 文件路径(d:daochu.dmp) -->  一直按确定（Enter)  --> 用户名  -->确定（Enter)
+ 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtDatacolumnDataColumnAction" class="com.zxt.compplatform.datacolumn.action.DataColumnAction" scope="prototype">
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService"/>
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="formService"  ref="zxtFormFormService"></property>
+	</bean>
+	<bean id="zxtDatacolumnDataColumnService" class="com.zxt.compplatform.datacolumn.service.DataColumnService">
+		<!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+		<property name="dataColumnDao" ref="zxtDatacolumnDataColumnDao" />
+	</bean>
+	<bean id="zxtDatacolumnDataColumnDao" class="com.zxt.compplatform.datacolumn.dao.DataColumnDao" parent="daoSupport">
+	</bean>
+</beans>

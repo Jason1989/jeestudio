@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.datacolumn.entity">
+    <class name="DataColumn" table="ENG_DATAOBJECT_COLUMN">
+    	<id name="id" type="java.lang.String">
+            <column name="DF_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="DF_TITLE" length="500" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="DF_NAME" length="500" />
+        </property>
+        <property name="dataType" type="java.lang.String">
+            <column name="DF_DATATYPE" length="100" />
+        </property>
+        <property name="dataLength" type="java.lang.Long">
+            <column name="DF_LENGTH" />
+        </property>
+        <property name="precision" type="java.lang.Long">
+            <column name="DF_PRECISION"/>
+        </property>        
+        <property name="scale" type="java.lang.Long">
+            <column name="DF_SCALE"/>
+        </property>        
+        <property name="nullable" type="java.lang.String">
+            <column name="DF_NULLABLE" length="100"/>
+        </property>        
+        <property name="defaultValue" type="java.lang.String">
+            <column name="DF_DEFAULTVALUE" length="100"/>
+        </property>        
+        <property name="sysColumn" type="java.lang.String">
+            <column name="DF_ISSYSTEM_FIELD" length="100"/>
+        </property>
+        <property name="istemp" type="java.lang.String">
+            <column name="DF_ISTEMP" length="100"/>
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DF_DESCRIPTION" length="500"/>
+        </property>
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DF_SORTINDEX"/>
+        </property>   
+        <property name="isPrimaryKey" type="java.lang.Integer">
+            <column name="DF_ISPRIMARYKEY"/>
+        </property>         
+        <many-to-one name="dataTable" column="DF_DO_ID" class="com.zxt.compplatform.datatable.entity.DataTable" outer-join="true" lazy="false" not-found="ignore"/>       
+    </class>
+</hibernate-mapping>

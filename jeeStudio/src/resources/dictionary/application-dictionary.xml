@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtDictionaryDataDictionaryAction" class="com.zxt.framework.dictionary.action.DataDictionaryAction" scope="prototype">
+		<property name="dataDictionaryService" ref="zxtDictionaryDataDictionaryService" />
+		<property name="sqlDicService" ref="zxtSqlDicService" />
+	</bean>
+	<bean id="zxtDictionaryDictionaryGroupAction" class="com.zxt.framework.dictionary.action.DictionaryGroupAction" scope="prototype">
+		<property name="dataDictionaryService" ref="zxtDictionaryDataDictionaryService" />
+	</bean>
+	<bean id="zxtDictionaryDataDictionaryService" class="com.zxt.framework.dictionary.service.DataDictionaryService">
+		<property name="dataDictionaryDao" ref="zxtDictionaryDataDictionaryDao" />
+	</bean>
+	<bean id="zxtSqlDicService" class="com.zxt.framework.dictionary.service.SqlDicService">
+		<property name="dataDictionaryDao" ref="zxtDictionaryDataDictionaryDao" />
+		<property name="zxtSqlDicDao" ref="zxtSqlDicDao" />
+	</bean>
+	<bean id="zxtDictionaryDataDictionaryDao" class="com.zxt.framework.dictionary.dao.DataDictionaryDao" parent="daoSupport">
+	</bean>
+	<!-- sql字典DAO -->
+	<bean id="zxtSqlDicDao" class="com.zxt.framework.dictionary.dao.SqlDicDaoImpl">
+		  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+		  <property name="systemFrameService" ref="zxtSystemFrameService"  ></property>
+		  <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+	<!-- 数据字典缓存处理模块 -->
+	<bean id="dictionaryCacheAction" class="com.zxt.framework.dictionary.action.DictionaryCacheAction" scope="prototype">
+		<property name="cacheService" ref="dictionaryCacheServiceImpl"></property>
+	</bean>
+	
+	<bean id="dictionaryCacheServiceImpl" class="com.zxt.framework.dictionary.service.DictionaryCacheServiceImpl">
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService"></property>
+		<property name="dictionaryCacheDao" ref="dictionaryCacheDaoImpl"></property>
+		<property name="sqlParserManager" ref="sqlParserUtils"></property>
+	</bean>
+	
+	<bean id="dictionaryCacheDaoImpl" class="com.zxt.framework.dictionary.dao.DictionaryCacheDaoImpl" parent="daoSupport">
+	</bean>
+	<!-- sql解析用的 -->
+	<bean id="sqlParserUtils" class="net.sf.jsqlparser.parser.CCJSqlParserManager"></bean>
+	
+</beans>

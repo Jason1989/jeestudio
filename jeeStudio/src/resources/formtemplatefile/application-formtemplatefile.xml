@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="formTemplateFileAction" class="com.zxt.framework.templatefile.action.FormTemplateFileAction" scope="prototype">
+		  <property name="formTemplateFileService" ref="formTemplateFileService" ></property>
+		  <property name="dataObjectGroupService" ref="zxtDatatableDataObjectGroupService" />
+		  <property name="pageService" ref="zxtpageService" />
+		  <property name="componentsService" ref="zxtcomponentsService" />
+	</bean>
+	
+	<bean id="formTemplateFileService" class="com.zxt.framework.templatefile.service.impl.FormTemplateFileServiceImpl">
+		  <property name="formTemplateFileDao" ref="formTemplateFileDao" ></property>
+	</bean>
+	
+	<bean id="formTemplateFileDao" class="com.zxt.framework.templatefile.dao.impl.FormTemplateFileDaoImpl">
+		  <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+	</bean>
+</beans>

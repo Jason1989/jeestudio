@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.datatable" extends="struts-default" namespace="/datatable">          
+        <action name="dataTable" class="zxtDatatableDataTableAction">	
+         	<result name="list">/pages/datatable/datatablelist.jsp</result>
+         	<result name="toadd">/pages/datatable/datatableadd.jsp</result>
+         	<result name="toupdate">/pages/datatable/datatableupdate.jsp</result> 
+         	<result name="toimport">/pages/datatable/datatableimport.jsp</result> 
+         	<!-- 数据库对象导入页面 -->
+         	<result name="todbimport">/pages/datatable/databasebjectimport.jsp</result>
+         	<result name="error">/index.jsp</result>
+        </action>
+        <action name="dataObjectGroup" class="zxtDatatableDataObjectGroupAction">	
+         	<result name="toadd">/pages/datatable/dataobjectgroupadd.jsp</result>
+         	<result name="toupdate">/pages/datatable/dataobjectgroupupdate.jsp</result> 
+         	<result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>

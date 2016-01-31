@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.indexset" extends="struts-default" namespace="/index">
+    	<action name="indexModel" class="indexPageModelAction">
+         	<result name="success">/pages/left1.jsp</result>
+         	<result name="goMain">/pages/menu/menu_list.jsp</result>
+         	<result name="toadd">/pages/indexPage/addmodel.jsp</result>
+         	<result name="toview">/pages/indexPage/viewmodel.jsp</result>
+         	<result name="toupdate">/pages/indexPage/updatemodel.jsp</result>
+        </action>
+    </package>
+    <package name="com.zxt.compplatform.workflowtask" extends="struts-default" namespace="/worktask">
+    	<action name="workflowtask" class="workModelAction"></action>
+    </package>
+</struts>

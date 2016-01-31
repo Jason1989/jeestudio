@@ -1,0 +1,109 @@
+body {margin:0px;padding:0px;font-family: Arial,"宋体";font-size: 12px;color:#2a3939;background-color: #717171;background: url(default/images/body_bg.jpg) repeat-x left top;}
+div,ul,li,dl,dt,dd,img,h1,h2{margin:0px;padding:0px;list-style-type: none;border:0;}
+input,select{margin:0px;padding:0px; color:#565656;height:22px;vertical-align:middle;}
+textarea{margin:0px;padding:0px; color:#565656}
+
+/*编辑页表单格式*/
+/*外边框*/
+.pop_col_col,.pop_col_color {width:617px;}
+
+/*文本域*/
+.pop_col_cons {float: left;width: 610px;}
+.pop_col_cons dl {float: left;margin-top: 2px;color: #565656;}
+.pop_col_cons dd {float: left;width: 97px;text-align: right;line-height: 70px;background-color: #e9e9e9;}
+.pop_col_cons dt {float: left;width: 490px;line-height: 20px;}
+.pop_col_cons dt textarea{width: 477px;}
+
+/*一行放两个属性*/
+.pop_col_conc {float: left;width:308px;}
+.pop_col_conc dl {color: #565656;float: left; margin-top:2px;height:25px;}
+.pop_col_conc dd {float: left;text-align: right;line-height: 23px;width: 97px;background-color: #e9e9e9;}
+.pop_col_conc dt  {float: left;line-height: 20px;width:160px;}
+
+/*一行放一个属性*/
+.pop_col_consi {float: left;width: 610px;}
+.pop_col_consi dl {float: left;color: #565656;margin-top:2px;height:25px;}
+.pop_col_consi dd {float: left;width: 97px;text-align: right;line-height: 23px;background-color: #e9e9e9;}
+.pop_col_consi dt {float: left;width: 490px;line-height: 23px;}
+.pop_col_consi input {width:477px;}
+
+/*查看页表单格式*/
+/*文本域*/
+.pop_col_cons2 {float: left;width: 610px;}
+.pop_col_cons2 dl {float: left;margin-top: 2px;color: #565656;}
+.pop_col_cons2 dd {float: left;width: 97px;text-align: right;line-height: 66px;background-color: #e9e9e9;}
+.pop_col_cons2 dt {float: left;width: 467px;height: 66px;border:1px solid #e9e9e9;padding-left:3px;}
+
+/*一行放两个属性*/
+.pop_col_conc2 {float: left;width:308px;}
+.pop_col_conc2 dl {color: #565656;float: left; margin-top:2px;height:25px;}
+.pop_col_conc2 dd {float: left;text-align: right;line-height: 23px;width: 97px;background-color: #e9e9e9;}
+.pop_col_conc2 dt  {float: left;line-height: 20px;width:160px;border:1px solid #e9e9e9;padding-left:3px;}
+
+/*一行放一个属性*/
+.pop_col_consi2 {float: left;width: 610px;}
+.pop_col_consi2 dl {float: left;color: #565656;margin-top:2px;height:25px;}
+.pop_col_consi2 dd {float: left;width: 97px;text-align: right;line-height: 23px;background-color: #e9e9e9;}
+.pop_col_consi2 dt {float: left;width: 467px;line-height: 23px;border:1px solid #e9e9e9;padding-left:3px;}
+
+
+
+
+/*accordion的字体颜色 通过headerCls设置*/
+.accordion-font-color{
+	color:green;
+}
+/*datagrid中的标题栏的背景颜色*/
+.header_cls{
+	line-height:15px;
+	color:black;
+	font-weight:normal;
+	font-size:12px;
+	background:#efefef url('images/dgreen/pop_bg.jpg') repeat-x;
+	position:relative;
+	border:1px solid #E4E4E4;
+}
+/* 头部 */
+/*.head_logo {background: url(images/dgreen/logo.png) no-repeat;*/
+.head_bg {background: url(images/dgreen/head_bg.jpg) no-repeat;height: 66px;}
+.head_logo {float: left;height: 66px;display: inline;}
+.head_t_0{float: left;width: 63px;}
+.head_t_1{width:600px;height:36px;margin:5px 0 0 0;}
+.head_t_msg {color: #fff;line-height: 35px;width:auto;min-width: 110px;float: left;margin-left:5px;}
+.head_t_if {line-height: 35px;width: 125px;float: left;margin-left:5px;}
+.head_t_img {line-height: 35px;float: left;margin-top: 10px;}
+.head_t_img2 {line-height: 35px;float: left;margin-top: 10px;}
+.head_t_font {color: #fff;line-height: 35px;float: left;padding: 0 8px 0 2px;}
+.head_t_font a {color: #fff;}
+.head_t_font a:hover {color: #fff;}
+
+.head_right {height:30px;width:auto;float:right;margin-right:25px;margin-top:38px;}
+a{TEXT-DECORATION:none}
+.head_right li {float:left;margin-right:5px;font-family:"微软雅黑"; font-size:15px;}
+.head_right li a{text-decoration:none;cursor:hand;  }
+.head_right li .nocurrent {background:url(images/dgreen/li_l.png) 0 0 no-repeat;display:block;color:#ffffff;letter-spacing:1px; text-decoration:none;}
+.head_right li a:hover {background:url(images/dgreen/li_l2.png) 0 0 no-repeat;}
+.head_right li .nocurrent span {background:url(images/dgreen/li_r.png) 100% 0 no-repeat;padding:4px 12px 0 0; margin:0 0 0 12px; display:block;height:24px;}
+.head_right li a:hover span {background:url(images/dgreen/li_r2.png) 100% 0 no-repeat; letter-spacing:1px;color:#095711;}
+.current {background:url(images/dgreen/li_l2.png) 0 0 no-repeat;display:block;letter-spacing:1px;color:#ffffff; text-decoration:none;}/*鼠标点击时变换背景，方便JS获取样式*/
+.current span{background:url(images/dgreen/li_r2.png) 100% 0 no-repeat;letter-spacing:1px;color:#095711;padding:4px 12px 0 0; margin:0 0 0 12px; display:block;height:24px;}  /*鼠标点击时变换背景，方便JS获取样式*/
+
+/* 底部 border-top: 1px solid #2a7dc6;*/
+.bottom {height: 21px;border-top: 1px solid #2bb641;background-color: #1b7325;}
+.bottom_font {background: url(images/dgreen/frame_bottom_bg.jpg) repeat-x;line-height: 26px;color: #a4bcd4;padding-left: 20px;}
+.bottom_font a{color:#a4bcd4;}
+
+/*使首页上的tabs有绿色边框，但是其他控件里也会有边框*/
+.tabs_index .tabs-panels{
+	margin:0px;
+	padding:0px;
+	/*border:1px solid #1b7325;*/
+	border:1px solid #E6E6E6;
+	border-top:0px;
+	overflow:auto;
+}
+
+/*使第一个标签1px间距*/
+.tabs_index #www .tabs-wrap ul{
+	padding-left:1px;
+}

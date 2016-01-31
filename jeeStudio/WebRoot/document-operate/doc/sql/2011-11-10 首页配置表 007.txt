@@ -1,0 +1,30 @@
+USE [zxtplat]
+GO
+/****** Object:  Table [dbo].[ENG_INDEXPAGE_SETTING]    Script Date: 11/10/2011 13:25:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ENG_INDEXPAGE_SETTING](
+	[ID] [varchar](50) NOT NULL,
+	[SETTING] [varchar](2000) NULL,
+	[NAME] [nvarchar](50) NULL,
+	[DESCRIPTION] [nvarchar](200) NULL
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ENG_INDEXPAGE_MODEL]    Script Date: 11/10/2011 13:25:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ENG_INDEXPAGE_MODEL](
+	[ID] [nvarchar](50) NOT NULL,
+	[NAME] [nvarchar](200) NULL,
+	[URL] [nvarchar](400) NULL,
+	[DESCRIPTION] [nvarchar](1000) NULL
+) ON [PRIMARY]
+GO

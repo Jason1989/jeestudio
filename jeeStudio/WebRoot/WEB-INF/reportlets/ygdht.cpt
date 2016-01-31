@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="fundbudget" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="OID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="END_DATE"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="BEGIN_DATE"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select i.COMPANY_ID,i.CON_NAME,i.STAND_MONEY,cc.COUNT_MONEY from FND_CONTRACT_INFO i join
+(select c.CON_ID CON_ID,sum(CAST(c.APP_MONEY as int)) COUNT_MONEY from FND_END_CHECK c group by c.CON_ID) cc
+on i.CON_ID = cc.CON_ID and i.COMPANY_ID = '${OID}' and i.REG_DATE > '${BEGIN_DATE}' and i.REG_DATE < '${END_DATE}' and i.IF_HISTORY = '1']]></Query>
+</TableData>
+<TableData name="zxtplat" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select t.OID as COMPANY_ID,t.ONAME as COMPANY_NAME from T_ORGANIZATION t]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<EmailManager mailHost="" password="___" user="" fromEmailAddress=""/>
+<ServerPrinter/>
+<WebPageContent>
+<ToolBars/>
+<WebPage isPage="false" isShowAsImage="false"/>
+</WebPageContent>
+<WebViewContent>
+<ToolBars/>
+</WebViewContent>
+<WebWriteContent>
+<ToolBars/>
+<SelectedColor color="-10033153"/>
+</WebWriteContent>
+<Background name="NullBackground"/>
+<CacheValidateTime>
+<![CDATA[0]]></CacheValidateTime>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[19,19,19,181,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[169,185,113,113,0,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" s="0">
+<O>
+<![CDATA[公司名称]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="0">
+<O>
+<![CDATA[合同名称]]></O>
+<Expand/>
+</C>
+<C c="2" r="0" s="0">
+<O>
+<![CDATA[总金额]]></O>
+<Expand/>
+</C>
+<C c="3" r="0" s="0">
+<O>
+<![CDATA[已结算金额]]></O>
+<Expand/>
+</C>
+<C c="0" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="zxtplat" columnName="COMPANY_NAME"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[COMPANY_ID]]></CNAME>
+<Compare op="0">
+<ColumnRow column="4" row="1"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="E2"/>
+</C>
+<C c="1" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="fundbudget" columnName="CON_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="fundbudget" columnName="STAND_MONEY"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="1" s="1">
+<O t="DSColumn">
+<Attributes dsName="fundbudget" columnName="COUNT_MONEY"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="1">
+<O t="DSColumn">
+<Attributes dsName="fundbudget" columnName="COMPANY_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" cs="4">
+<O t="CC">
+<LayoutAttr selectedIndex="0" columns="0"/>
+<Chart name="Default">
+<Chart class="com.fr.chart.Chart">
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="0" lineColor="-16777216" isRoundBorder="false"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<ChartAttr isJSDraw="true"/>
+<Title>
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="0" lineColor="-16777216" isRoundBorder="false"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<O>
+<![CDATA[已归档合同]]></O>
+<TextAttr>
+<Attr alignText="0">
+<FRFont name="SimSun" style="0" size="12"/>
+</Attr>
+</TextAttr>
+<TitleVisible value="true"/>
+</Title>
+<Plot class="com.fr.chart.plot.Bar2DPlot">
+<Plot>
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="0" lineColor="-16777216" isRoundBorder="false"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<Attr isNullValueBreak="true"/>
+<NewSeriesCollection>
+<SeriesAttr class="com.fr.chart.plot.SeriesAttr">
+<SeriesAttr/>
+</SeriesAttr>
+</NewSeriesCollection>
+<Legend>
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="1" lineColor="-8355712" isRoundBorder="true"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<Attr position="4" legendNum="10" visible="true" autoAdjustSize="false"/>
+<FRFont name="SimSun" style="0" size="12"/>
+</Legend>
+<CateAttr isStacked="false" bgStagger="false" bgColor="-1"/>
+<CategoryAxis class="com.fr.chart.axis.CategoryAxis">
+<Title>
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="0" lineColor="-16777216" isRoundBorder="false"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<O>
+<![CDATA[合同名称]]></O>
+<TextAttr>
+<Attr alignText="0">
+<FRFont name="SimSun" style="0" size="12"/>
+</Attr>
+</TextAttr>
+<TitleVisible value="true"/>
+</Title>
+<AxisLine style="1" color="-5197648"/>
+<AxisPosition value="3"/>
+<AxisLabelPosition value="3"/>
+<MainGridLine style="0"/>
+<SecGridLine style="0"/>
+<AxisLabelCount value="-1"/>
+<TickLine type="2" mainStroke="1.0" len="8" secType="1" secStroke="1.0" secLen="0"/>
+<ArrowShow arrowShow="false"/>
+<AxisShow axisShow="true"/>
+<Stagger value="false"/>
+<TextAttr>
+<Attr alignText="0"/>
+</TextAttr>
+<AxisRange/>
+</CategoryAxis>
+<ValueAxis class="com.fr.chart.axis.ValueAxis">
+<Title>
+<GI>
+<SeriesAttrBackground/>
+<SeriesAttrBorder>
+<Attr lineStyle="0" lineColor="-16777216" isRoundBorder="false"/>
+</SeriesAttrBorder>
+<SeriesAttrAlpha>
+<Attr alpha="1.0"/>
+</SeriesAttrAlpha>
+</GI>
+<O>
+<![CDATA[已结算金额]]></O>
+<TextAttr>
+<Attr alignText="1">
+<FRFont name="SimSun" style="0" size="12"/>
+</Attr>
+</TextAttr>
+<TitleVisible value="true"/>
+</Title>
+<AxisLine style="1" color="-5197648"/>
+<AxisPosition value="2"/>
+<AxisLabelPosition value="3"/>
+<MainGridLine style="1" color="-1184275"/>
+<SecGridLine style="0"/>
+<AxisLabelCount value="-1"/>
+<TickLine type="2" mainStroke="1.0" len="8" secType="1" secStroke="1.0" secLen="0"/>
+<ArrowShow arrowShow="false"/>
+<AxisShow axisShow="false"/>
+<Stagger value="false"/>
+<TextAttr>
+<Attr alignText="0"/>
+</TextAttr>
+<Format class="java.text.DecimalFormat">
+<![CDATA[#0]]></Format>
+<AxisRange/>
+</ValueAxis>
+<BarAttr isHorizontal="false" overlap="-0.15" interval="1.0"/>
+<Bar2DAttr isSimulation3D="true"/>
+</Plot>
+</Plot>
+</Chart>
+</Chart>
+<ReportDataDefinition>
+<CategoryDefinition value="B2"/>
+<SeriesDefinition name="A2" value="D2"/>
+<SeriesPos value="0"/>
+<BaseOn value="true"/>
+<Top topCate="-1" topValue="-1"/>
+</ReportDataDefinition>
+</O>
+<Expand/>
+</C>
+<C c="5" r="10">
+<O>
+<![CDATA[+]]></O>
+<Expand/>
+</C>
+</CellElementList>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[23,19,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[105,72,106,72,82,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" s="2">
+<O>
+<![CDATA[请选择开始日期：]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="3">
+<O>
+<![CDATA[]]></O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="4">
+<ColumnRow column="3" row="0"/>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.WidgetHighlightAction">
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr format="M-d-yy" start="" end=""/>
+</Widget>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+<CellInsertPolicy/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetName name="BEGIN_DATE"/>
+<WidgetAttr/>
+<Listener event="afteredit">
+<JavaScript class="com.fr.report.js.JavaScriptImpl">
+<Parameters/>
+<Content>
+<![CDATA[null]]></Content>
+</JavaScript>
+</Listener>
+<EMSG>
+<![CDATA[请选择开始日期！]]></EMSG>
+<allowBlank>
+<![CDATA[false]]></allowBlank>
+<DateAttr start="" end="" returnDate="true"/>
+</Widget>
+<CellPageAttr/>
+</C>
+<C c="2" r="0" s="2">
+<O>
+<![CDATA[请选择结束日期：]]></O>
+<Expand/>
+</C>
+<C c="3" r="0" s="3">
+<O>
+<![CDATA[]]></O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ObjectCondition">
+<Compare op="2">
+<ColumnRow column="1" row="0"/>
+</Compare>
+</Condition>
+<HighlightAction class="com.fr.report.highlight.ValueHighlightAction">
+<O>
+<![CDATA[]]></O>
+</HighlightAction>
+</Highlight>
+</HighlightList>
+<Expand/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetName name="END_DATE"/>
+<WidgetAttr/>
+<DateAttr start="" end="" returnDate="true"/>
+</Widget>
+</C>
+<C c="4" r="0" s="2">
+<O>
+<![CDATA[请选择部门：]]></O>
+<Expand/>
+</C>
+<C c="5" r="0" s="2">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.TreeComboBoxEditor">
+<WidgetName name="OID"/>
+<WidgetAttr/>
+<Listener event="click">
+<JavaScript class="com.fr.report.js.JavaScriptImpl">
+<Parameters/>
+<Content>
+<![CDATA[null]]></Content>
+</JavaScript>
+</Listener>
+<Editable>
+<![CDATA[false]]></Editable>
+<TreeAttr/>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d is null]]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@1}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@2}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@3}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@4}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+</Widget>
+</C>
+<C c="6" r="0">
+<O>
+<![CDATA[查询]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+<Listener event="click">
+<JavaScript class="com.fr.report.js.JavaScriptImpl">
+<Parameters/>
+<Content>
+<![CDATA[var start = this.options.form.getWidgetByName("BEGIN_DATE").getValue();
+
+var end = this.options.form.getWidgetByName("END_DATE").getValue();
+
+if( start == ""){
+
+alert("错误,开始时间不能为空");
+
+return false;
+
+};
+
+if(end == ""){
+
+alert("错误,结束时间不能为空");
+
+return false;
+
+};
+
+if( start > end){
+
+alert("错误,开始时间不能大于结束时间");
+
+return false;
+
+} 
+]]></Content>
+</JavaScript>
+</Listener>
+</Widget>
+</C>
+</CellElementList>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy-MM-dd]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

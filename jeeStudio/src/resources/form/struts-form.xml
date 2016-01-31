@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.form" extends="struts-default" namespace="/form">          
+        <action name="form" class="zxtFormFormAction">	
+         	<result name="list">/pages/form/formlist.jsp</result>
+         	<result name="menudolist">/pages/form/menudolist.jsp</result>
+         	<result name="toadd">/pages/form/formadd.jsp</result>
+         	<result name="toadd_forAll">/pages/form/formadd_forall.jsp</result>
+         	<result name="toupdate">/pages/form/formupdate.jsp</result>         	
+         	<result name="todesignlist">/pages/form/formdesignlist.jsp</result>         	
+         	<result name="todesignedit">/pages/form/formdesignedit.jsp</result>         	
+         	<result name="todesignview">/pages/form/formdesignview.jsp</result>         	
+         	<result name="selecttable">/pages/form/formselecttable.jsp</result>         	
+         	<result name="listpageset">/pages/form/pageset/listpageset.jsp</result>         	
+         	<result name="editpageset">/pages/form/pageset/editpageset.jsp</result>         	
+         	<result name="viewpageset">/pages/form/pageset/viewpageset.jsp</result>         	
+         	<result name="error">/index.jsp</result>
+         	<!-- 用于标识  返回  代码生成 的页面。 -->
+         	<result name="menudolistCode">/pages/codegenerate/menudolist.jsp</result>
+         	<result name="listCode">/pages/codegenerate/formlist.jsp</result>
+        </action>
+    </package>
+</struts>

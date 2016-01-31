@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="zxtpageService" class="com.zxt.compplatform.formengine.service.PageService">
+		<property name="resolveObjectDefService" ref="zxtresolveObjectDefService" />
+		<property name="queryXmlDataService" ref="zxtqueryXmlDataService" />
+	</bean>
+	<bean id="zxtresolveObjectDefService" class="com.zxt.compplatform.formengine.service.ResolveObjectDefService">
+     <property name="resolveXmlService">
+       <ref bean="zxtresolveXmlService"/>
+     </property>
+     <property name="formService">
+       <ref bean="zxtFormFormService"/>
+     </property>
+     <property name="dataSourceService">
+       <ref bean="zxtDatasourceDataSourceService"/>  
+     </property>
+     <property name="dataColumnService">
+       <ref bean="zxtDatacolumnDataColumnService"/>
+     </property>
+     
+	</bean>
+	 <bean id="zxtresolveXmlService" class="com.zxt.compplatform.formengine.service.ResolveXmlService">
+		  <property name="componentsService" ref="zxtcomponentsService" ></property>
+	 </bean>	
+	
+	 <bean id="zxtlistPageAction" class="com.zxt.compplatform.formengine.action.ListPageAction">
+	      <property name="pageService" ref="zxtpageService" ></property>
+	      <property name="codeGenerateService" ref="zxtcodeGenerateService"  ></property>
+	      <property name="tabPageUtil" ref="zxttabPageUtil" ></property>
+	      <property name="deskTopService" ref="zxtDesktopService" ></property>
+	      <property name="componentsService" ref="zxtcomponentsService" ></property>
+	      <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	      <property name="listPageService" ref="zxtListPageServiceImpl" ></property>
+	      <property name="fieldGrantService" ref="zxtFieldGrantServiceImpl"/>	<!-- 字段授权的Action  GUOWEIXIN-->
+	       <property name="authorityFrameService" ref="zxtAuthorityFrameService" ></property><!--引用。 目的：根据用户名称 得到角色ID GUOWEIXIN -->
+	 </bean>
+	 <bean id="zxtlistPageForSelectAction" class="com.zxt.compplatform.formengine.action.ListPageForSelectAction">
+	      <property name="pageService" ref="zxtpageService" ></property>
+	      <property name="codeGenerateService" ref="zxtcodeGenerateService"  ></property>
+	      <property name="tabPageUtil" ref="zxttabPageUtil" ></property>
+	      <property name="deskTopService" ref="zxtDesktopService" ></property>
+	      <property name="componentsService" ref="zxtcomponentsService" ></property>
+	      <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	      <property name="listPageService" ref="zxtListPageServiceImpl" ></property>
+	 </bean>
+	 <bean id="zxtListPageServiceImpl" class="com.zxt.compplatform.formengine.service.impl.ListPageServiceImpl">
+	 </bean>
+	
+	 
+	 <!-- 登录 -->
+	<bean id="zxtloginAction" class="com.zxt.compplatform.formengine.action.LoginAction"></bean>
+	 <bean id="zxteditPageAction" class="com.zxt.compplatform.formengine.action.EditPageAction">
+	      <property name="fieldGrantService" ref="zxtFieldGrantServiceImpl"/>	<!-- 字段授权的Action  GUOWEIXIN-->
+	       <property name="authorityFrameService" ref="zxtAuthorityFrameService" ></property><!--引用。 目的：根据用户名称 得到角色ID GUOWEIXIN -->
+	 <property name="formService" ref="zxtFormFormService" />
+      <property name="pageService">
+         <ref bean="zxtpageService"/>
+      </property>
+      <property name="tabPageUtil" ref="zxttabPageUtil" ></property>
+      <property name="codeGenerateService" >
+       <ref bean="zxtcodeGenerateService"/>
+      </property>
+	<property name="queryXmlDataService">
+         <ref bean="zxtqueryXmlDataService"/>
+      </property>
+      <property name="componentsService" ref="zxtcomponentsService" ></property>
+	 </bean>
+	 <bean id="zxtviewPageAction" class="com.zxt.compplatform.formengine.action.ViewPageAction">
+	 	 <property name="fieldGrantService" ref="zxtFieldGrantServiceImpl"/>	<!-- 字段授权的Action  GUOWEIXIN-->
+	      <property name="authorityFrameService" ref="zxtAuthorityFrameService" ></property><!--引用。 目的：根据用户名称 得到角色ID GUOWEIXIN -->
+      <property name="pageService">
+         <ref bean="zxtpageService"/>
+      </property>
+      <property name="codeGenerateService" >
+       <ref bean="zxtcodeGenerateService"/>
+      </property>
+	     <property name="tabPageUtil" ref="zxttabPageUtil" ></property>
+		 <property name="componentsService" ref="zxtcomponentsService" ></property>
+	 </bean>
+	 <bean id="zxtqueryXmlDataService" class="com.zxt.compplatform.formengine.service.QueryXmlDataService">
+		<property name="queryXmlData">
+           <ref bean="zxtqueryXmlData"/>
+        </property>
+        <property name="componentsDao" ref="zxtcomponentsDao" ></property>
+        <property name="daibandao" ref="daibanfl3WorkFlowDaoImpl" ></property>
+	</bean>
+	 <bean id="zxtcodeGenerateService" class="com.zxt.compplatform.codegenerate.service.CodeGenerateServiceImpl">
+		<property name="codeGenerateDao" ref="zxtcodeGenerateDao" />
+	</bean>
+	<bean id="zxtcodeGenerateDao" class="com.zxt.compplatform.codegenerate.dao.CodeGenerateDaoImpl" parent="daoSupport">
+	</bean>
+     <bean id="zxtqueryXmlData" class="com.zxt.compplatform.formengine.dao.QueryXmlData" >
+	
+	</bean>
+    <bean id="zxtBaseDao" class="com.zxt.compplatform.formengine.dao.BaseDao"></bean>
+
+	 <bean id="zxtJDBCDaoSupport" class="com.zxt.framework.jdbc.ZXTJDBCDaoSupport">
+     <property name="zxtJDBCTemplate"><ref bean="zxtJDBCTemplate"/></property>
+     
+    </bean>
+    <bean id="zxtJDBCTemplate" class="com.zxt.framework.jdbc.ZXTJDBCTemplate">
+	    <constructor-arg index="0" ref="zxt_fmplat_datasource"></constructor-arg>
+    </bean>
+    <!-- 目前主要用于验证编码是否已存在 -->
+    <bean id="validateAction" class="com.zxt.compplatform.formengine.action.ValidateAction" scope="prototype">
+    	<property name="validateService" ref="validateService"></property>
+    	<property name="pageService" ref="zxtpageService"></property>
+    </bean>
+    <bean id="validateService" class="com.zxt.compplatform.formengine.service.impl.ValidateServiceImpl">
+    	<property name="validateDao" ref="validateDao"></property>
+    </bean>
+    <bean id="validateDao" class="com.zxt.compplatform.formengine.dao.impl.ValidateDaoImpl">
+    	<property name="systemFrameService" ref="zxtSystemFrameService"></property>
+    </bean>
+    <!-- 上传组件 -->
+    <bean id="zxtUploadFindAction" class="com.zxt.compplatform.formengine.action.UploadFindAction">
+    	<property name="uploadService" ref="zxtUploadFindServiceImpl"></property>
+    </bean>
+    <bean id="zxtUploadFindServiceImpl" class="com.zxt.compplatform.formengine.service.impl.UploadFindServiceImpl">
+    	<property name="uploadFindDao" ref="zxtUploadFindDaoImpl"></property>
+    </bean>
+    <bean id="zxtUploadFindDaoImpl" class="com.zxt.compplatform.formengine.dao.impl.UploadFindDaoImpl">
+    	<property name="jdbcTemplate" ref="jdbcTemplate"  ></property>
+    </bean>
+</beans>

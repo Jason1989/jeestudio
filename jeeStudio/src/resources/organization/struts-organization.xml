@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.organization" extends="struts-default" namespace="/organization">
+    	<action name="organization" class="OrganizationAction">
+    	    <result name="list">/pages/organization/organizationlist.jsp</result>
+    	    <result name="show">/pages/organization/organizationtable.jsp</result>
+    	    
+    	    <result name="toaddOrg">/pages/organization/organizationOrgadd.jsp</result>
+    	    <result name="toupdateOrg">/pages/organization/organizationOrgupdate.jsp</result>
+    	    <result name="toorglead">/pages/organization/organizationlead.jsp</result>
+    	    <result name="toOrgLeadAll">/pages/organization/organizationleadAll.jsp</result>
+    	    
+    	    <result name="toorgrolemanager">/pages/organization/orgrolemanager.jsp</result>
+    	    <result name="toorgunderroleadd">/pages/organization/orgrolemanagerAllrole.jsp</result>
+    	    
+    	    <result name="toorguseradd">/pages/organization/organizationuseradd.jsp</result>
+    	    <result name="toorguserupdate">/pages/organization/organizationuserupdate.jsp</result>
+    	    <result name="toorguserupdate2">/pages/organization/organizationuserupdate2.jsp</result>
+    	    
+     	    <result name="toorguserupdatelimsbh">/limsbh/system/organizationuser-update.jsp</result>   	    
+    	</action>
+    </package>
+</struts>

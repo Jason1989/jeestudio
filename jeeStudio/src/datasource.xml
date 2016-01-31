@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="platParamerter" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>	
+				<value>classpath:plat_parameter.properties</value>	
+			</list>
+		</property>
+	</bean> 
+	
+	<bean id="zxt_fmplat_datasource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 
+		<bean id="zxt_fmplat_datasource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+			BasicDataSource提供了close()方法关闭数据源，所以必须设定destroy-method=”close”属性， 以便Spring容器关闭时，数据源能够正常关闭。
+		-->
+		<!-- 	
+			启动出现严重error 此处
+			<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		-->
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${userName}" />
+		<property name="password" value="${password}" />
+		<!-- 最大连接数 -->
+		<property name="maxActive" value="100" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="30" /> 
+		<!-- 超时等待时间，以毫秒为单位 -->
+		<property name="maxWait" value="5000" /> 
+		<!-- 自动回收超时连接 -->
+		<property name="removeAbandoned" value="true" /> 
+		<!-- 超时时间，以秒为单位 -->
+		<property name="removeAbandonedTimeout" value="180" /> 
+		<!-- 打印出回收Connection的错误信息 -->
+		<property name="logAbandoned" value="true" /> 
+		
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="zxt_fmplat_datasource"></ref>
+		</property>
+		
+		<property name="mappingResources">
+			<list>
+				
+				<value>/com/zxt/compplatform/datasource/entity/DataSource.hbm.xml</value>
+				<value>/com/zxt/compplatform/datatable/entity/DataTable.hbm.xml</value>
+				<value>/com/zxt/compplatform/datacolumn/entity/DataColumn.hbm.xml</value>
+				<value>/com/zxt/compplatform/validationrule/entity/ValidationRule.hbm.xml</value>
+				<value>/com/zxt/framework/dictionary/entity/DataDictionary.hbm.xml</value>
+				<value>/com/zxt/compplatform/form/entity/Form.hbm.xml</value>
+				<value>/com/zxt/compplatform/codegenerate/entity/EngCodeLog.hbm.xml</value>				
+				<value>/com/zxt/compplatform/menu/entity/EngFunctionMenu.hbm.xml</value>			
+				<value>/com/zxt/compplatform/organization/entity/TOrganization.hbm.xml</value>
+				<value>/com/zxt/compplatform/indexset/entity/ModelPart.hbm.xml</value>
+				<value>/com/zxt/compplatform/indexgenerate/entity/PageUnit.hbm.xml</value>
+				<value>/com/zxt/ht/entity/PtEntity.hbm.xml</value>
+				<!-- zhuzhi -->
+				
+				<value>/com/zxt/compplatform/authority/entity/Authority.hbm.xml</value>
+				<!--  -->
+					
+			</list>
+		</property> 
+		<property name="hibernateProperties">
+			<props>
+				<!-- 
+						<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+						<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop> 
+				-->
+				  
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+			</props>
+		</property>
+		<property name="lobHandler" ref="lobHandler"/>		
+	</bean>
+	
+	<bean id="lobHandler" lazy-init="true" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+        <property name="nativeJdbcExtractor">
+            <ref bean="nativeJdbcExtractor"/>
+        </property>
+	</bean> 
+	<bean id="nativeJdbcExtractor" lazy-init="true" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"/>
+</beans>

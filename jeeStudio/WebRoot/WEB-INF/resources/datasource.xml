@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatasourceManager xmlVersion="20100901">
+<ConnectionMap>
+<Connection name="FRDemo" class="com.fr.data.impl.JDBCDatabaseConnection">
+<DatabaseAttr/>
+<JDBCDatabaseAttr url="jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=${ENV_HOME}\..\FRDemo.mdb" driver="sun.jdbc.odbc.JdbcOdbcDriver" user="" password="___" encryptPassword="true">
+<DBCPAttr/>
+</JDBCDatabaseAttr>
+</Connection>
+<Connection name="con3" class="com.fr.data.impl.JDBCDatabaseConnection">
+<DatabaseAttr/>
+<JDBCDatabaseAttr url="jdbc:sqlserver://192.168.6.16:1433;databaseName=LIMS_BH_NEW" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver" user="sa" password="___0060002f003b003d005700e1001e0021" encryptPassword="true">
+<DBCPAttr/>
+</JDBCDatabaseAttr>
+</Connection>
+</ConnectionMap>
+<TableDataMap>
+<TableData name="server" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM STSCORE]]></Query>
+</TableData>
+</TableDataMap>
+</DatasourceManager>

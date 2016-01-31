@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,ditem.NAME 检测项目,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30  
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+group by  ditem.NAME ,ditem.ID ;]]></Query>
+</TableData>
+<TableData name="分析日期" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select year(samitem.MON_TIME) 年,ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+
+and child.CHILD_TASK_STATE_ID=30;]]></Query>
+</TableData>
+<TableData name="现场空白样数量" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=3
+group by  ditem.NAME ,ditem.ID ;]]></Query>
+</TableData>
+<TableData name="现场平行样数量" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=2
+group by  ditem.NAME ,ditem.ID ;]]></Query>
+</TableData>
+<TableData name="实验室平行样数量" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=7
+group by  ditem.NAME ,ditem.ID ;
+ ]]></Query>
+</TableData>
+<TableData name="加标回收数量" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=6
+group by  ditem.NAME ,ditem.ID ;]]></Query>
+</TableData>
+<TableData name="标样数量" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.ID,count(ditem.NAME) 数量
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+ and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+ and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=5
+group by  ditem.NAME ,ditem.ID ;]]></Query>
+</TableData>
+<TableData name="现场空白样的测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from (
+select distinct  D_ITEM_ID
+
+from dbo.LMS_SAM_ITEM item,LMS_SAMPLE sam
+ where-- item.MON_TIME > '${date}'
+--and item.MON_TIME <=  '${time}'
+item.SAM_ID=sam.ID
+ and 
+ sam.D_SAM_TYPE_ID=3 ) ty
+;]]></Query>
+</TableData>
+<TableData name="现场平行样测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from (
+select distinct  D_ITEM_ID
+
+from dbo.LMS_SAM_ITEM item,LMS_SAMPLE sam
+ where-- item.MON_TIME > '${date}'
+--and item.MON_TIME <=  '${time}'
+item.SAM_ID=sam.ID
+ and 
+ sam.D_SAM_TYPE_ID=2 ) ty
+;]]></Query>
+</TableData>
+<TableData name="实验室平行样测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from (
+select distinct  D_ITEM_ID
+
+from dbo.LMS_SAM_ITEM item,LMS_SAMPLE sam
+ where-- item.MON_TIME > '${date}'
+--and item.MON_TIME <=  '${time}'
+item.SAM_ID=sam.ID
+ and 
+ sam.D_SAM_TYPE_ID=7 ) ty
+;]]></Query>
+</TableData>
+<TableData name="加标回收测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from (
+select distinct  D_ITEM_ID
+
+from dbo.LMS_SAM_ITEM item,LMS_SAMPLE sam
+ where-- item.MON_TIME > '${date}'
+--and item.MON_TIME <=  '${time}'
+item.SAM_ID=sam.ID
+ and 
+ sam.D_SAM_TYPE_ID=6 ) ty
+;]]></Query>
+</TableData>
+<TableData name="标样测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from (
+select distinct  D_ITEM_ID
+
+from dbo.LMS_SAM_ITEM item,LMS_SAMPLE sam
+ where-- item.MON_TIME > '${date}'
+--and item.MON_TIME <=  '${time}'
+item.SAM_ID=sam.ID
+ and 
+ sam.D_SAM_TYPE_ID=5 ) ty
+;]]></Query>
+</TableData>
+<TableData name="加标回收的合格数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.NAME, count(*) 数量,ditem.ID from (select ditem.NAME, ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem
+,dbo.LMS_原始记录_样品表 yang,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and yang.BATCH_ID=batch.ID
+and sam.ID=yang.SAM_ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=6
+  and yang.检测结果是否合格=0) ditem
+  group by  ditem.NAME ,ditem.ID;
+ 
+]]></Query>
+</TableData>
+<TableData name="现场空白的合格数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.NAME, count(*) 数量,ditem.ID from (select ditem.NAME, ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem
+,dbo.LMS_原始记录_样品表 yang,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and yang.BATCH_ID=batch.ID
+and sam.ID=yang.SAM_ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=3
+  and yang.检测结果是否合格=0) ditem
+  group by  ditem.NAME ,ditem.ID;
+ 
+]]></Query>
+</TableData>
+<TableData name="现场平行的合格数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.NAME, count(*) 数量,ditem.ID from (select ditem.NAME, ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem
+,dbo.LMS_原始记录_样品表 yang,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and yang.BATCH_ID=batch.ID
+and sam.ID=yang.SAM_ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=2
+  and yang.检测结果是否合格=0) ditem
+  group by  ditem.NAME ,ditem.ID;
+ 
+]]></Query>
+</TableData>
+<TableData name="实验室平行样的合格数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.NAME, count(*) 数量,ditem.ID from (select ditem.NAME, ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem
+,dbo.LMS_原始记录_样品表 yang,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and yang.BATCH_ID=batch.ID
+and sam.ID=yang.SAM_ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=7
+  and yang.检测结果是否合格=0) ditem
+  group by  ditem.NAME ,ditem.ID;
+ 
+]]></Query>
+</TableData>
+<TableData name="标样的合格数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="MON_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="ITEM_TYPE_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select ditem.NAME, count(*) 数量,ditem.ID from (select ditem.NAME, ditem.ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch, dbo.LMS_BATCH_DETAIL batail,
+dbo.LMS_SAMPLE sam,dbo.LMS_SAM_ITEM samitem,dbo.LMS_D_ITEM ditem
+,dbo.LMS_原始记录_样品表 yang,dbo.LMS_D_ITEM_TYPE itype
+where  task.TASK_ID=child.TASK_ID
+and batch.CHILD_TASK_ID=child.ID
+and batail.BATCH_ID=batch.ID
+and batail.SAM_ID=sam.ID
+and sam.ID=samitem.SAM_ID
+and samitem.D_ITEM_ID=ditem.ID
+and yang.BATCH_ID=batch.ID
+and sam.ID=yang.SAM_ID
+and itype.ID=ditem.D_ITEM_TYPE_ID
+and child.CHILD_TASK_STATE_ID=30 
+and samitem.MON_TIME > '${date}'
+and samitem.MON_TIME <=  '${time}'
+and ditem.D_ITEM_TYPE_ID='${ITEM_TYPE_ID}'
+and itype.D_MON_TYPE_ID='${MON_TYPE_ID}'
+ and sam.D_SAM_TYPE_ID=5
+  and yang.检测结果是否合格=0) ditem
+  group by  ditem.NAME ,ditem.ID;
+ 
+]]></Query>
+</TableData>
+<TableData name="总检查测试个数" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="time"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="date"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select count(*)个数 from(
+ select distinct D_ITEM_ID 
+ from ( 
+select distinct  D_ITEM_ID , MON_TIME from dbo.LMS_SAM_ITEM item, dbo.LMS_SAMPLE sam
+where  sam. D_SAM_TYPE_ID=2  union
+select distinct  D_ITEM_ID , MON_TIME from dbo.LMS_SAM_ITEM item, dbo.LMS_SAMPLE sam
+where  sam. D_SAM_TYPE_ID=3
+union select distinct  D_ITEM_ID , MON_TIME from dbo.LMS_SAM_ITEM item, dbo.LMS_SAMPLE sam
+where  sam. D_SAM_TYPE_ID=5
+union select distinct  D_ITEM_ID , MON_TIME from dbo.LMS_SAM_ITEM item, dbo.LMS_SAMPLE sam
+where  sam. D_SAM_TYPE_ID=6
+union select distinct  D_ITEM_ID , MON_TIME from dbo.LMS_SAM_ITEM item, dbo.LMS_SAMPLE sam
+where  sam. D_SAM_TYPE_ID=7
+ ) ty where  MON_TIME > '${date}'
+and MON_TIME <=  '${time}') tt
+
+]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars/>
+<WebPage isPage="false" isShowAsImage="false"/>
+</WebPageContent>
+<WebViewContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.FlashPrint">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[打印[客户端]A]]></Text>
+<IconName>
+<![CDATA[flashprint]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Email">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[邮件]]></Text>
+<IconName>
+<![CDATA[email]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Excel">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelO">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(原样导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelS">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页分Sheet导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Word">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Word]]></Text>
+<IconName>
+<![CDATA[word]]></IconName>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+</WebViewContent>
+<WebWriteContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.FlashPrint">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[打印[客户端]A]]></Text>
+<IconName>
+<![CDATA[flashprint]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Export">
+<WidgetAttr/>
+<Text>
+<![CDATA[输出]]></Text>
+<IconName>
+<![CDATA[export]]></IconName>
+<Buttons pdf="true" excelP="true" excelO="true" excelS="true" word="true"/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Email">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[邮件]]></Text>
+<IconName>
+<![CDATA[email]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Excel">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelO">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(原样导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelS">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页分Sheet导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Word">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Word]]></Text>
+<IconName>
+<![CDATA[word]]></IconName>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<SelectedColor color="-10033153"/>
+</WebWriteContent>
+<Background name="NullBackground"/>
+<CacheValidateTime>
+<![CDATA[0]]></CacheValidateTime>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[51,32,26,46,31,1,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[36,87,82,58,40,49,42,52,40,50,40,49,40,51,40,52,40,49,40,50,40,51,42,55,52,62,56,63,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="28" s="0">
+<O>
+<![CDATA[近岸海域环境监测质量控制报表]]></O>
+<Expand/>
+</C>
+<C c="28" r="0">
+<Expand/>
+</C>
+<C c="0" r="1" rs="2" s="1">
+<O>
+<![CDATA[序号]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" rs="2" s="1">
+<O>
+<![CDATA[分析项目]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" rs="2" s="1">
+<O>
+<![CDATA[分析日期]]></O>
+<Expand/>
+</C>
+<C c="3" r="1" rs="2" s="1">
+<O>
+<![CDATA[样品数]]></O>
+<Expand/>
+</C>
+<C c="4" r="1" cs="4" s="1">
+<O>
+<![CDATA[现场空白]]></O>
+<Expand/>
+</C>
+<C c="8" r="1" cs="4" s="1">
+<O>
+<![CDATA[现场平行样]]></O>
+<Expand/>
+</C>
+<C c="12" r="1" cs="4" s="1">
+<O>
+<![CDATA[实验室平行样]]></O>
+<Expand/>
+</C>
+<C c="16" r="1" cs="4" s="1">
+<O>
+<![CDATA[加标回收]]></O>
+<Expand/>
+</C>
+<C c="20" r="1" cs="4" s="1">
+<O>
+<![CDATA[标样（质控样）]]></O>
+<Expand/>
+</C>
+<C c="24" r="1" rs="2" s="1">
+<O>
+<![CDATA[总检查数]]></O>
+<Expand/>
+</C>
+<C c="25" r="1" rs="2" s="1">
+<O>
+<![CDATA[总检查率%]]></O>
+<Expand/>
+</C>
+<C c="26" r="1" rs="2" s="1">
+<O>
+<![CDATA[总合格数]]></O>
+<Expand/>
+</C>
+<C c="27" r="1" rs="2" s="1">
+<O>
+<![CDATA[总合格率%]]></O>
+<Expand/>
+</C>
+<C c="28" r="1">
+<Expand/>
+</C>
+<C c="4" r="2" s="1">
+<O>
+<![CDATA[个数]]></O>
+<Expand/>
+</C>
+<C c="5" r="2" s="1">
+<O>
+<![CDATA[分析率%]]></O>
+<Expand/>
+</C>
+<C c="6" r="2" s="1">
+<O>
+<![CDATA[合格数]]></O>
+<Expand/>
+</C>
+<C c="7" r="2" s="1">
+<O>
+<![CDATA[合格率%]]></O>
+<Expand/>
+</C>
+<C c="8" r="2" s="1">
+<O>
+<![CDATA[个数]]></O>
+<Expand/>
+</C>
+<C c="9" r="2" s="1">
+<O>
+<![CDATA[分析率%]]></O>
+<Expand/>
+</C>
+<C c="10" r="2" s="1">
+<O>
+<![CDATA[合格数]]></O>
+<Expand/>
+</C>
+<C c="11" r="2" s="1">
+<O>
+<![CDATA[合格率%]]></O>
+<Expand/>
+</C>
+<C c="12" r="2" s="1">
+<O>
+<![CDATA[个数]]></O>
+<Expand/>
+</C>
+<C c="13" r="2" s="1">
+<O>
+<![CDATA[分析率%]]></O>
+<Expand/>
+</C>
+<C c="14" r="2" s="1">
+<O>
+<![CDATA[合格数]]></O>
+<Expand/>
+</C>
+<C c="15" r="2" s="1">
+<O>
+<![CDATA[合格率%]]></O>
+<Expand/>
+</C>
+<C c="16" r="2" s="1">
+<O>
+<![CDATA[个数]]></O>
+<Expand/>
+</C>
+<C c="17" r="2" s="1">
+<O>
+<![CDATA[分析率%]]></O>
+<Expand/>
+</C>
+<C c="18" r="2" s="1">
+<O>
+<![CDATA[合格数]]></O>
+<Expand/>
+</C>
+<C c="19" r="2" s="1">
+<O>
+<![CDATA[合格率%]]></O>
+<Expand/>
+</C>
+<C c="20" r="2" s="1">
+<O>
+<![CDATA[个数]]></O>
+<Expand/>
+</C>
+<C c="21" r="2" s="1">
+<O>
+<![CDATA[分析率%]]></O>
+<Expand/>
+</C>
+<C c="22" r="2" s="1">
+<O>
+<![CDATA[合格数]]></O>
+<Expand/>
+</C>
+<C c="23" r="2" s="1">
+<O>
+<![CDATA[合格率%]]></O>
+<Expand/>
+</C>
+<C c="28" r="2">
+<Expand/>
+</C>
+<C c="0" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=&B4]]></Attributes>
+</O>
+<Expand leftParentDefault="false" left="B4"/>
+</C>
+<C c="1" r="3" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="检测项目"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="分析日期" columnName="年"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="数量"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="现场空白样数量" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=E4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="6" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="现场空白的合格数" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=G4 / E4 * 100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="8" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="现场平行样数量" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=I4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="10" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="现场平行的合格数" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="11" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=100*K4 / I4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="12" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="实验室平行样数量" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="13" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=M4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="14" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="实验室平行样的合格数" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="15" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=O4 / M4 * 100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="16" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="加标回收数量" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="17" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=Q4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="18" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="加标回收的合格数" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="19" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=S4 / Q4 * 100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="20" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="标样数量" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="21" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=U4]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="22" r="3" s="1">
+<O t="DSColumn">
+<Attributes dsName="标样的合格数" columnName="数量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds1" columnName="ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="23" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=W4 / U4 * 100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="24" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(U4,Q4,M4,I4,E4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="25" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(Y4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="26" r="3" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(W4,S4,O4,K4,G4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="27" r="3" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=AA4/Y4*100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="28" r="3">
+<Expand/>
+</C>
+<C c="0" r="4" s="1">
+<Expand/>
+</C>
+<C c="1" r="4" s="1">
+<O>
+<![CDATA[合计]]></O>
+<Expand/>
+</C>
+<C c="2" r="4" s="1">
+<Expand/>
+</C>
+<C c="3" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(D4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="4" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(E4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="5" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=E5/F6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="6" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(G4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="7" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=G5/E5]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="8" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(I4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="9" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=I5/J6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="10" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(K4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="11" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=K5/I5]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="12" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(M4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="13" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=M5/N6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="14" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(O4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="15" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=O5/M5]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="16" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(Q4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="17" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=Q5/R6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="18" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(S4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="19" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=S5/Q5]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="20" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=sum(U4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="21" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=U5/V6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="22" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(W4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="23" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=W5/U5]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="24" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(Y4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="25" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=Y5/Z6]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="26" r="4" s="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(AA4)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="27" r="4" s="3">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=AA5/Y5*100]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="28" r="4">
+<Expand/>
+</C>
+<C c="0" r="5" s="4">
+<Expand/>
+</C>
+<C c="1" r="5" s="4">
+<Expand/>
+</C>
+<C c="2" r="5" s="4">
+<Expand/>
+</C>
+<C c="3" r="5" s="4">
+<Expand/>
+</C>
+<C c="4" r="5" s="4">
+<Expand dir="0"/>
+</C>
+<C c="5" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="现场空白样的测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="5" s="4">
+<Expand/>
+</C>
+<C c="7" r="5" s="4">
+<Expand/>
+</C>
+<C c="8" r="5" s="4">
+<O t="I">
+<![CDATA[2]]></O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="现场平行样测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="10" r="5" s="4">
+<Expand/>
+</C>
+<C c="11" r="5" s="4">
+<Expand/>
+</C>
+<C c="12" r="5" s="4">
+<O t="I">
+<![CDATA[7]]></O>
+<Expand dir="0"/>
+</C>
+<C c="13" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="实验室平行样测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="14" r="5" s="4">
+<Expand/>
+</C>
+<C c="15" r="5" s="4">
+<Expand/>
+</C>
+<C c="16" r="5" s="4">
+<O t="I">
+<![CDATA[6]]></O>
+<Expand dir="0"/>
+</C>
+<C c="17" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="加标回收测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="18" r="5" s="4">
+<Expand/>
+</C>
+<C c="19" r="5" s="4">
+<Expand/>
+</C>
+<C c="20" r="5" s="4">
+<O t="I">
+<![CDATA[5]]></O>
+<Expand dir="0"/>
+</C>
+<C c="21" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="标样测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="22" r="5" s="4">
+<Expand/>
+</C>
+<C c="23" r="5" s="4">
+<Expand/>
+</C>
+<C c="24" r="5" s="4">
+<Expand/>
+</C>
+<C c="25" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="总检查测试个数" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="26" r="5" s="4">
+<Expand/>
+</C>
+<C c="27" r="5" s="4">
+<Expand/>
+</C>
+<C c="28" r="5">
+<Expand/>
+</C>
+<C c="0" r="6">
+<O>
+<![CDATA[备注]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="27">
+<Expand/>
+</C>
+<C c="28" r="6">
+<Expand/>
+</C>
+</CellElementList>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[10,30,17,32,10,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,72,64,17,140,59,40,60,40,93,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="1">
+<O>
+<![CDATA[查询条件]]></O>
+<Expand/>
+</C>
+<C c="2" r="1">
+<O>
+<![CDATA[分析日期：]]></O>
+<Expand/>
+</C>
+<C c="3" r="1">
+<O>
+<![CDATA[从]]></O>
+<Expand/>
+</C>
+<C c="4" r="1" s="5">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetName name="date"/>
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="5" r="1" s="6">
+<O>
+<![CDATA[到]]></O>
+<Expand/>
+</C>
+<C c="6" r="1" cs="3" s="5">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetName name="time"/>
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="0" r="3">
+<O>
+<![CDATA[单位：]]></O>
+<Expand/>
+</C>
+<C c="2" r="3">
+<O>
+<![CDATA[监测类型：]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" cs="3" rs="2" s="6">
+<Expand/>
+<Widget class="com.fr.report.web.ui.CheckBoxGroup">
+<WidgetName name="MON_TYPE_ID"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.DatabaseDictionary">
+<FormulaDictAttr ki="0" vi="1"/>
+<DBDictAttr tableName="LMS_D_MON_TYPE" schemaName="dbo" ki="0" vi="1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+</Dictionary>
+</Widget>
+</C>
+<C c="6" r="3" cs="2" s="6">
+<O>
+<![CDATA[项目类别：]]></O>
+<Expand/>
+</C>
+<C c="8" r="3" cs="3" rs="2" s="6">
+<Expand/>
+<Widget class="com.fr.report.web.ui.CheckBoxGroup">
+<WidgetName name="ITEM_TYPE_ID"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.DatabaseDictionary">
+<FormulaDictAttr ki="0" vi="1"/>
+<DBDictAttr tableName="LMS_D_ITEM_TYPE" schemaName="dbo" ki="0" vi="1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+</Dictionary>
+</Widget>
+</C>
+<C c="11" r="3">
+<Expand/>
+</C>
+<C c="12" r="3" s="7">
+<Expand/>
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+</Widget>
+</C>
+<C c="2" r="4" s="6">
+<Expand/>
+</C>
+<C c="7" r="4" s="6">
+<Expand/>
+</C>
+</CellElementList>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="22"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.DecimalFormat">
+<![CDATA[#0.0%]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.DecimalFormat">
+<![CDATA[#0.0]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" foreground="-65536"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy-MM-dd]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

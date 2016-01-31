@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtDatatableDataTableAction" class="com.zxt.compplatform.datatable.action.DataTableAction" scope="prototype">
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService"></property>
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService" />
+		<property name="dataObjectGroupService" ref="zxtDatatableDataObjectGroupService" />
+		<property name="fieldGrantService" ref="zxtFieldGrantServiceImpl"/><!-- GUOWEIXIN 角色授权ACTION -->
+	</bean>
+	<bean id="zxtDatatableDataTableService" class="com.zxt.compplatform.datatable.service.DataTableService">
+		 <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	     <!-- GUOWEIXIN 目的用于获得：扩展 的读取操作 -->
+	    <property name="dataSourceDao" ref="zxtDatasourceDataSourceDao" />
+		<property name="dataTableDao" ref="zxtDatatableDataTableDao" />
+	</bean>
+	<bean id="zxtDatatableDataTableDao" class="com.zxt.compplatform.datatable.dao.DataTableDao" parent="daoSupport">
+	</bean>
+	
+	<bean id="zxtDatatableDataObjectGroupAction" class="com.zxt.compplatform.datatable.action.DataObjectGroupAction" scope="prototype">
+		<property name="dataObjectGroupService" ref="zxtDatatableDataObjectGroupService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+	</bean>
+	<bean id="zxtDatatableDataObjectGroupService" class="com.zxt.compplatform.datatable.service.DataObjectGroupService">
+		<property name="dataTableDao" ref="zxtDatatableDataTableDao" />
+	</bean>
+</beans>

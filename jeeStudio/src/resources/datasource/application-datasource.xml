@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtDatasourceDataSourceAction" class="com.zxt.compplatform.datasource.action.DataSourceAction" scope="prototype">
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService" />
+		<property name="systemFrameService" ref="zxtSystemFrameService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="dataDictionaryService" ref="zxtDictionaryDataDictionaryService" />
+		<property name="formService" ref="zxtFormFormService" />
+	</bean>
+	<bean id="zxtDatasourceDataSourceService" class="com.zxt.compplatform.datasource.service.DataSourceService">
+		<property name="dataSourceDao" ref="zxtDatasourceDataSourceDao" />
+	</bean>
+	<bean id="zxtDatasourceDataSourceDao" class="com.zxt.compplatform.datasource.dao.DataSourceDao" parent="daoSupport">
+	</bean>
+	
+</beans>

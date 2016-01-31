@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.workflow.entity">
+    <class name="EngWorkflowNodesetting" table="ENG_WORKFLOW_NODESETTING">
+    	<id name="id" type="java.lang.String">
+            <column name="ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="nodeAuthSetting" type="blob">
+            <column name="NODE_AUTH_SETTING" length="50" />
+        </property>
+        <property name="nodeId" type="java.lang.String">
+            <column name="NODE_ID" length="100" />
+        </property>
+        <property name="nodeParticipator" type="java.lang.String">
+            <column name="NODE_PARTICIPATOR" length="100" />
+        </property>
+        <property name="nodeState" type="java.lang.String">
+            <column name="NODE_STATE" length="100" />
+        </property>
+        
+        <property name="templateId" type="java.lang.String">
+            <column name="TEMPLATE_ID" length="100" />
+        </property>
+        <property name="modelId" type="java.lang.String">
+            <column name="MODEL_ID" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

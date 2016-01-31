@@ -1,0 +1,1099 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[
+  select sam.LS_CODE 样品名称,sam.LS_ID,tb.NAMES 监测项目,sam.LS_PRO_AGENT 保存方法
+,sam.LS_CONT_CZ,sam.LS_DATE,sam.LS_CONT_NO
+ from dbo.LMS_SAMPLE sam
+ ,( select LS_ID, NAMES =  dbo.Fun_GetItemNames(dbo.Fun_GroupSamItemIds(LS_ID)) FROM dbo.LMS_SAMPLE ) tb 
+ where sam.LS_ID = tb.LS_ID
+ and sam.LS_POINT_FORM_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[
+  select form.LPF_ID , point.LP_ID 点位id,task.TASK_CODE 任务单号, task.TASK_NAME 任务来源
+,point.LP_CODE 站点代号,point.LP_LATITUDE 经度,point.LP_LONGITUDE 纬度,pointmon.LPM_SAM_TIME 采样时间
+ from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK childtask,
+ dbo.LMS_POINT_MON pointmon,dbo.LMS_POINT point ,dbo.LMS_POINT_FORM form
+ where task.TASK_ID=childtask.LCT_TASK_ID
+ and childtask.LCT_ID=pointmon.LPM_CHILD_TASK_ID
+ and pointmon.LPM_POINT_ID=point.LP_ID 
+ and form.LPF_POINT_MON_ID=pointmon.LPM_ID
+ and form.LPF_ID='${ID}';
+ ]]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM dbo.LMS_FR_CY_着生生物采样单一 where  FROM_ID='${ID}';]]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM dbo.LMS_FR_CY_着生生物采样单二 where  FROM_ID='${ID}';]]></Query>
+</TableData>
+</TableDataMap>
+<ReportWebAttr>
+<WebPageContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.PDF">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[PDF]]></Text>
+<IconName>
+<![CDATA[pdf]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Excel">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelO">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelS">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页分Sheet导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Word">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Word]]></Text>
+<IconName>
+<![CDATA[word]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<WebPage isPage="false" isShowAsImage="false"/>
+</WebPageContent>
+<WebViewContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.PageSetup">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[页面设置]]></Text>
+<IconName>
+<![CDATA[pagesetup]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.PDF">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[PDF]]></Text>
+<IconName>
+<![CDATA[pdf]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Excel">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelO">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelS">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页分Sheet导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Word">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Word]]></Text>
+<IconName>
+<![CDATA[word]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.PrintPreview">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[打印预览]]></Text>
+<IconName>
+<![CDATA[preview]]></IconName>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+</WebViewContent>
+<WebWriteContent>
+<ToolBars>
+<ToolBarManager>
+<Location>
+<Embed position="1"/>
+</Location>
+<ToolBar>
+<Widget class="com.fr.report.web.ui.impl.write.Submit">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[提交]]></Text>
+<IconName>
+<![CDATA[submit]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.PDF">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[PDF]]></Text>
+<IconName>
+<![CDATA[pdf]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Excel">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelO">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.ExcelS">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Excel(分页分Sheet导出)]]></Text>
+<IconName>
+<![CDATA[excel]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Word">
+<WidgetAttr disabled="true"/>
+<Text>
+<![CDATA[Word]]></Text>
+<IconName>
+<![CDATA[word]]></IconName>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.Print">
+<WidgetAttr/>
+<Text>
+<![CDATA[打印]]></Text>
+<IconName>
+<![CDATA[print]]></IconName>
+<PrintButtons/>
+</Widget>
+<Widget class="com.fr.report.web.ui.impl.write.ShowCellValue">
+<WidgetAttr/>
+</Widget>
+</ToolBar>
+</ToolBarManager>
+</ToolBars>
+<SelectedColor/>
+</WebWriteContent>
+<Background name="NullBackground"/>
+<CacheValidateTime>
+<![CDATA[0]]></CacheValidateTime>
+</ReportWebAttr>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<PaperSize width="20.079015748031498" height="11.693000000000001"/>
+<Margin top="0.27" left="0.7500000000000001" bottom="0.27" right="0.7500000000000001"/>
+</ReportSettings>
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[30,48,30,27,30,30,30,46,30,30,30,30,30,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[72,72,82,72,72,72,72,72,72,92,61,50,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="10" s="0">
+<O>
+<![CDATA[GBH-JLI-039        着生生物采样、交接记录表     2011-6-7修订版]]></O>
+<Expand/>
+</C>
+<C c="10" r="0">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="1" s="1">
+<O>
+<![CDATA[任务单号]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="任务单号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="1" s="1">
+<O>
+<![CDATA[任务来源]]></O>
+<Expand/>
+</C>
+<C c="4" r="1" cs="4" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="任务来源"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="1" s="1">
+<O>
+<![CDATA[采样日期及时刻]]></O>
+<Expand/>
+</C>
+<C c="9" r="1" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="采样时间"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="10" r="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="点位id"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="0" r="2" s="1">
+<O>
+<![CDATA[站位代号]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="站点代号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="2" s="1">
+<O>
+<![CDATA[经度]]></O>
+<Expand/>
+</C>
+<C c="4" r="2" cs="3" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="经度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="2" s="1">
+<O>
+<![CDATA[纬度]]></O>
+<Expand/>
+</C>
+<C c="8" r="2" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="纬度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="10" r="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LPF_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" s="1">
+<O>
+<![CDATA[周围环境状况]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" cs="2" s="1">
+<O>
+<![CDATA[水体表观状态]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" cs="3" s="1">
+<O>
+<![CDATA[有关参数]]></O>
+<Expand/>
+</C>
+<C c="6" r="3" cs="4" s="1">
+<O>
+<![CDATA[环境条件 ]]></O>
+<Expand/>
+</C>
+<C c="10" r="3">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="4" rs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="周围环境 状况"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="1" r="4" cs="2" rs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="水体表观状态"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="3" r="4" s="1">
+<O>
+<![CDATA[水深（m）]]></O>
+<Expand/>
+</C>
+<C c="4" r="4" s="1">
+<O>
+<![CDATA[水温(℃)]]></O>
+<Expand/>
+</C>
+<C c="5" r="4" s="1">
+<O>
+<![CDATA[透明度]]></O>
+<Expand/>
+</C>
+<C c="6" r="4" s="1">
+<O>
+<![CDATA[气温(℃)]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" s="1">
+<O>
+<![CDATA[气压(kPa）]]></O>
+<Expand/>
+</C>
+<C c="8" r="4" s="1">
+<O>
+<![CDATA[天气状况]]></O>
+<Expand/>
+</C>
+<C c="9" r="4" s="1">
+<O>
+<![CDATA[风速（m/s)]]></O>
+<Expand/>
+</C>
+<C c="10" r="4">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="3" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="水深"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="4" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="水温"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="5" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="透明度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="6" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="气温"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="气压"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="8" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="天气状况"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="5" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="风速"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="10" r="5">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="6" s="1">
+<O>
+<![CDATA[采集项目]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" s="1">
+<O>
+<![CDATA[瓶号]]></O>
+<Expand/>
+</C>
+<C c="2" r="6" s="1">
+<O>
+<![CDATA[采样时间]]></O>
+<Expand/>
+</C>
+<C c="3" r="6" cs="2" s="1">
+<O>
+<![CDATA[样品名称]]></O>
+<Expand/>
+</C>
+<C c="5" r="6" s="1">
+<O>
+<![CDATA[ 基质面积  （m2）]]></O>
+<Expand/>
+</C>
+<C c="6" r="6" s="1">
+<O>
+<![CDATA[ 采样深度  （cm）]]></O>
+<Expand/>
+</C>
+<C c="7" r="6" s="1">
+<O>
+<![CDATA[容器材质]]></O>
+<Expand/>
+</C>
+<C c="8" r="6" s="1">
+<O>
+<![CDATA[保存方法]]></O>
+<Expand/>
+</C>
+<C c="9" r="6" s="1">
+<O>
+<![CDATA[备注]]></O>
+<Expand/>
+</C>
+<C c="10" r="6">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="监测项目"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="LS_CONT_NO"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="7" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="LS_DATE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="3" r="7" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="样品名称"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="基质面积"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[样品ID]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds2" columnName="LS_ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="6" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="采样深度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="LS_CONT_CZ"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="保存方法"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="7" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="备注"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="10" r="7">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="0" r="8" s="4">
+<Expand/>
+</C>
+<C c="1" r="8" s="4">
+<Expand/>
+</C>
+<C c="3" r="8" s="4">
+<Expand/>
+</C>
+<C c="4" r="8" s="4">
+<Expand/>
+</C>
+<C c="5" r="8" s="4">
+<Expand/>
+</C>
+<C c="7" r="8" s="4">
+<Expand/>
+</C>
+<C c="8" r="8" s="4">
+<Expand/>
+</C>
+<C c="9" r="8" s="4">
+<Expand/>
+</C>
+<C c="10" r="8">
+<Expand/>
+</C>
+<C c="0" r="9">
+<Expand/>
+</C>
+<C c="1" r="9">
+<Expand/>
+</C>
+<C c="3" r="9">
+<Expand/>
+</C>
+<C c="4" r="9">
+<Expand/>
+</C>
+<C c="5" r="9">
+<Expand/>
+</C>
+<C c="6" r="9">
+<Expand/>
+</C>
+<C c="7" r="9">
+<Expand/>
+</C>
+<C c="8" r="9">
+<Expand/>
+</C>
+<C c="9" r="9">
+<Expand/>
+</C>
+<C c="10" r="9">
+<Expand/>
+</C>
+<C c="0" r="10">
+<Expand/>
+</C>
+<C c="1" r="10">
+<Expand/>
+</C>
+<C c="3" r="10">
+<Expand/>
+</C>
+<C c="4" r="10">
+<Expand/>
+</C>
+<C c="5" r="10">
+<Expand/>
+</C>
+<C c="6" r="10">
+<Expand/>
+</C>
+<C c="7" r="10">
+<Expand/>
+</C>
+<C c="8" r="10">
+<Expand/>
+</C>
+<C c="9" r="10">
+<Expand/>
+</C>
+<C c="10" r="10">
+<Expand/>
+</C>
+<C c="0" r="11">
+<Expand/>
+</C>
+<C c="1" r="11">
+<Expand/>
+</C>
+<C c="3" r="11">
+<Expand/>
+</C>
+<C c="4" r="11">
+<Expand/>
+</C>
+<C c="5" r="11">
+<Expand/>
+</C>
+<C c="6" r="11">
+<Expand/>
+</C>
+<C c="7" r="11">
+<Expand/>
+</C>
+<C c="8" r="11">
+<Expand/>
+</C>
+<C c="9" r="11">
+<Expand/>
+</C>
+<C c="10" r="11">
+<Expand/>
+</C>
+<C c="0" r="12">
+<Expand/>
+</C>
+<C c="1" r="12">
+<Expand/>
+</C>
+<C c="3" r="12">
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="5" r="12">
+<Expand/>
+</C>
+<C c="6" r="12">
+<Expand/>
+</C>
+<C c="7" r="12">
+<Expand/>
+</C>
+<C c="8" r="12">
+<Expand/>
+</C>
+<C c="9" r="12">
+<Expand/>
+</C>
+<C c="10" r="12">
+<Expand/>
+</C>
+</CellElementList>
+<ReportWriteAttr>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL1">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_FR_CY_着生生物采样单一"/>
+<ColumnConfig name="周围环境状况" isKey="false" skipUnmodified="false">
+<ColumnRow column="0" row="4"/>
+</ColumnConfig>
+<ColumnConfig name="水体表观状态" isKey="false" skipUnmodified="false">
+<ColumnRow column="1" row="4"/>
+</ColumnConfig>
+<ColumnConfig name="水深" isKey="false" skipUnmodified="false">
+<ColumnRow column="3" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="水温" isKey="false" skipUnmodified="false">
+<ColumnRow column="4" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="透明度" isKey="false" skipUnmodified="false">
+<ColumnRow column="5" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="气温" isKey="false" skipUnmodified="false">
+<ColumnRow column="6" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="气压" isKey="false" skipUnmodified="false">
+<ColumnRow column="7" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="天气状况" isKey="false" skipUnmodified="false">
+<ColumnRow column="8" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="风速" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="点位ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="10" row="1"/>
+</ColumnConfig>
+<ColumnConfig name="FROM_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="10" row="2"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL2">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_FR_CY_着生生物采样单二"/>
+<ColumnConfig name="样品ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="10" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="点位ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="1"/>
+</ColumnConfig>
+<ColumnConfig name="基质面积" isKey="false" skipUnmodified="false">
+<ColumnRow column="5" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="采样深度" isKey="false" skipUnmodified="false">
+<ColumnRow column="6" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="备注" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="FROM_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="2"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL3">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_SAMPLE"/>
+<ColumnConfig name="LS_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="10" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="LS_DATE" isKey="false" skipUnmodified="false">
+<ColumnRow column="2" row="7"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+</ReportWriteAttr>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy-MM-dd]]></Format>
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

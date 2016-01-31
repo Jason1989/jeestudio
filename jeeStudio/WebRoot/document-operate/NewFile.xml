@@ -1,0 +1,647 @@
+<Form version="1.0" type="listPage" rows="0" cols="0" isUseWorkflow="0"
+	workflowId="" description="" title="人员列表" css="" cssClass=""
+	isPseudoDeleted="off" isshowsingleSelect="false"
+	isSystemActionlog="true" isOriginalSql="off" isOriginalSql_context=""
+	isOriginalSql_param="">
+	<DataMapping>
+		<DataSet name="DATASET1">
+			<DisplayName>DataSet1</DisplayName>
+			<Description>数据集1</Description>
+			<DataSources>
+				<DataSource type="DB" dataType="SQLSERVER">
+					<DSName>人员管理库</DSName>
+					<DisplayName>人员管理库</DisplayName>
+				</DataSource>
+			</DataSources>
+			<Table type="TABLE" name="table1">
+				<DisplayName>table1</DisplayName>
+				<Description>表1</Description>
+				<GetTable type="COMPONENT">
+					<FromTables>
+						<FromTable>
+							<TableName type="NAME">
+								T_PERSON
+								<DSName>人员管理库</DSName>
+								<STType>TABLE</STType>
+							</TableName>
+							<Index>0</Index>
+						</FromTable>
+					</FromTables>
+				</GetTable>
+				<FieldDef type="FIX">
+					<Field type="FIX">
+						<DisplayName>联系电话</DisplayName>
+						<Description>联系电话</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>telphone</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>telphone</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>个人档案</DisplayName>
+						<Description>个人档案</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>pfile</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>pfile</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>所属省份</DisplayName>
+						<Description>所属省份</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>province</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>province</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>ID</DisplayName>
+						<Description>ID</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>TRUE</IsPrimeKey>
+							<IfNull>N</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>ID</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>ID</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>性别</DisplayName>
+						<Description>性别</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>sex</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>sex</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>身份证号</DisplayName>
+						<Description>身份证号</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>idcard</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>idcard</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>姓名</DisplayName>
+						<Description>姓名</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>uname</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>uname</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>系统添加</DisplayName>
+						<Description>系统添加</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>APP_ID</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>APP_ID</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>状态</DisplayName>
+						<Description>状态</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>500</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>ENV_DATASTATE</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>ENV_DATASTATE</Name>
+							<Type>nvarchar</Type>
+							<Length>500</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>备注</DisplayName>
+						<Description>备注</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>remark</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>remark</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>出生日期</DisplayName>
+						<Description>出生日期</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>brithday</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>brithday</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>伪删除</DisplayName>
+						<Description>伪删除</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>10</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>IS_PSEUDO_DELETED</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>IS_PSEUDO_DELETED</Name>
+							<Type>nvarchar</Type>
+							<Length>10</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>工作流字段</DisplayName>
+						<Description>工作流字段</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>2000</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>ENV_DATAMETER</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>ENV_DATAMETER</Name>
+							<Type>nvarchar</Type>
+							<Length>2000</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>系统添加</DisplayName>
+						<Description>系统添加</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>PARENT_APP_ID</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>PARENT_APP_ID</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+					<Field type="FIX">
+						<DisplayName>城市</DisplayName>
+						<Description>城市</Description>
+						<FromField type="FIELD">
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+							<IsPrimeKey>FALSE</IsPrimeKey>
+							<IfNull>Y</IfNull>
+							<FieldName type="NAME">
+								<TableName type="NAME">
+									T_PERSON
+									<DSName>人员管理库</DSName>
+									<STType>TABLE</STType>
+								</TableName>
+								<Index>0</Index>
+								<Name>city</Name>
+							</FieldName>
+						</FromField>
+						<ToField>
+							<Index>0</Index>
+							<Name>city</Name>
+							<Type>nvarchar</Type>
+							<Length>50</Length>
+						</ToField>
+					</Field>
+				</FieldDef>
+			</Table>
+		</DataSet>
+	</DataMapping>
+	<QueryZone visible="true" isConfig="1" showType="0">
+		<QueryColumn id="" type="1" tableName="T_PERSON" name="uname"
+			text="姓名" fieldDataType="nvarchar" visible="true" readOnly="false"
+			cssClass="" sortIndex="1" dictionaryId="" formula=""
+			dateformat="null" align="" exclusiveLine="false" operateType="1"
+			style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="2" tableName="T_PERSON" name="province"
+			text="所属省份" fieldDataType="nvarchar" visible="true" readOnly="false"
+			cssClass="" sortIndex="2"
+			dictionaryId="d0b0d136d56105e56b3fe63a5bf08e12" formula=""
+			dateformat="" align="" exclusiveLine="false" operateType=""
+			style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="ID"
+			text="ID" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="1" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="sex"
+			text="性别" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="2" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="idcard"
+			text="身份证号" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="3" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="APP_ID"
+			text="系统添加" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="4" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON"
+			name="ENV_DATASTATE" text="状态" fieldDataType="nvarchar"
+			visible="false" readOnly="false" cssClass="" sortIndex="5"
+			dictionaryId="" formula="" dateformat="" align=""
+			exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="remark"
+			text="备注" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="6" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="brithday"
+			text="出生日期" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="7" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON"
+			name="IS_PSEUDO_DELETED" text="伪删除" fieldDataType="nvarchar"
+			visible="false" readOnly="false" cssClass="" sortIndex="8"
+			dictionaryId="" formula="" dateformat="" align=""
+			exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON"
+			name="ENV_DATAMETER" text="工作流字段" fieldDataType="nvarchar"
+			visible="false" readOnly="false" cssClass="" sortIndex="9"
+			dictionaryId="" formula="" dateformat="" align=""
+			exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON"
+			name="PARENT_APP_ID" text="系统添加" fieldDataType="nvarchar"
+			visible="false" readOnly="false" cssClass="" sortIndex="10"
+			dictionaryId="" formula="" dateformat="" align=""
+			exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="city"
+			text="城市" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="11" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="telphone"
+			text="联系电话" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="12" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+		<QueryColumn id="" type="" tableName="T_PERSON" name="pfile"
+			text="个人档案" fieldDataType="nvarchar" visible="false" readOnly="false"
+			cssClass="" sortIndex="13" dictionaryId="" formula="" dateformat=""
+			align="" exclusiveLine="false" operateType="" style="">
+			<EditMode id="" data="" reminder="" validateRule="" />
+		</QueryColumn>
+	</QueryZone>
+	<Columns isConfig="1">
+		<Column>
+			<Text id="" name="姓名" align="" dataFormat="null"
+				visible="true" style="" sort="1" columnrules="" />
+			<Data id="" name="uname" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="性别" align="" dataFormat="null"
+				visible="true" style="" sort="2"
+				columnrules="%7B%22rulesService%22%3A%22%22%2C%22isJS%22%3A%22zidingyi%22%7D" />
+			<Data id="" name="sex"
+				dictionaryId="bb1fef657e0a443da397be4ed27dc6d0"
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="联系电话" align="" dataFormat=""
+				visible="true" style="" sort="3" columnrules="" />
+			<Data id="" name="telphone" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="身份证号" align="" dataFormat="null"
+				visible="true" style="" sort="4" columnrules="" />
+			<Data id="" name="idcard" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="所属省份" align="" dataFormat=""
+				visible="true" style="" sort="5" columnrules="" />
+			<Data id="" name="province" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="ID" align="" dataFormat="" visible="false"
+				style="" sort="1" />
+			<Data id="" name="ID" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="true" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="系统添加" align="" dataFormat=""
+				visible="false" style="" sort="2" />
+			<Data id="" name="APP_ID" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="状态" align="" dataFormat="" visible="false"
+				style="" sort="3" />
+			<Data id="" name="ENV_DATASTATE" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="备注" align="" dataFormat="" visible="false"
+				style="" sort="4" />
+			<Data id="" name="remark" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="出生日期" align="" dataFormat=""
+				visible="false" style="" sort="5" />
+			<Data id="" name="brithday" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="伪删除" align="" dataFormat=""
+				visible="false" style="" sort="6" />
+			<Data id="" name="IS_PSEUDO_DELETED" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="工作流字段" align="" dataFormat=""
+				visible="false" style="" sort="7" />
+			<Data id="" name="ENV_DATAMETER" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="系统添加" align="" dataFormat=""
+				visible="false" style="" sort="8" />
+			<Data id="" name="PARENT_APP_ID" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="城市" align="" dataFormat="" visible="false"
+				style="" sort="9" />
+			<Data id="" name="city" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+		<Column>
+			<Text id="" name="个人档案" align="" dataFormat=""
+				visible="false" style="" sort="10" />
+			<Data id="" name="pfile" dictionaryId=""
+				fieldDataType="nvarchar" primaryKey="false" formula="" />
+		</Column>
+	</Columns>
+	<Buttons isConfig="1">
+		<Button id="" type="14" name="view" visible="true">
+			<Event Event="1" JSId="">
+				<Param key="ID" fieldDataType="nvarchar" value="ID" />
+			</Event>
+		</Button>
+		<Button id="" type="13" name="update" visible="true">
+			<Event Event="1" JSId="">
+				<Param key="ID" fieldDataType="nvarchar" value="ID" />
+			</Event>
+		</Button>
+		<Button id="" type="12" name="delete" visible="true">
+			<Event Event="1" JSId="">
+				<Param key="ID" fieldDataType="nvarchar" value="ID" />
+			</Event>
+		</Button>
+		<Button id="" type="15" name="copy" visible="true">
+			<Event Event="1" JSId="">
+				<Param key="ID" fieldDataType="nvarchar" value="ID" />
+			</Event>
+		</Button>
+		<Button id="" type="1" name="add" visible="true" />
+		<Button id="" type="2" name="deleteBatch" visible="true" />
+		<Button id="" type="6" name="import" visible="false" />
+		<Button id="" type="7" name="export" visible="true" />
+		<OperateButtons />
+	</Buttons>
+	<Tabs isuse="true" isConfig="1">
+		<Page id="" title="aa" lazyLading="true" sortIndex="1"
+			type="listPage" url="4028863f3c808055013c809199bd0009" />
+	</Tabs>
+	<Params isConfig="0" />
+	<Pages>
+		<EditPage formId="ff8080813c9032eb013c9033e5e40001"
+			formName="T_PERSON_编辑页_545268" />
+		<ViewPage formId="ff8080813c9032eb013c9033e6ce0002"
+			formName="T_PERSON_详情页_444812" />
+		<CopyPage formId="" formName="xxx" />
+		<AddPage formId="" formName="" />
+	</Pages>
+	<Pagination visible="true" />
+	<Groups visible="false" />
+	<EditColumnsSet setValue="end" />
+</Form>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="OrganizationAction" class="com.zxt.compplatform.organization.action.OrganizationAction" scope="prototype">
+		<property name="organizationService" ref="OrganizationService"></property>
+	</bean>
+	
+	<bean id="OrganizationService" class="com.zxt.compplatform.organization.service.OrganizationServiceImpl">
+		<property name="organizationDao" ref="OrganizationDao"></property>
+	</bean>
+		
+	<bean id="OrganizationDao" class="com.zxt.compplatform.organization.dao.OrganizationDaoImpl">
+	    <property name="dataSource" ref="dataSource_flow"  ></property>
+	    <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	     <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="jdbcTemplate" ref="jdbcTemplate" ></property>
+	     <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	</bean>
+	
+	<!--  User用户相关的注入 -->
+	<bean id="zxtUserDao" class="com.zxt.compplatform.organization.dao.UserDaoImpl">
+		<property name="dataSource" ref="dataSource_flow"  ></property>
+	</bean>
+</beans>

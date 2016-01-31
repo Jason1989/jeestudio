@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.authority" extends="struts-default" namespace="/authority">          
+        <action name="role" class="zxtRoleAction">
+         	<result name="toList">/pages/authority/organizationrolelist.jsp</result>
+         	<result name="toroleadd">/pages/authority/roleadd.jsp</result>
+         	<result name="toroleupdate">/pages/authority/roleupdate.jsp</result>
+         	<result name="torolecopy">/pages/authority/rolecopy.jsp</result>
+         	<result name="toroleusermanager">/pages/authority/roleusermanager.jsp</result>
+         	<result name="torolepermanager">/pages/authority/rolepermanager.jsp</result>
+         	<result name="toroleunderuserall">/pages/authority/roleusermanagerAlluser.jsp</result>
+        </action>
+        <!-- 字段授权GUOWEIXIN -->
+        <action name="fieldGrant" class="zxtFieldGrantAction">
+         	<result name="list">/pages/authority/dataObjectManager.jsp</result>
+        </action>	
+        
+        <action name="authority" class="zxtauthorityauthorityAction">
+            <result name="managerGrant">/pages/authority/managerGrant.jsp</result><!--GUOWEIXIN rolemenuconfig.jsp -->
+            <result name="rolemenuconfig">/pages/authority/rolemenuconfig.jsp</result><!--GUOWEIXIN rolemenuconfig.jsp -->
+            <result name="roleformconfig">/pages/authority/roleformconfig.jsp</result>
+            <!-- test -->
+            <result name="listRights">/pages/authority/testrole.jsp</result>
+        </action>
+        
+        <!-- UserLevel级别管理Action跳转配置 -->
+        <action name="userlevel" class="zxtUserLevelAction">
+        	<result name="toList">/pages/authority/userlevellist.jsp</result>
+        	<result name="toadduserlevel">/pages/authority/userleveladd.jsp</result>
+        	<result name="toupdateuserlevel">/pages/authority/userlevelupdate.jsp</result>
+        	<result name="tomanageruser">/pages/authority/userlevelmanager.jsp</result>
+        	<result name="tolevelunderuserall">/pages/authority/levelusermanagerAlluser.jsp</result>
+        </action>
+        
+    </package>
+</struts>

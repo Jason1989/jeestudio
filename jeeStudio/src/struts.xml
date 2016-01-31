@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+    <struts> 
+    <!-- 
+	    <constent name="struts.objectFactory" value="spring"/>  
+	    <include file="resources/struts-news.xml"></include>
+	    <include file="resources/struts-tempform.xml"></include>
+	    <include file="resources/functionmenu/struts-functionmenu.xml"></include> 
+     -->
+    <include file="resources/formengine/struts-page.xml"></include> 
+	<include file="resources/formengine/struts-components.xml"></include>
+	
+ 
+    <include file="resources/datasource/struts-datasource.xml"></include>
+    <include file="resources/datatable/struts-datatable.xml"></include> 
+    <include file="resources/datacolumn/struts-datacolumn.xml"></include> 
+    <include file="resources/dictionary/struts-dictionary.xml"></include> 
+    <include file="resources/validationrule/struts-validationrule.xml"></include>
+    <include file="resources/form/struts-form.xml"></include>   
+    <include file="resources/codegenerate/struts-codegenerate.xml"></include> 
+    <include file="resources/testPageing/struts-Pageing.xml"></include> 
+	<include file="resources/cache/struts-Cache.xml"></include>
+	<include file="resources/functionmenu/struts-functionmenu.xml"></include> 
+	<include file="resources/workflow/struts-workflow.xml"></include>  
+	<include file="resources/organization/struts-organization.xml"></include> 
+	<include file="resources/indexset/struts-indexset.xml"></include> 
+	<include file="resources/indexgenerate/struts-indexgenerate.xml"></include>
+	<include file="resources/ht/struts-htlist.xml"></include>
+
+	
+
+	<include file="resources/authority/struts-authority.xml"></include> 
+	<include file="resources/formtemplatefile/struts-formtemplatefile.xml"></include>
+
+
+</struts> 

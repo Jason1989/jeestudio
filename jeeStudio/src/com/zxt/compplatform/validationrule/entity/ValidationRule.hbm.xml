@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.validationrule.entity">
+    <class name="ValidationRule" table="ENG_DIC_VALIDATION">
+    	<id name="id" type="java.lang.String">
+            <column name="DV_VAL_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DV_NAME" length="50" />
+        </property>
+        <property name="expression" type="java.lang.String">
+            <column name="DV_EXPRESSION" length="2000" />
+        </property>
+        <property name="reminder" type="java.lang.String">
+            <column name="DV_MESSAGE" length="200" />
+        </property>    
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DV_SORTINDEX"/>
+        </property>        
+    </class>
+</hibernate-mapping>

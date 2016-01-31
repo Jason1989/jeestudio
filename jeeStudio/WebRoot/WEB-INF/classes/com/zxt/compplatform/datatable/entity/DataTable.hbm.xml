@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.datatable.entity">
+    <class name="DataTable" table="ENG_FORM_DATAOBJECT">
+    	<id name="id" type="java.lang.String">
+            <column name="DO_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DO_NAME" length="50" />
+        </property>
+        <property name="code" type="java.lang.String">
+            <column name="DO_CODE" length="50" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="DO_TYPE" length="50" />
+        </property>
+        <property name="spacename" type="java.lang.String">
+            <column name="DO_SPACENAME" length="50" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="DO_STATE" length="50"/>
+        </property>
+        <property name="owner" type="java.lang.String">
+            <column name="DO_OWNER" length="50" />
+        </property>
+        <property name="locked" type="java.lang.String">
+            <column name="DO_ISLOCKED" length="50"/>
+        </property>        
+        <property name="inused" type="java.lang.String">
+            <column name="DO_ISUSED" length="50"/>
+        </property>        
+        <property name="createTime" type="java.lang.String">
+            <column name="DO_CREATEDAT" length="50"/>
+        </property>        
+        <property name="creator" type="java.lang.String">
+            <column name="DO_CREATEDBY" length="50"/>
+        </property>        
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DO_SORTINDEX"/>
+        </property>        
+        <many-to-one name="dataSource" column="DO_DS_ID" class="com.zxt.compplatform.datasource.entity.DataSource" outer-join="true" lazy="false" not-found="ignore"/>       
+        <many-to-one name="dataObjectGroup" column="DO_GROUP_ID" class="DataObjectGroup" outer-join="true" lazy="false" not-found="ignore"/>       
+    </class>
+    <class name="DataObjectGroup" table="ENG_FORM_DATAOBJECT_GROUP">
+    	<id name="id" type="java.lang.String">
+            <column name="DG_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DG_NAME" length="50" />
+        </property>
+        <property name="pid" type="java.lang.String">
+            <column name="DG_PARENT_ID" length="50" />
+        </property>
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DG_SORTINDEX"/>
+        </property>
+    </class>
+    <class name="DataObjectMenu">
+    	<id name="id" type="java.lang.String">
+            <column name="ID"/>            
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" length="50" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

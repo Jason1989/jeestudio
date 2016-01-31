@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="zxtCodegenerateCodeGenerateAction" class="com.zxt.compplatform.codegenerate.action.CodeGenerateAction">
+		<property name="codeGenerateService" ref="zxtCodegenerateCodeGenerateService" />
+		<property name="formService" ref="zxtFormFormService" />
+	</bean>
+	
+	<bean id="zxtCodegenerateCodeGenerateService" class="com.zxt.compplatform.codegenerate.service.CodeGenerateServiceImpl">
+		<property name="codeGenerateDao" ref="zxtCodegenerateCodeGenerateDao" />
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService" />
+		<property name="formService" ref="zxtFormFormService" />
+		<property name="resolveObjectDefService" ref="zxtresolveObjectDefService" />
+	</bean>
+	<bean id="zxtCodegenerateCodeGenerateDao" class="com.zxt.compplatform.codegenerate.dao.CodeGenerateDaoImpl" parent="daoSupport">
+	</bean>
+	<!-- 引擎代码生成 -->
+	<bean id="zxtEngineCodeGenerateAction" class="com.zxt.compplatform.codegenerate.action.EngineCodeGenerateAction">
+		<property name="codeGenerateService" ref="zxtEngineCodeGenerateService" />
+		<property name="formService" ref="zxtFormFormService" />
+		<property name="pageService" ref="zxtpageService" ></property>
+	</bean>
+	
+	<bean id="zxtEngineCodeGenerateService" class="com.zxt.compplatform.codegenerate.service.EngineCodeGenerateServiceImpl">
+		<property name="codeGenerateDao" ref="zxtEngineCodeGenerateDao" />
+		<property name="dataSourceService" ref="zxtDatasourceDataSourceService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+		<property name="dataColumnService" ref="zxtDatacolumnDataColumnService" />
+		<property name="formService" ref="zxtFormFormService" />
+		<property name="resolveObjectDefService" ref="zxtresolveObjectDefService" />
+	</bean>
+	
+	<bean id="zxtEngineCodeGenerateDao" class="com.zxt.compplatform.codegenerate.dao.CodeGenerateDaoImpl" parent="daoSupport"></bean>
+</beans>

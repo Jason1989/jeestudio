@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+
+	<!-- 引用ehCache的配置 -->
+	<bean id="cacheService" class="com.zxt.framework.cache.service.EHCacheService">
+		<property name="componentsService" ref="zxtcomponentsService" ></property>
+		<property name="pageService" ref="zxtpageService" ></property>
+		<property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	</bean>	
+ 
+	<bean id="cacheAction" class="com.zxt.framework.cache.action.CacheAction"  scope="prototype">
+		<property name="cacheService" ref="cacheService" ></property>
+	</bean>
+
+	<bean id="zxtCacheInterceptor" class="com.zxt.framework.cache.aop.ZXTCacheInterceptor">
+		<property name="cacheService" ref="cacheService" />
+	</bean>
+
+	<aop:config>
+		<aop:aspect id="cacheAspect" ref="zxtCacheInterceptor">
+			<aop:pointcut id="createCache"
+				expression="execution(* com.zxt..service.*.load_*(..))" /> 
+			<aop:around pointcut-ref="createCache" method="initCache" />
+ 
+			<aop:pointcut id="updateCache" expression="execution(* com.zxt..service.*.update_*(..))" />
+			<aop:around pointcut-ref="updateCache" method="freshCache" />
+
+			<aop:pointcut id="removeCache" expression="execution(* com.zxt..service.*.delete_*(..))" />
+			<aop:around pointcut-ref="removeCache" method="removeCache" />
+
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

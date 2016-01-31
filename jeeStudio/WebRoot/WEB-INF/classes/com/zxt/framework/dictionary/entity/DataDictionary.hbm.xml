@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.framework.dictionary.entity">
+    <class name="DataDictionary" table="ENG_DIC_DICTIONARY">
+    	<id name="id" type="java.lang.String">
+            <column name="DIC_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DIC_NAME" length="50" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="DIC_TYPE" length="50"/>
+        </property>
+        <property name="expression" type="java.lang.String">
+            <column name="DIC_EXPRESSION" length="2000" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DIC_DESCRIPTION" length="255" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="DIC_STATE" length="50"/>
+        </property>
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DIC_SORTINDEX"/>
+        </property>
+          <!-- GUOWEIXIN  添加功能：父节点ID 作用：配置动态树 -->
+        <property name="dic_root_id" type="java.lang.String">
+            <column name="DIC_ROOT_ID"/>
+        </property>
+        <many-to-one name="dataSource" column="DIC_DS_ID" class="com.zxt.compplatform.datasource.entity.DataSource" outer-join="true" lazy="false" not-found="ignore"/>
+        <many-to-one name="dictionaryGroup" column="DIC_GROUP_ID" class="DictionaryGroup" outer-join="true" lazy="false" not-found="ignore"/>
+    </class>
+    <class name="DictionaryGroup" table="ENG_DIC_DICTIONARY_GROUP">
+    	<id name="id" type="java.lang.String">
+            <column name="DIG_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DIG_NAME" length="50" />
+        </property>
+        <property name="sortNo" type="java.lang.String">
+            <column name="DIG_SORTINDEX"/>
+        </property>
+    </class>
+    
+     <class name="DictionaryCache" table="ENG_CACHE_DICTIONARY">
+    	<id name="cacheKey" type="java.lang.String">
+            <column name="CACHE_KEY"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="isDirty" type="java.lang.Integer">
+            <column name="IS_DIRTY" />
+        </property>
+    </class>
+</hibernate-mapping>

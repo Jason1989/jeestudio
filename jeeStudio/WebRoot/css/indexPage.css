@@ -1,0 +1,48 @@
+/*首页模块的距离*/
+	.index_model_padding{
+	    padding:5px 0 0 5px;
+	}
+	/*首页列表显示样式*/
+	.indexmain-table {
+	border-collapse: collapse;
+	width: 100%;
+	}
+	
+	.indexmain-table tr th {
+		border: 1px solid #e4e4e4;
+		border-collapse: collapse;
+		line-height: 23px;
+		text-align: center;
+		font-size: 12px;
+	}
+	
+	.indexmain-table tr td {
+		border: 1px solid #e4e4e4;
+		padding-left: 5px;
+		line-height: 23px;
+		text-align: left;
+		font-size: 12px;
+	}
+	
+	.indexmain-table td.action {
+		text-align: center;
+	}
+	
+	.indexmain-table td.mount {
+		text-align: right;
+		padding-right: 5px;
+	}
+	
+	.indexmain-table td.colcenter,.indexmain-table th.colcenter {
+		text-align: center;
+	}
+	
+	.indexmain-table td.colleft,.indexmain-table th.colleft {
+		text-align: left;
+		padding-left: 5px;
+	}
+	
+	.indexmain-table td.colright,.indexmain-table th.colright {
+		text-align: right;
+		padding-right: 5px;
+	}

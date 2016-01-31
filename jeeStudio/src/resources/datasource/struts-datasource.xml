@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.datasource" extends="struts-default" namespace="/datasource">          
+        <action name="dataSource" class="zxtDatasourceDataSourceAction">	
+         	<result name="list">/pages/datasource/datasourcelist.jsp</result>
+         	<result name="toadd">/pages/datasource/datasourceadd.jsp</result>
+         	<result name="toupdate">/pages/datasource/datasourceupdate.jsp</result>         	
+         	<result name="view">/pages/datasource/datasourceview.jsp</result>         	
+         	<result name="error">/index.jsp</result>
+        </action>
+    </package>
+</struts>

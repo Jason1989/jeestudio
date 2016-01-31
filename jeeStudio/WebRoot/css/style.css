@@ -1,0 +1,22 @@
+.title1 {
+	font-size:12px;
+}
+.menu1{
+	overflow:hidden;
+	padding:5px;
+}
+.navigation1{
+	padding:4px;background-color:#E4EDFE;font-weight:bold;color:#15428B;
+}
+.main_panel{
+	width:auto;height:0px;padding:0px;background:#fafafa;overflow:hidden;
+}
+.table_form1{
+	font-size:12px;
+}
+.sort_down{
+	background:url('../images/down.gif' no-repeat 20px 20px;
+}
+.sort_up{
+	background:url('../images/up.gif' no-repeat 20px 20px;
+}

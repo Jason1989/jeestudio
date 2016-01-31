@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- 待办 -->
+	<bean id="DaibanWorkFlowDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.DaibanWorkFlowDaoImpl" />
+	<bean id="LiuchengdianWorkFlowDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.LiuchengdianWorkFlowDaoImpl" />
+	
+	<bean id="daibanfl1WorkFlowDaoImpl"	class="com.zxt.compplatform.workflow.dao.impl.Daibanfl1WorkFlowDaoImpl" />
+	<bean id="zxtScheduleWorkDao"	class="com.zxt.compplatform.workflow.dao.impl.ScheduleWorkDaoImpl" />
+	<bean id="daibanfl3WorkFlowDaoImpl"	class="com.zxt.compplatform.workflow.dao.impl.Daibanfl3WorkFlowDaoImpl" />
+	<bean id="DaibanWorkFlowServiceImpl"
+		class="com.zxt.compplatform.workflow.service.impl.DaibanWorkFlowServiceImpl">
+		<property name="db" ref="DaibanWorkFlowDaoImpl" />
+	</bean>
+	<bean id="DaibanWorkFlowAction" class="com.zxt.compplatform.workflow.action.DaibanWorkFlowAction">
+		<property name="dbwfs" ref="DaibanWorkFlowServiceImpl" />
+		<property name="toDoTaskTypeDao" ref="daibanfl1WorkFlowDaoImpl" />
+		<property name="toDoTaskDao" ref="zxtScheduleWorkDao" />
+	</bean>
+	
+	
+	<bean id="PidaidWorkFlowDaoImpl"
+		class="com.zxt.compplatform.workflow.dao.impl.PidaidWorkFlowDaoImpl" />
+
+	<!-- 模型 -->
+	<bean id="ModelWorkFlowDaoImpl"
+		class="com.zxt.compplatform.workflow.dao.impl.ModelWorkFlowDaoImpl" />
+
+	<bean id="ModelWorkFlowServiceImpl"
+		class="com.zxt.compplatform.workflow.service.impl.ModelWorkFlowServiceImpl">
+		<property name="md" ref="ModelWorkFlowDaoImpl" />
+	</bean>
+	<bean id="ModelListWorkFlowAction" class="com.zxt.compplatform.workflow.action.ModelListWorkFlowAction">
+		<property name="mwfs" ref="ModelWorkFlowServiceImpl" />
+		<property name="workflowModelNodeDao" ref="LiuchengdianWorkFlowDaoImpl" />
+	</bean>
+	
+	<!-- 启动 -->
+	<bean id="QidongWorkFlowDaoImpl"
+		class="com.zxt.compplatform.workflow.dao.impl.QidongWorkFlowDaoImpl" />
+
+	<bean id="QidongWorkFlowServiceImpl"
+		class="com.zxt.compplatform.workflow.service.impl.QidongWorkFlowServiceImpl">
+		<property name="qidongworkflowdao" ref="QidongWorkFlowDaoImpl" />
+	</bean>
+	<bean id="QidongWorkFlowAction" class="com.zxt.compplatform.workflow.action.QidongWorkFlowAction">
+		<property name="qdwfs" ref="QidongWorkFlowServiceImpl" />
+	</bean>
+	
+	<!-- 提交 -->
+	<bean id="TijiaoWorkFlowDaoImpl"
+		class="com.zxt.compplatform.workflow.dao.impl.TijiaoWorkFlowDaoImpl" />
+
+	<bean id="TijiaoWorkFlowServiceImpl"
+		class="com.zxt.compplatform.workflow.service.impl.TijiaoWorkFlowServiceImpl">
+		<property name="tijiaoWorkFlowDao" ref="TijiaoWorkFlowDaoImpl" />
+	</bean>
+	<bean id="TijiaoWorkFlowAction" class="com.zxt.compplatform.workflow.action.TijiaoWorkFlowAction">
+		<property name="tjwfs" ref="TijiaoWorkFlowServiceImpl" />
+	</bean>
+	
+	<!-- 退回 -->
+	<bean id="TuihuiWorkFlowDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.TuihuiWorkFlowDaoImpl" />
+
+	<bean id="TuihuiWorkFlowServiceImpl"
+		class="com.zxt.compplatform.workflow.service.impl.TuihuiWorkFlowServiceImpl">
+		<property name="th" ref="TuihuiWorkFlowDaoImpl" />
+	</bean>
+	<bean id="TuihuiWorkFlowAction" class="com.zxt.compplatform.workflow.action.TuihuiWorkFlowAction">
+		<property name="thwfs" ref="TuihuiWorkFlowServiceImpl" />
+	</bean>
+	
+	<!-- 工作流集成表单引擎框架 -->
+	<bean id="zxtWorkFlowFrameAction" class="com.zxt.compplatform.workflow.action.WorkFlowFrameAction">
+		<property name="workFlowFrameService" ref="zxtWorkFlowFrameService" />
+	</bean>
+	<bean id="zxtWorkFlowFrameService" class="com.zxt.compplatform.workflow.service.impl.WorkFlowFrameServiceImpl">
+   		<property name="workFlowFrameDao"  ref="zxtWorkFlowFrameDao" ></property>
+   		<property name="pwfdi" ref="PidaidWorkFlowDaoImpl" />
+   		<property name="formService" ref="zxtFormFormService" />
+   		<property name="chuangjianWorkFlowDao" ref="zxtChuangjianWorkFlowDaoImpl" ></property>
+   		<property name="workflowModelNodeDao" ref="LiuchengdianWorkFlowDaoImpl" ></property>
+	</bean>
+	<bean id="zxtWorkFlowFrameDao" class="com.zxt.compplatform.workflow.dao.impl.WorkFlowFrameDaoImpl">
+	    <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	</bean>
+	
+	<!-- 流程日志 -->
+	<bean id="zxtLogWorkFlowAction" class="com.zxt.compplatform.workflow.action.LogWorkFlowAction">
+		<property name="logWorkFlowService" ref="zxtLogWorkFlowService" />
+		<property name="workFlowFrameService" ref="zxtWorkFlowFrameService"/>
+	</bean>
+	<bean id="zxtLogWorkFlowService" class="com.zxt.compplatform.workflow.service.impl.LogWorkFlowServiceImpl">
+   		<property name="logWorkFlowDao"  ref="zxtLogWorkFlowDao" ></property>
+	</bean>
+	<bean id="zxtLogWorkFlowDao" class="com.zxt.compplatform.workflow.dao.impl.LogWorkFlowDaoImpl">
+	    <property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	</bean>
+	
+	<!-- 启动新流程 -->
+	<bean id="zxtChuangjianWorkFlowDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.ChuangjianWorkFlowDaoImpl">
+	</bean>
+	
+	<bean id="zxtWidfindpdidWorkFlowDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.WidfindpdidWorkFlowDaoImpl">
+		<property name="initDataSource" ref="zxt_fmplat_datasource"  ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	</bean>
+	<!-- 工作流节点配置 -->
+	<bean id="workflowAuthSetAction" class="com.zxt.compplatform.workflow.action.WorkflowAuthSetAction">
+		<property name="workflowAuthSettingService" ref="workflowAuthSettingServiceImpl"></property> 
+	</bean>
+	
+	<bean id="workflowAuthSettingServiceImpl" class="com.zxt.compplatform.workflow.service.impl.WorkflowAuthSettingServiceImpl">
+		<property name="workflowAuthSetDao" ref="workflowAuthSettingDaoImpl"></property>
+	</bean>
+	
+	<bean id="workflowAuthSettingDaoImpl" class="com.zxt.compplatform.workflow.dao.impl.WorkflowAuthSettingDaoImpl" parent="daoSupport"></bean>
+</beans>

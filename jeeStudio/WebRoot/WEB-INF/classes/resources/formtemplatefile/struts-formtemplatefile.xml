@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+	<package name="com.zxt.framework.templatefile" extends="struts-default" namespace="/templatefile">          
+		<action name="templatefile" class="formTemplateFileAction">	
+			<result name="grouplist">/pages/formtemplatefile/grouplist.jsp</result>
+			<result name="export">/pages/formtemplatefile/export_base.jsp</result>
+		</action>
+	</package>
+</struts>

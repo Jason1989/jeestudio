@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.form.entity">
+    <class name="Form" table="ENG_FORM_FORM">
+    	<id name="id" type="java.lang.String">
+            <column name="FO_ID"/>
+            <generator class="uuid.hex"></generator>
+        </id>
+        <property name="formName" type="java.lang.String">
+            <column name="FO_NAME" length="50" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="FO_FTYPE" length="50" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="FO_STATE" length="50" />
+        </property>
+        <property name="settings" type="blob">
+            <column name="FO_SETTINGS" length="50"/>
+        </property>
+        <property name="sortIndex" type="java.lang.Integer">
+            <column name="FO_SORTINDEX" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="FO_DESCRIPTION" length="255"/>
+        </property>
+        <many-to-one name="dataTable" column="FO_DO_ID" class="com.zxt.compplatform.datatable.entity.DataTable" outer-join="true" lazy="false" not-found="ignore"/>
+    </class>
+
+</hibernate-mapping>

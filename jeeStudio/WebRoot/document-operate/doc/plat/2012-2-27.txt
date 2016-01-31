@@ -1,0 +1,6 @@
+在构件平台配置中，发现的问题：
+      1、在对编辑页进行配置的过程中，第一次配置页是可以打开的，关闭之后，再次就打不开啦！
+      2、编辑页配置中，将某列配置为复选框的时候，在及时的页面中没有显示“复选框”；
+      3. 查看页数据列配置时，第一次可以保存，再次点击保存不起作用，报错如下：
+      	Caused by: org.xml.sax.SAXParseException: The element type "DSName" must be terminated by the matching end-tag "</DSName>".
+	

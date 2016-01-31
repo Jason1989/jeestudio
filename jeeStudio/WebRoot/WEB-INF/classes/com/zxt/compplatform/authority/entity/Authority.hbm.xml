@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.authority.entity">
+  <class name="Role" table="T_ROLE">
+    <id name="id" type="java.lang.Integer">
+        <column name="RID"></column>
+        <generator class="assigned"></generator>
+    </id>
+    <property name="name" type="java.lang.String">
+        <column name="RNAME" length="50" ></column>
+    </property>
+    <property name="rfunction" type="java.lang.String">
+        <column name="RFUNCTION" length="50" ></column>
+    </property>
+    <property name="note" type="java.lang.String">
+        <column name="RNOTE" length="50" ></column>
+    </property>
+  </class>
+  
+  
+  <class name="Authority" table="TEST_AJAX_TREE">
+    <id name="ajaxTreeId" type="java.lang.String">
+        <column name="AJAX_TREE_ID"></column>
+        <generator class="assigned"></generator>
+    </id>
+    <property name="text" type="java.lang.String">
+        <column name="TEXT" length="50" ></column>
+    </property>
+    <property name="parentId" type="java.lang.String">
+        <column name="PARENT_ID" length="50" ></column>
+    </property>
+    <property name="url" type="java.lang.String">
+        <column name="URL" length="50" ></column>
+    </property>
+    <property name="menuLevel" type="java.lang.String">
+        <column name="MENU_LEVEL" length="50" ></column>
+    </property>
+    <property name="menuSort" type="java.lang.String">
+        <column name="MENU_SORT" length="50" ></column>
+    </property>
+    <property name="appId" type="java.lang.String">
+        <column name="APP_ID" length="50" ></column>
+    </property>
+    <property name="parentAppId" type="java.lang.String">
+        <column name="PARENT_APP_ID" length="50" ></column>
+    </property>
+  </class>
+  
+  
+  <class name="RARelationShip" table="T_ROLE_RESC">
+    <id name="roleId" type="java.lang.Long">
+        <column name="ROLE_ID"></column>
+    </id>
+    <property name="rescId" type="java.lang.String">
+        <column name="AJAX_TREE_ID" length="50" ></column>
+    </property>
+  </class>
+
+
+
+
+  <!-- 级别管理(用户等级)-->
+  <class name="UserLevel" table="T_USER_LEVEL">
+    <id name="id" type="java.lang.Long">
+        <column name="id"></column>
+        <generator class="assigned"></generator>
+    </id>
+    <property name="levelname" type="java.lang.String">
+        <column name="LEVEL_NAME" length="50" ></column>
+    </property>
+    <property name="levelnumber" type="java.lang.Long">
+        <column name="LEVEL_NUMBER" length="50" ></column>
+    </property>
+    <property name="levelnote" type="java.lang.String">
+        <column name="LEVEL_NOTE" length="50" ></column>
+    </property>
+  </class>
+  
+  <class name="RoleUser" table="t_role_user">
+    <id name="id" type="java.lang.String">
+        <column name="id"></column>
+        <generator class="assigned"></generator>
+    </id>
+    <property name="rid" type="java.lang.Long">
+        <column name="rid" length="50" ></column>
+    </property>
+    <property name="userid" type="java.lang.Long">
+        <column name="userid" length="50" ></column>
+    </property>
+  </class>
+  
+   <!--字段授权 GUOWEIXIN-->
+  <class name="FieldGrant" table="T_FIELD_GRANT">
+    <id name="id" type="java.lang.String">
+        <column name="ID"></column>
+        <generator class="assigned"></generator>
+    </id>
+    <property name="rid" type="java.lang.Long">
+        <column name="RID" ></column>
+    </property>
+    <property name="tablename" type="java.lang.String">
+        <column name="tableName"  ></column>
+    </property>
+    <property name="fieldname" type="java.lang.String">
+        <column name="fieldName"  ></column>
+    </property>
+  </class>
+  
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<!-- 
+	<bean id="zxtMenuFunctionMenuAction" class="com.zxt.compplatform.menu.action.FunctionMenuAction">
+		<property name="functionMenuService" ref="zxtMenuFunctionMenuService" />
+	</bean>
+	<bean id="zxtMenuFunctionMenuService" class="com.zxt.compplatform.menu.service.FunctionMenuServiceImpl">
+		<property name="functionMenuDao" ref="zxtMenuFunctionMenuDao" />
+		<property name="dataObjectGroupService" ref="zxtDatatableDataObjectGroupService" />
+		<property name="dataTableService" ref="zxtDatatableDataTableService" />
+	</bean>
+	<bean id="zxtMenuFunctionMenuDao" class="com.zxt.compplatform.menu.dao.FunctionMenuDaoImpl" parent="daoSupport">
+	</bean>
+	 -->
+	
+	<!-- 首页配置 -->
+	<bean id="indexPageModelDao" class="com.zxt.compplatform.indexset.dao.impl.IndexModelDaoImpl" parent="daoSupport">
+	</bean>
+	
+	<bean id="zxtindexPageModeService" class="com.zxt.compplatform.indexset.service.impl.IndexModelServiceImpl">
+		<property name="indexModelDao" ref="indexPageModelDao"/>
+	</bean>
+	
+	<bean id="indexPageModelAction" class="com.zxt.compplatform.indexset.action.IndexModelAction">
+		<property name="indexModelService" ref="zxtindexPageModeService"/>
+	</bean>
+	
+	<!-- 工作流任务配置 -->
+	<bean id="workModelAction" class="com.zxt.compplatform.indexset.action.WorkFlowModelAction">
+		<property name="workservice" ref="workModelService"></property>
+	</bean>
+	
+	<bean id="workModelService" class="com.zxt.compplatform.indexset.service.impl.WorkFlowModelServiceImpl">
+		<property name="componentsDao" ref="zxtcomponentsDao" ></property>
+		<property name="daibandao" ref="daibanfl3WorkFlowDaoImpl" ></property>
+		<property name="systemFrameService" ref="zxtSystemFrameService"  ></property>
+		<property name="workflowmodeldao" ref="workflowmodeldao"></property>
+	</bean>
+	
+	<bean id="workflowmodeldao" class="com.zxt.compplatform.indexset.dao.impl.WorkFlowModelDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+</beans>

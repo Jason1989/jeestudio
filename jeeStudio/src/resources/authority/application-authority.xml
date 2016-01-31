@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<!-- 权限对应的Action etc -->
+	<bean id="zxtauthorityauthorityAction" class="com.zxt.compplatform.authority.action.AuthorityAction" scope="prototype">
+	    <property name="roleService" ref="zxtRoleServiceImpl"/>
+	    <property name="relationShipService" ref="zxtRelationShipServiceImpl"/>
+	    <property name="authorityService" ref="zxtAuthorityServiceImpl"/>
+	</bean>
+	
+	<bean id="zxtAuthorityServiceImpl" class="com.zxt.compplatform.authority.service.impl.AuthorityServiceImpl">
+	    <property name="authorityDao" ref="zxtAuthorityDaoImpl"/>
+	</bean>
+	<bean id="zxtRelationShipServiceImpl" class="com.zxt.compplatform.authority.service.impl.RARelationShipServiceImpl">
+	    <property name="relationShipDao" ref="zxtrelationShipDaoImpl"/>
+	     <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	     <property name="zxtJDBCTemplate"><ref bean="zxtJDBCTemplate"/></property>
+	</bean>
+	
+	<bean id="zxtAuthorityDaoImpl" class="com.zxt.compplatform.authority.dao.impl.AuthorityDaoImpl" parent="daoSupport">
+		<property name="initDataSource" ref="dataSource_flow" ></property>
+		 <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+		  <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	</bean>
+	<bean id="zxtrelationShipDaoImpl" class="com.zxt.compplatform.authority.dao.impl.RARelationShipDaoImpl">
+	    <property name="initDataSource" ref="dataSource_flow"  ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	     <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	</bean>
+	
+	<!-- 角色对应的Actiaon -->
+	<bean id="zxtRoleAction" class="com.zxt.compplatform.authority.action.RoleAction" scope="prototype">
+		<property name="roleService" ref="zxtRoleServiceImpl"/>
+		<property name="organizationService" ref="OrganizationService"/>
+		
+	</bean>
+	
+	<bean id="zxtRoleServiceImpl" class="com.zxt.compplatform.authority.service.impl.RoleServiceImpl">
+	    <property name="roleDao" ref="zxtroleDaoImpl"/>
+	    <property name="raRelationShipDao" ref="zxtrelationShipDaoImpl"/>
+	</bean>
+	
+	<bean id="zxtroleDaoImpl" class="com.zxt.compplatform.authority.dao.impl.RoleDaoImpl">
+	    <property name="dataSource" ref="dataSource_flow"  ></property>
+	     <!-- GUOWEIXIN 目的用于获得：configSQL.properties 的读取操作 -->
+	    <property name="systemFrameService" ref="zxtSystemFrameService" ></property>
+	    <property name="jdbcTemplate"  ref="jdbcTemplate" ></property>
+	</bean>
+	
+	<!-- 字段授权的Action  GUOWEIXIN-->
+	<bean id="zxtFieldGrantAction" class="com.zxt.compplatform.authority.action.FieldGrantAction" scope="prototype">
+		<property name="fieldGrantService" ref="zxtFieldGrantServiceImpl"/>
+	</bean>
+	
+	<bean id="zxtFieldGrantServiceImpl" class="com.zxt.compplatform.authority.service.impl.FieldGrantServiceImpl">
+	    <property name="fieldGrantDao" ref="zxtFieldGrantDaoImpl"/>
+	</bean>
+	
+	<bean id="zxtFieldGrantDaoImpl" class="com.zxt.compplatform.authority.dao.impl.FieldGrantDaoImpl">
+	    <property name="dataSource" ref="dataSource_flow"  ></property>
+	</bean>
+	
+	<!-- userLevel等级管理相关的Action,Service,Dao注入 -->
+	<bean id="zxtUserLevelAction" class="com.zxt.compplatform.authority.action.UserLevelAction" scope="prototype">
+		<property name="userLevelService" ref="zxtUserLevelServiceImpl"></property>
+	</bean>
+	
+	<bean id="zxtUserLevelServiceImpl" class="com.zxt.compplatform.authority.service.impl.UserLevelServiceImpl">
+		<property name="userLevelDao" ref="zxtUserLevelDaoImpl" ></property>
+		<property name="userDao" ref="zxtUserDao"></property>
+	</bean>
+	
+	<bean id="zxtUserLevelDaoImpl" class="com.zxt.compplatform.authority.dao.impl.UserLevelDaoImpl">
+		<property name="dataSource" ref="dataSource_flow"  ></property>
+	</bean>
+</beans>

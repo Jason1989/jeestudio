@@ -1,0 +1,45 @@
+body {font-family: "ËÎÌו";font-size: 12px;background: url("images/loginyl/loginbcg.png") no-repeat 50% 0 fixed #e7ede9 !important;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='jquery-easyui-1.1.2/themes/images/loginyl/loginbcg.png' ,sizingMethod= 'scale' );margin: 0;position: relative;padding: 0;overflow: hidden; border: medium none; height: 100%;}
+div,ul,li,dl,dt,dd,img,h1,h2{margin:0px;padding:0px;list-style-type: none;border:0;}
+.loginContent{
+	position: relative;
+}
+.loginForm{
+	width: 700px;
+	margin:0 auto;
+	padding-top: 100px;
+}
+.loginTitle{
+	position: relative;
+}
+.loginInput{
+	width:613px;
+	height:231px;
+	background-image: url("images/loginyl/loginframe.png");
+	background-repeat: no-repeat;
+	background-position:50% 0;
+	padding:35px 20px 20px 20px;
+	margin-top: 35px;
+}
+.textfield{
+	position: relative;
+	margin-top: 0px;
+	margin-bottom: 12px;
+	padding-left: 80px;	
+}
+.ylcopyright{
+	background-color: #00392a;
+	width:100%;	
+	height: 30px;
+	margin-bottom: 0;
+	bottom:0;
+	position: absolute;
+}
+
+.loginContent input{
+	height: 22px;
+	border:0;
+	padding-left:5px;
+	width:215px;
+	background: url("images/loginyl/logininput.png") no-repeat;
+}
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!--default="clean"定义ant运行到target  clean这一步结束-->  
+<project name="news" default="clean" >  
+    <description>projectName系统发布</description>  
+    <!--属性设置-->  
+    <property environment="env" /> 
+	<property name="antdir"  value="${antdir}"/>  
+	<property name="basedir"  value="${basedir}"/>  
+	<property name="libdir"  value="${basedir}/lib"/>  
+	<property name="module.dir" value="${moduledir}"/>  
+    <property name="src.dir" value="${moduledir}/src" />  
+    <property name="jar.file" value="news.jar" /> 
+    <property name="build.dir" value="${module.dir}/build" />  
+    <property name="classes.dir" value="${build.dir}/classes" />  
+    <property name="dist.dir" value="${moduledir}" />
+	
+           
+    <!-- 基本编译路径设置 定义多个classpath-->  
+    <path id="compile.classpath">  
+        <fileset dir="${libdir}">  
+        </fileset>  
+        <fileset dir="${libdir}">  
+            <include name="*.jar" />  
+        </fileset>  
+    </path>  
+       
+    <!-- 运行路径设置 -->  
+    <!--path id="run.classpath">  
+        <path refid="compile.classpath" />  
+        <pathelement location="${classes.dir}" />  
+    </path-->  
+       
+    <!-- 排除java源文件的模式集 -->  
+    <patternset id="no.java">  
+        <exclude name="**/*.java" />  
+    </patternset>  
+       
+    <!-- 初始化,建立目录,将多个src目录复制到同一src目录，编译，打包完成后自动清除 -->  
+    <target name="init" description="初始化,建立目录,复制文件">
+        <mkdir dir="${build.dir}" /> 
+        <mkdir dir="${build.dir}/resources" />
+    	<mkdir dir="${libdir}" />
+    	<copy todir="${build.dir}/resources/">
+    	    <fileset dir="${module.dir}/conf/spring/"></fileset>
+    		<fileset dir="${module.dir}/conf/struts2/"></fileset>
+    	</copy>
+       
+    	<copy todir="${libdir}/">
+    	        	 <fileset dir="${antdir}/"></fileset>
+    	</copy>
+    	
+    </target>  
+       
+    <!-- 编译源文件-->  
+    <target name="compile" depends="init" description="编译源文件">  
+        <javac srcdir="${src.dir}" destdir="${build.dir}" source="1.5" target="1.5"> 
+        	 <compilerarg line="-encoding UTF-8 "/> 
+            <classpath refid="compile.classpath" />  
+        </javac>  
+    </target>  
+       
+    <!-- 打包类文件 -->  
+    <target name="jar" depends="compile" description="打包类文件"> 
+    	
+        <jar jarfile="${dist.dir}/${jar.file}" >  
+            <fileset dir="${build.dir}" includes="**/*.*" />  
+        </jar>  
+    	
+    	
+    </target>  
+       
+    <!-- 清理,删除临时目录 -->  
+    <target name="clean" depends="jar" description="清理,删除临时目录">  
+        <delete dir="${basedir}/.settings" />
+        <delete dir="${basedir}/bin" />  
+        <echo level="info">清理完毕</echo>  
+    </target>  
+       
+    <!-- 从打包后jar的文件里运行 -->  
+    <!--target name="runjar" depends="jar" description="运行jar">  
+        <java jar="${dist.dir}/${jar.file}" fork="yes" dir="${basedir}" />  
+    </target-->  
+       
+    <!-- 运行 -->  
+    <!--target name="run" depends="compile" description="运行">  
+        <java classname="powerwind.Sample" fork="yes" dir="${basedir}">  
+            <classpath refid="run.classpath" />  
+            <arg line="${param.msg}" />  
+        </java>  
+    </target-->  
+</project>

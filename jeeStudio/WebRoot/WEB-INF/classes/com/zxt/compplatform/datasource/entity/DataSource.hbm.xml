@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.zxt.compplatform.datasource.entity">
+    <class name="DataSource" table="ENG_FORM_DATASOURCE">
+    	<id name="id" type="java.lang.String">
+            <column name="DS_ID"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="DS_NAME" length="50" />
+        </property>
+        <property name="dbType" type="java.lang.String">
+            <column name="DS_TYPE" length="50" />
+        </property>
+        <property name="ipAddress" type="java.lang.String">
+            <column name="DS_IPADRESS" length="50" />
+        </property>
+        <property name="sid" type="java.lang.String">
+            <column name="DS_SID" length="50" />
+        </property>
+        
+        <property name="port" type="java.lang.Integer">
+            <column name="DS_PORT" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="DS_USERNAME" length="50"/>
+        </property>        
+        <property name="password" type="java.lang.String">
+            <column name="DS_PASSWORD" length="50"/>
+        </property>        
+        <property name="state" type="java.lang.String">
+            <column name="DS_STATE" length="50"/>
+        </property>        
+        <property name="sortNo" type="java.lang.Integer">
+            <column name="DS_SORTINDEX"/>
+        </property>        
+    </class>
+</hibernate-mapping>

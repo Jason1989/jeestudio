@@ -1,0 +1,5 @@
+.cont_mar { height:30px;padding: 0px 0;font-size:12px;}
+.cont_l {float: left;width: 240px;padding-top:3px;}
+.cont_l dl {float: left;width: 300px;line-height: 25px;color: #565656;margin:0px;padding:0px;list-style-type: none;border:0;}
+.cont_l dd {float: left;width: 160px;text-align: right;margin:0px;padding:0px;list-style-type: none;border:0;}
+.cont_l dt {float: left;width: 140px;margin:0px;padding:0px;list-style-type: none;border:0;}

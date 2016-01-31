@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2011-11-9 6:04:56 by Hibernate Tools 3.4.0.Beta1 -->
+<hibernate-mapping package="com.zxt.framework.templatefile.entity">
+    <class name="FormTemplateFile" table="ENG_FORM_TEMPLATEFILE">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="dgId" type="java.lang.String">
+            <column name="DGID" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <primitive-array name="data" table="ENG_FORM_TEMPLATEFILE">
+            <key>
+                <column name="ID" />
+            </key>
+            <index></index>
+            <element type="byte">
+                <column name="DATA" />
+            </element>
+        </primitive-array>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK" />
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" />
+        </property>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,9 @@
+create trigger TRIGGER_ENG_CACHE_CHANGE_ENG_CACHE_PARAMS
+	on ENG_CACHE_PARAMS
+	after 
+	    insert, update,delete 
+	as
+	    if ((select count(*) from inserted )>0 or (select count(*) from deleted )>0)
+	begin
+	    update ENG_CACHE_DICTIONARY set IS_DIRTY=1 where CACHE_KEY='1'
+	end

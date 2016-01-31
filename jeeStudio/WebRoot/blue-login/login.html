@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全国重点监控企业自行监测能力调查系统</title>
+
+<link rel="stylesheet" type="text/css" href="login.css"/>
+<style type="text/css">
+body {background: url(images/login_bg.jpg) repeat-x #555555;}
+</style>
+<script  language="javascript">
+
+</script>
+</head>
+<body>
+
+
+
+<div class="login">
+	<div class="login_left">
+	  	<div style="float:left;margin-left:100px;margin-top:110px;">
+		  	<div style="float:left;margin-top:20px;margin-left:80px;">
+		  	</div>
+		  	<div style="float:left;margin-top:30px;margin-left:10px;">
+		  		<span style="color:#fff;font-size:27px;font-family: '微软雅黑';line-height:25px;">全国重点监控企业自行监测能力调查系统</span>
+		  	</div>
+	  	</div>
+	</div>
+	
+	<div class="login_right">
+		  <form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
+		  <div class="login_top">
+			  	<div style="float:left;margin-top:145px;margin-left:15px;width:400px;">
+			  		<span style="color:#2d4d74;font-size:20px;font-family: '微软雅黑';line-height:25px;">系统登陆界面</span>
+			  	</div>
+		  </div>
+		  
+		  <div class="login_cen">
+			    <div class="login_input" style="margin-top:-10px;">
+		  <div style="z-index:2;FILTER:alpha(opacity=90);padding-left: 90px;height:15px;"><font style="" color="red"  size="2" ><span id='mesg'><span id='login_mesg'> </span> </span></font></div>
+				  <dl>
+			        <dd>用户名:</dd>
+			        <dt>
+			         <input name="username" type="text" class="input" value=""/>
+			        </dt>
+			      </dl>
+				  <dl>
+			        <dd>密 &nbsp;码:</dd>
+			        <dt>
+			         <input name="password" type="password" class="input" />
+			        </dt>
+			      </dl>
+				  <dl>
+			        <dd>
+			        </dd>
+			        <dt>
+			        </dt>
+			      </dl>
+			    </div>
+				<div class="login_btn"><a href="javascript:void(0)" onclick="formssubmit()"></a></div>
+				<div class="cancel_btn"><a href="javascript:void(0)" onclick="reset()"></a></div>
+		  </div>
+		  
+		  <div class="login_bot">
+		  </div>
+		  </form>
+	</div>
+</div>
+</body>
+</html>

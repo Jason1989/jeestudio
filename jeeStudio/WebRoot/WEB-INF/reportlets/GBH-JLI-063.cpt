@@ -1,0 +1,2009 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select child.LCT_CODE,child.LCT_NAME,tb.NAME ,batch.LB_ID
+from dbo.LMS_TASK task,dbo.LMS_CHILD_TASK child,dbo.LMS_BATCH batch,
+(select b.LB_ID, NAME =dbo.f_GetItemName(b.LB_ID) FROM dbo.LMS_BATCH b GROUP BY b.LB_ID)tb
+where task.TASK_ID=child.LCT_TASK_ID
+and batch.LB_CHILD_TASK_ID=child.LCT_ID
+and tb.LB_ID=batch.LB_ID
+and batch.LB_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM dbo.LMS_原始记录_基本表 where BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select detail.LBD_ORDER_ID,sam.LS_CODE,sam.LS_ID  from dbo.LMS_BATCH_DETAIL detail,dbo.LMS_SAMPLE sam
+where detail.LBD_SAM_ID=sam.LS_ID
+and detail.LBD_BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM dbo.LMS_原始记录_样品表 where BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds5" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select sam.LS_ID,
+detail.LBD_ORDER_ID 分析编号,item.LSI_BZ_DATA 标准值,item.LSI_ITEM_CREDI 不确定度
+ from dbo.LMS_BATCH_DETAIL detail, dbo.LMS_SAMPLE  sam,dbo.LMS_SAM_ITEM item
+where detail.LBD_SAM_ID=sam.LS_ID
+and sam.LS_ID=item.LSI_SAM_ID
+and detail.LBD_D_ITEM_ID=item.LSI_D_ITEM_ID
+and sam.LS_D_SAM_TYPE_ID=5
+and detail.LBD_IS_ANALYSE=1
+and detail.LBD_BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds6" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select sam.LS_ID,
+detail.LBD_ORDER_ID 分析编号,item.LSI_ITEM_JBL 加标量,item.LSI_JB_DATA 原样测定值
+ from dbo.LMS_BATCH_DETAIL detail, dbo.LMS_SAMPLE  sam,dbo.LMS_SAM_ITEM item
+where detail.LBD_SAM_ID=sam.LS_ID
+and sam.LS_ID=item.LSI_SAM_ID
+and detail.LBD_D_ITEM_ID=item.LSI_D_ITEM_ID
+and sam.LS_D_SAM_TYPE_ID=6
+and detail.LBD_IS_ANALYSE=1
+and detail.LBD_BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds7" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select 
+detail.LBD_ORDER_ID 分析编号,sam.LS_COMPARE_SAM_ID,sam.LS_ID
+ from dbo.LMS_BATCH_DETAIL detail, dbo.LMS_SAMPLE  sam,dbo.LMS_SAM_ITEM item
+where detail.LBD_SAM_ID=sam.LS_ID
+and sam.LS_ID=item.LSI_SAM_ID
+and detail.LBD_D_ITEM_ID=item.LSI_D_ITEM_ID
+and sam.LS_D_SAM_TYPE_ID=7
+and detail.LBD_IS_ANALYSE=1
+and detail.LBD_BATCH_ID='${ID}']]></Query>
+</TableData>
+<TableData name="ds8" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select COUNT(*) 个数 from (select distinct sam.LS_ID from dbo.LMS_BATCH_DETAIL detail,dbo.LMS_SAMPLE sam
+where detail.LBD_SAM_ID=sam.LS_ID
+and detail.LBD_BATCH_ID='${ID}') tb
+]]></Query>
+</TableData>
+<TableData name="ds9" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[con3]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select COUNT(*) 个数 from (select distinct sam.LS_ID from dbo.LMS_BATCH_DETAIL detail,dbo.LMS_SAMPLE sam
+where detail.LBD_SAM_ID=sam.LS_ID
+and detail.LBD_BATCH_ID='${ID}'
+and sam.LS_D_SAM_TYPE_ID=2) tb
+]]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<PaperSize width="16.14200787401575" height="11.693000000000001"/>
+<Margin top="0.27" left="0.7500000000000001" bottom="0.27" right="0.7500000000000001"/>
+</ReportSettings>
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[46,19,37,19,30,30,35,44,23,39,19,27,19,37,19,34,30,38,19,29,27,33,35,24,29,22,34,35,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[20,72,72,63,66,19,72,18,103,65,43,86,69,107,63,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="14" s="0">
+<O>
+<![CDATA[\t\t\tGBH-JLI-063       原 子 荧 光 光 度 法 测 定 原 始 记 录（水样）       2011-6-7修订版]]></O>
+<Expand/>
+</C>
+<C c="14" r="0" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="1" rs="5" s="2">
+<O>
+<![CDATA[基本情况]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" s="2">
+<O>
+<![CDATA[任务单号]]></O>
+<Expand/>
+</C>
+<C c="2" r="1" cs="4" s="2">
+<O>
+<![CDATA[任务来源]]></O>
+<Expand/>
+</C>
+<C c="6" r="1" cs="2" s="2">
+<O>
+<![CDATA[测  试  项  目]]></O>
+<Expand/>
+</C>
+<C c="8" r="1" s="2">
+<O>
+<![CDATA[检 出 限]]></O>
+<Expand/>
+</C>
+<C c="9" r="1" cs="2" s="2">
+<O>
+<![CDATA[收样日期]]></O>
+<Expand/>
+</C>
+<C c="11" r="1" cs="3" s="2">
+<O>
+<![CDATA[测试日期]]></O>
+<Expand/>
+</C>
+<C c="14" r="1" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LCT_CODE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="2" cs="4" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LCT_NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="2" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="NAME"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="检测限"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="2" cs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="收样日期"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="11" r="2" cs="3" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="测试日期"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.DateEditor">
+<WidgetAttr/>
+<DateAttr start="" end=""/>
+</Widget>
+</C>
+<C c="14" r="2" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="LB_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="1" r="3" cs="2" s="2">
+<O>
+<![CDATA[技  术  依   据]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" cs="4" s="2">
+<O>
+<![CDATA[仪器设备]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" cs="4" s="2">
+<O>
+<![CDATA[测 试 环 境]]></O>
+<Expand/>
+</C>
+<C c="11" r="3" cs="3" s="2">
+<O>
+<![CDATA[标准溶液]]></O>
+<Expand/>
+</C>
+<C c="14" r="3" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="4" cs="2" rs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="技术依据"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="3" r="4" cs="3" s="2">
+<O>
+<![CDATA[名称及型号]]></O>
+<Expand/>
+</C>
+<C c="6" r="4" s="2">
+<O>
+<![CDATA[编号]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" cs="2" s="2">
+<O>
+<![CDATA[室温（℃）]]></O>
+<Expand/>
+</C>
+<C c="9" r="4" cs="2" s="2">
+<O>
+<![CDATA[相对湿度（％）]]></O>
+<Expand/>
+</C>
+<C c="11" r="4" s="2">
+<O>
+<![CDATA[名称]]></O>
+<Expand/>
+</C>
+<C c="12" r="4" s="2">
+<O>
+<![CDATA[浓度 (   )]]></O>
+<Expand/>
+</C>
+<C c="13" r="4" s="2">
+<O>
+<![CDATA[配置时间]]></O>
+<Expand/>
+</C>
+<C c="14" r="4" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="3" r="5" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器名称及型号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="6" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="编号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="5" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="测试环境_温度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="5" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="测试环境_相对湿度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="11" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="标准溶液_名称"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="12" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="标准溶液_浓度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="13" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="标准溶液_配置时间"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="5" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="6" rs="4" s="2">
+<O>
+<![CDATA[测试条件]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" rs="2" s="2">
+<O>
+<![CDATA[仪器条件]]></O>
+<Expand/>
+</C>
+<C c="2" r="6" cs="2" s="2">
+<O>
+<![CDATA[屏蔽气（ml/min）]]></O>
+<Expand/>
+</C>
+<C c="4" r="6" cs="3" s="2">
+<O>
+<![CDATA[载气（ml/min）]]></O>
+<Expand/>
+</C>
+<C c="7" r="6" cs="3" s="2">
+<O>
+<![CDATA[灯电流（mA）]]></O>
+<Expand/>
+</C>
+<C c="10" r="6" cs="2" s="2">
+<O>
+<![CDATA[高压（V）]]></O>
+<Expand/>
+</C>
+<C c="12" r="6" cs="2" s="2">
+<O>
+<![CDATA[原子化器温度（℃）]]></O>
+<Expand/>
+</C>
+<C c="14" r="6" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="2" r="7" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器条件_屏蔽气"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="4" r="7" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器条件_载气"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="7" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器条件_灯电流"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="10" r="7" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器条件_高压"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="12" r="7" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="仪器条件_原子化器温度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="7" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="1" r="8" rs="2" s="2">
+<O>
+<![CDATA[进样条件]]></O>
+<Expand/>
+</C>
+<C c="2" r="8" cs="2" s="2">
+<O>
+<![CDATA[进样（s）]]></O>
+<Expand/>
+</C>
+<C c="4" r="8" cs="3" s="2">
+<O>
+<![CDATA[暂停（s）]]></O>
+<Expand/>
+</C>
+<C c="7" r="8" cs="3" s="2">
+<O>
+<![CDATA[清洗（s）]]></O>
+<Expand/>
+</C>
+<C c="10" r="8" cs="2" s="2">
+<O>
+<![CDATA[停止（s）]]></O>
+<Expand/>
+</C>
+<C c="12" r="8" cs="2" s="2">
+<Expand/>
+</C>
+<C c="14" r="8" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="2" r="9" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="进样条件_进样"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="4" r="9" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="进样条件_暂停"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="7" r="9" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="进样条件_清洗"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="10" r="9" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="进样条件_停止"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="12" r="9" cs="2" s="2">
+<Expand/>
+</C>
+<C c="14" r="9" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="10" rs="8" s="2">
+<O>
+<![CDATA[质控措施]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" rs="2" s="2">
+<O>
+<![CDATA[标准参考样]]></O>
+<Expand/>
+</C>
+<C c="2" r="10" cs="3" s="2">
+<O>
+<![CDATA[分 析 编 号]]></O>
+<Expand/>
+</C>
+<C c="5" r="10" cs="3" s="2">
+<O>
+<![CDATA[标准值]]></O>
+<Expand/>
+</C>
+<C c="8" r="10" s="2">
+<O>
+<![CDATA[不确定度]]></O>
+<Expand/>
+</C>
+<C c="9" r="10" cs="4" s="2">
+<O>
+<![CDATA[测 定 值（      ）]]></O>
+<Expand/>
+</C>
+<C c="13" r="10" s="2">
+<O>
+<![CDATA[评价结果]]></O>
+<Expand/>
+</C>
+<C c="14" r="10" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="2" r="11" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="分析编号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="11" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="标准值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="11" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="不确定度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="11" cs="4" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="测定值"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds5" columnName="分析编号"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0" leftParentDefault="false" left="C12"/>
+</C>
+<C c="13" r="11" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="检测结果是否合格"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="11" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="1" r="12" rs="2" s="2">
+<O>
+<![CDATA[加标回收]]></O>
+<Expand/>
+</C>
+<C c="2" r="12" cs="2" s="2">
+<O>
+<![CDATA[分 析 编 号]]></O>
+<Expand/>
+</C>
+<C c="4" r="12" cs="2" s="2">
+<O>
+<![CDATA[加标量（    ）]]></O>
+<Expand/>
+</C>
+<C c="6" r="12" cs="2" s="2">
+<O>
+<![CDATA[测定值（     ）]]></O>
+<Expand/>
+</C>
+<C c="8" r="12" cs="2" s="2">
+<O>
+<![CDATA[原样测定值（   ）]]></O>
+<Expand/>
+</C>
+<C c="10" r="12" cs="3" s="2">
+<O>
+<![CDATA[回收率(%)]]></O>
+<Expand/>
+</C>
+<C c="13" r="12" s="2">
+<O>
+<![CDATA[评价结果]]></O>
+<Expand/>
+</C>
+<C c="14" r="12" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="2" r="13" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="分析编号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="13" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="加标量"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="13" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="测定值"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds6" columnName="分析编号"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="13" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="原样测定值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="10" r="13" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="加表回收率"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds6" columnName="分析编号"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="13" r="13" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="检测结果是否合格"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="13" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="1" r="14" rs="2" s="2">
+<O>
+<![CDATA[密码样]]></O>
+<Expand/>
+</C>
+<C c="2" r="14" cs="6" s="2">
+<O>
+<![CDATA[分析编号]]></O>
+<Expand/>
+</C>
+<C c="8" r="14" cs="5" s="2">
+<O>
+<![CDATA[相对偏差(%)]]></O>
+<Expand/>
+</C>
+<C c="13" r="14" s="2">
+<O>
+<![CDATA[评价结果]]></O>
+<Expand/>
+</C>
+<C c="14" r="14" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="2" r="15" cs="2" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="分析编号"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="15" s="6">
+<O>
+<![CDATA[  与]]></O>
+<Expand/>
+</C>
+<C c="5" r="15" cs="3" s="7">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="LS_COMPARE_SAM_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="15" cs="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="密码样相对偏差"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds7" columnName="分析编号"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="13" r="15" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="检测结果是否合格"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="15" s="1">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="1" r="16" rs="2" s="2">
+<O>
+<![CDATA[样品总数（个）]]></O>
+<Expand/>
+</C>
+<C c="2" r="16" rs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds8" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="16" rs="2" s="2">
+<O>
+<![CDATA[平行样]]></O>
+<Expand/>
+</C>
+<C c="4" r="16" s="2">
+<O>
+<![CDATA[数量（个）]]></O>
+<Expand/>
+</C>
+<C c="5" r="16" cs="8" s="2">
+<O>
+<![CDATA[相对偏差(%)]]></O>
+<Expand/>
+</C>
+<C c="13" r="16" s="2">
+<O>
+<![CDATA[评价结果]]></O>
+<Expand/>
+</C>
+<C c="14" r="16" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="4" r="17" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="个数"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="17" cs="8" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="相对偏差"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="13" r="17" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="评价结果"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="17" s="1">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="18" cs="14" s="8">
+<O>
+<![CDATA[标  准  曲  线]]></O>
+<Expand/>
+</C>
+<C c="14" r="18">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="19" cs="2" s="2">
+<O>
+<![CDATA[编号]]></O>
+<Expand/>
+</C>
+<C c="2" r="19" s="2">
+<Expand/>
+</C>
+<C c="3" r="19" s="2">
+<Expand/>
+</C>
+<C c="4" r="19" cs="2" s="2">
+<Expand/>
+</C>
+<C c="6" r="19" cs="2" s="2">
+<Expand/>
+</C>
+<C c="8" r="19" s="2">
+<Expand/>
+</C>
+<C c="9" r="19" cs="2" s="2">
+<Expand/>
+</C>
+<C c="11" r="19" s="2">
+<Expand/>
+</C>
+<C c="12" r="19" s="2">
+<Expand/>
+</C>
+<C c="13" r="19" s="2">
+<O>
+<![CDATA[有关说明]]></O>
+<Expand/>
+</C>
+<C c="14" r="19">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="20" cs="2" s="2">
+<O>
+<![CDATA[浓度 (      )]]></O>
+<Expand/>
+</C>
+<C c="2" r="20" s="2">
+<Expand/>
+</C>
+<C c="3" r="20" s="2">
+<Expand/>
+</C>
+<C c="4" r="20" cs="2" s="2">
+<Expand/>
+</C>
+<C c="6" r="20" cs="2" s="2">
+<Expand/>
+</C>
+<C c="8" r="20" s="2">
+<Expand/>
+</C>
+<C c="9" r="20" cs="2" s="2">
+<Expand/>
+</C>
+<C c="11" r="20" s="2">
+<Expand/>
+</C>
+<C c="12" r="20" s="2">
+<Expand/>
+</C>
+<C c="13" r="20" rs="3" s="2">
+<Expand/>
+</C>
+<C c="14" r="20">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="21" cs="2" s="2">
+<O>
+<![CDATA[荧光度值A]]></O>
+<Expand/>
+</C>
+<C c="2" r="21" s="2">
+<Expand/>
+</C>
+<C c="3" r="21" s="2">
+<Expand/>
+</C>
+<C c="4" r="21" cs="2" s="2">
+<Expand/>
+</C>
+<C c="6" r="21" cs="2" s="2">
+<Expand/>
+</C>
+<C c="8" r="21" s="2">
+<Expand/>
+</C>
+<C c="9" r="21" cs="2" s="2">
+<Expand/>
+</C>
+<C c="11" r="21" s="2">
+<Expand/>
+</C>
+<C c="12" r="21" s="2">
+<Expand/>
+</C>
+<C c="14" r="21">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="22" cs="2" s="2">
+<O>
+<![CDATA[扣除空白值 (A－A0)]]></O>
+<Expand/>
+</C>
+<C c="2" r="22" s="2">
+<Expand/>
+</C>
+<C c="3" r="22" s="2">
+<Expand/>
+</C>
+<C c="4" r="22" cs="2" s="2">
+<Expand/>
+</C>
+<C c="6" r="22" cs="2" s="2">
+<Expand/>
+</C>
+<C c="8" r="22" s="2">
+<Expand/>
+</C>
+<C c="9" r="22" cs="2" s="2">
+<Expand/>
+</C>
+<C c="11" r="22" s="2">
+<Expand/>
+</C>
+<C c="12" r="22" s="2">
+<Expand/>
+</C>
+<C c="14" r="22">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="23" cs="2" s="2">
+<O>
+<![CDATA[回归方程]]></O>
+<Expand/>
+</C>
+<C c="2" r="23" cs="12" s="2">
+<Expand/>
+</C>
+<C c="14" r="23">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="24" cs="2" s="2">
+<O>
+<![CDATA[样品前处理说明]]></O>
+<Expand/>
+</C>
+<C c="2" r="24" cs="12" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="样品前处理条件"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="14" r="24">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="25" cs="14" s="9">
+<O>
+<![CDATA[测定结果]]></O>
+<Expand/>
+</C>
+<C c="14" r="25">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="26" cs="2" s="2">
+<O>
+<![CDATA[分析编号]]></O>
+<Expand/>
+</C>
+<C c="2" r="26" s="2">
+<O>
+<![CDATA[样品名称或编号]]></O>
+<Expand/>
+</C>
+<C c="3" r="26" s="2">
+<O>
+<![CDATA[取样量V （m l）]]></O>
+<Expand/>
+</C>
+<C c="4" r="26" cs="2" s="2">
+<O>
+<![CDATA[荧光值A]]></O>
+<Expand/>
+</C>
+<C c="6" r="26" cs="2" s="2">
+<O>
+<![CDATA[扣除空白值 A-A0]]></O>
+<Expand/>
+</C>
+<C c="8" r="26" s="2">
+<O>
+<![CDATA[测定值C0 （     ）]]></O>
+<Expand/>
+</C>
+<C c="9" r="26" cs="2" s="2">
+<O>
+<![CDATA[样品浓度 C （     ）]]></O>
+<Expand/>
+</C>
+<C c="11" r="26" cs="2" s="2">
+<O>
+<![CDATA[相对偏差(%)]]></O>
+<Expand/>
+</C>
+<C c="13" r="26" s="2">
+<O>
+<![CDATA[备注]]></O>
+<Expand/>
+</C>
+<C c="14" r="26" s="10">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="0" r="27" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LBD_ORDER_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="27" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LS_CODE"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="27" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="取样量"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[分析编号]]></CNAME>
+<Compare op="0">
+<AnDSColumn dsName="ds3" columnName="LBD_ORDER_ID"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="4" r="27" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="荧光值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="6" r="27" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="扣除空白值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="8" r="27" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="测定值"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="9" r="27" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="样品浓度"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="11" r="27" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="相对偏差"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="13" r="27" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="备注"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="14" r="27">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="LS_ID"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand dir="0"/>
+</C>
+<C c="14" r="28">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="14" r="29">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="14" r="30">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="14" r="31">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+<C c="14" r="32">
+<HighlightList>
+<Highlight class="com.fr.report.highlight.DefaultHighlight">
+<Name>
+<![CDATA[条件属性1]]></Name>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<HighlightAction class="com.fr.report.highlight.ColWidthHighlightAction"/>
+</Highlight>
+</HighlightList>
+<Expand/>
+</C>
+</CellElementList>
+<ReportWriteAttr>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL1">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_基本表"/>
+<ColumnConfig name="BATCH_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="14" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="检测限" isKey="false" skipUnmodified="false">
+<ColumnRow column="8" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="收样日期" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="测试日期" isKey="false" skipUnmodified="false">
+<ColumnRow column="11" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="技术依据" isKey="false" skipUnmodified="false">
+<ColumnRow column="1" row="4"/>
+</ColumnConfig>
+<ColumnConfig name="仪器名称及型号" isKey="false" skipUnmodified="false">
+<ColumnRow column="3" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="编号" isKey="false" skipUnmodified="false">
+<ColumnRow column="6" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="标准溶液_名称" isKey="false" skipUnmodified="false">
+<ColumnRow column="11" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="标准溶液_浓度" isKey="false" skipUnmodified="false">
+<ColumnRow column="12" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="标准溶液_配置时间" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="测试环境_温度" isKey="false" skipUnmodified="false">
+<ColumnRow column="7" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="测试环境_相对湿度" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="5"/>
+</ColumnConfig>
+<ColumnConfig name="样品前处理条件" isKey="false" skipUnmodified="false">
+<ColumnRow column="2" row="24"/>
+</ColumnConfig>
+<ColumnConfig name="相对偏差" isKey="false" skipUnmodified="false">
+<ColumnRow column="5" row="17"/>
+</ColumnConfig>
+<ColumnConfig name="评价结果" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="17"/>
+</ColumnConfig>
+<ColumnConfig name="仪器条件_屏蔽气" isKey="false" skipUnmodified="false">
+<ColumnRow column="2" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="仪器条件_载气" isKey="false" skipUnmodified="false">
+<ColumnRow column="4" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="仪器条件_灯电流" isKey="false" skipUnmodified="false">
+<ColumnRow column="7" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="仪器条件_高压" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="仪器条件_原子化器温度" isKey="false" skipUnmodified="false">
+<ColumnRow column="12" row="7"/>
+</ColumnConfig>
+<ColumnConfig name="进样条件_进样" isKey="false" skipUnmodified="false">
+<ColumnRow column="2" row="9"/>
+</ColumnConfig>
+<ColumnConfig name="进样条件_暂停" isKey="false" skipUnmodified="false">
+<ColumnRow column="4" row="9"/>
+</ColumnConfig>
+<ColumnConfig name="进样条件_清洗" isKey="false" skipUnmodified="false">
+<ColumnRow column="7" row="9"/>
+</ColumnConfig>
+<ColumnConfig name="进样条件_停止" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="9"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL2">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_样品表"/>
+<ColumnConfig name="BATCH_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="14" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="SAM_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="14" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="分析编号" isKey="true" skipUnmodified="false">
+<ColumnRow column="0" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="扣除空白值" isKey="false" skipUnmodified="false">
+<ColumnRow column="6" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="测定值" isKey="false" skipUnmodified="false">
+<ColumnRow column="8" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="相对偏差" isKey="false" skipUnmodified="false">
+<ColumnRow column="11" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="备注" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="取样量" isKey="false" skipUnmodified="false">
+<ColumnRow column="3" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="样品浓度" isKey="false" skipUnmodified="false">
+<ColumnRow column="9" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="荧光值" isKey="false" skipUnmodified="false">
+<ColumnRow column="4" row="27"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL3">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_样品表"/>
+<ColumnConfig name="BATCH_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="14" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="SAM_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="14" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="分析编号" isKey="true" skipUnmodified="false">
+<ColumnRow column="0" row="27"/>
+</ColumnConfig>
+<ColumnConfig name="检测结果是否合格" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="11"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL4">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_样品表"/>
+<ColumnConfig name="BATCH_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="14" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="SAM_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="14" row="13"/>
+</ColumnConfig>
+<ColumnConfig name="分析编号" isKey="true" skipUnmodified="false">
+<ColumnRow column="2" row="13"/>
+</ColumnConfig>
+<ColumnConfig name="加表回收率" isKey="false" skipUnmodified="false">
+<ColumnRow column="10" row="13"/>
+</ColumnConfig>
+<ColumnConfig name="检测结果是否合格" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="13"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+<Submiter class="com.fr.report.write.BuiltInSQLSubmiter" name="内置SQL5">
+<Attributes dsName="con3"/>
+<DMLConfig class="com.fr.report.write.config.IntelliDMLConfig">
+<Table schema="dbo" name="LMS_原始记录_样品表"/>
+<ColumnConfig name="BATCH_ID" isKey="false" skipUnmodified="false">
+<ColumnRow column="14" row="2"/>
+</ColumnConfig>
+<ColumnConfig name="SAM_ID" isKey="true" skipUnmodified="false">
+<ColumnRow column="14" row="15"/>
+</ColumnConfig>
+<ColumnConfig name="分析编号" isKey="true" skipUnmodified="false">
+<ColumnRow column="2" row="15"/>
+</ColumnConfig>
+<ColumnConfig name="密码样相对偏差" isKey="false" skipUnmodified="false">
+<ColumnRow column="8" row="15"/>
+</ColumnConfig>
+<ColumnConfig name="检测结果是否合格" isKey="false" skipUnmodified="false">
+<ColumnRow column="13" row="15"/>
+</ColumnConfig>
+</DMLConfig>
+</Submiter>
+</ReportWriteAttr>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" foreground="-65536"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy-MM-dd]]></Format>
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12" foreground="-16776961"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="ColorBackground" color="-256"/>
+<Border>
+<Top style="1" color="-6697729"/>
+<Bottom style="1" color="-6697729"/>
+<Left style="1" color="-6697729"/>
+<Right style="1" color="-6697729"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

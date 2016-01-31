@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+    "http://struts.apache.org/dtds/struts-2.1.dtd"> 
+<struts>
+    <package name="com.zxt.compplatform.workflow" extends="struts-default" namespace="/workflow">          
+        <action name="WorkFlowFrame_*" class="zxtWorkFlowFrameAction" method="{1}"  >
+            <result name="success">/pages/workflow/workflow_form_config.jsp</result>
+            <result name="wf_form_add">/pages/workflow/workflow_form_add.jsp</result>
+            <result name="wf_form_edit">/pages/workflow/workflow_form_edit.jsp</result>
+            <result name="wf_form_form">/pages/workflow/workflow_form_form.jsp</result>
+            <result name="wf_form_update">/pages/workflow/workflow_form_update.jsp</result>
+            <result name="wf_form_formAdd">/pages/workflow/workflow_form_form_add.jsp</result>
+            <result name="error">/pages/workflow/error.jsp</result>
+            <result name="json">/pages/workflow/json.jsp</result>
+            
+        </action>
+        <action name="DaibanWorkFlow" class="DaibanWorkFlowAction">	
+         	<result name="success">/pages/workflow/daiban.jsp</result>
+         	<result name="todotasklist">/pages/workflow/todotasklist.jsp</result>
+         	<result name="todotasktabs">/pages/workflow/todotask_tabs.jsp</result>
+         	<result name="error">/pages/workflow/error.jsp</result>
+        </action>
+         <action name="ModelListWorkFlow" class="ModelListWorkFlowAction">	
+         	<result name="success">/pages/workflow/modellist.jsp</result>
+         	<result name="error">/pages/workflow/error.jsp</result>
+        </action>
+         <action name="QidongWorkFlow" class="QidongWorkFlowAction">	
+         	<result name="success">/pages/workflow/qidong.jsp</result>
+         	<result name="error">/pages/workflow/error.jsp</result>
+        </action>
+         <action name="TijiaoWorkFlow" class="TijiaoWorkFlowAction">	
+         	<result name="success">/pages/workflow/tijiao.jsp</result>
+         	<result name="error">/pages/workflow/error.jsp</result>
+        </action>
+         <action name="TuihuiWorkFlow" class="TuihuiWorkFlowAction">	
+         	<result name="success">/pages/workflow/huiti.jsp</result>
+         	<result name="error">/pages/workflow/error.jsp</result>
+        </action>
+        <action name="nodeAuthSet" class="workflowAuthSetAction">
+            <result name="success">/</result>
+            <result name="input">/</result>
+        </action>
+        <!-- 工作流日志 Struts配置 -->
+        <action name="LogWorkFlow" class="zxtLogWorkFlowAction">
+        	<result name="toWorkFlowLog">/common/jsp/easyui/workflow/workflow-details.jsp</result>
+        </action>
+    </package>
+</struts>

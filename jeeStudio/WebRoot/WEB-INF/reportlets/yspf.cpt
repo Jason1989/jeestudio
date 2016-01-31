@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20100901">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-1月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE
+]]></Query>
+</TableData>
+<TableData name="ds2" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-2月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE
+]]></Query>
+</TableData>
+<TableData name="ds3" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-3月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE
+]]></Query>
+</TableData>
+<TableData name="ds4" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-4月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds5" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-5月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds6" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-6月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds7" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-7月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds8" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-8月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds9" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-9月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds10" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-10月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE
+]]></Query>
+</TableData>
+<TableData name="ds11" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-11月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds12" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+<Parameter>
+<Attributes name="YEAR"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select d.BUD_NAME,isnull(mp.BUD_MONEY,0) as BUD_MONEY from FND_DIC_BUDGET d left join (select p.BUD_CODE BUD_CODE,p.BUD_MONEY BUD_MONEY from FND_MON_INVEST m,FND_PRJ_INVEST p where m.INV_MONTH_ID = p.INV_MONTH_ID and m.INV_MONTH = '${YEAR}'+'年-12月' and m.INV_STATE in ('2','3') and m.INV_DEP_ID = '${DEPT_ID}') mp on d.BUD_CODE = mp.BUD_CODE]]></Query>
+</TableData>
+<TableData name="ds13" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="DEPT_ID"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select t.ONAME from T_ORGANIZATION t where t.OID = '${DEPT_ID}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<RowHeight defaultValue="19">
+<![CDATA[55,30,39,39,39,39,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[124,35,39,39,39,39,39,39,39,39,39,39,39,39,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" rs="2" s="0">
+<O t="DSColumn">
+<Attributes dsName="ds13" columnName="ONAME"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[CONCATENATE('单位：'+$$$)]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="0" cs="13" s="1">
+<O>
+<![CDATA[表一：月度预算-预算批复简表(YY-1)公司汇总用表]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" s="2">
+<Expand/>
+</C>
+<C c="2" r="1" s="2">
+<Expand/>
+</C>
+<C c="3" r="1" s="2">
+<Expand/>
+</C>
+<C c="4" r="1" s="2">
+<Expand/>
+</C>
+<C c="5" r="1" s="2">
+<Expand/>
+</C>
+<C c="6" r="1" s="2">
+<Expand/>
+</C>
+<C c="7" r="1" s="2">
+<Expand/>
+</C>
+<C c="8" r="1" s="2">
+<Expand/>
+</C>
+<C c="9" r="1" s="2">
+<Expand/>
+</C>
+<C c="10" r="1" s="2">
+<Expand/>
+</C>
+<C c="11" r="1" s="2">
+<Expand/>
+</C>
+<C c="12" r="1" cs="2" s="3">
+<O>
+<![CDATA[单位：万元]]></O>
+<Expand/>
+</C>
+<C c="0" r="2" rs="2" s="4">
+<O>
+<![CDATA[预算项目]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" rs="2" s="4">
+<O>
+<![CDATA[合计]]></O>
+<Expand/>
+</C>
+<C c="2" r="2" cs="12" s="4">
+<O>
+<![CDATA[月度上报(批复)]]></O>
+<Expand/>
+</C>
+<C c="2" r="3" s="4">
+<O>
+<![CDATA[1月]]></O>
+<Expand/>
+</C>
+<C c="3" r="3" s="4">
+<O>
+<![CDATA[2月]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" s="4">
+<O>
+<![CDATA[3月]]></O>
+<Expand/>
+</C>
+<C c="5" r="3" s="4">
+<O>
+<![CDATA[4月]]></O>
+<Expand/>
+</C>
+<C c="6" r="3" s="4">
+<O>
+<![CDATA[5月]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" s="4">
+<O>
+<![CDATA[6月]]></O>
+<Expand/>
+</C>
+<C c="8" r="3" s="4">
+<O>
+<![CDATA[7月]]></O>
+<Expand/>
+</C>
+<C c="9" r="3" s="4">
+<O>
+<![CDATA[8月]]></O>
+<Expand/>
+</C>
+<C c="10" r="3" s="4">
+<O>
+<![CDATA[9月]]></O>
+<Expand/>
+</C>
+<C c="11" r="3" s="4">
+<O>
+<![CDATA[10月]]></O>
+<Expand/>
+</C>
+<C c="12" r="3" s="4">
+<O>
+<![CDATA[11月]]></O>
+<Expand/>
+</C>
+<C c="13" r="3" s="4">
+<O>
+<![CDATA[12月]]></O>
+<Expand/>
+</C>
+<C c="0" r="4" s="4">
+<O>
+<![CDATA[合计]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C5+D5+E5+F5+G5+H5+I5+J5+K5+L5+M5+N5)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="2" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="3" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(D6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="4" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(E6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="5" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(F6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="6" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(G6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="7" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(H6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="8" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(I6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="9" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(J6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="10" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(K6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="11" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(L6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="12" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(M6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="13" r="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(N6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="BUD_NAME"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="1" r="5" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=SUM(C6+D6+E6+F6+G6+H6+I6+J6+K6+L6+M6+N6)]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="2" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="BUD_MONEY"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="3" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds2" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="4" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds3" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="5" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds4" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="6" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds5" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="7" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds6" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="8" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds7" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="9" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds8" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="10" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds9" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="11" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds10" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="12" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds11" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+<C c="13" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds12" columnName="BUD_MONEY"/>
+<Condition class="com.fr.data.condition.CommonCondition">
+<CNAME>
+<![CDATA[BUD_NAME]]></CNAME>
+<Compare op="0">
+<ColumnRow column="0" row="5"/>
+</Compare>
+</Condition>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand leftParentDefault="false" left="A6"/>
+</C>
+</CellElementList>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportSettings headerHeight="0.0" footerHeight="0.0">
+<Margin top="0.27" left="0.75" bottom="0.27" right="0.75"/>
+</ReportSettings>
+<Header reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Header>
+<Footer reportPageType="0">
+<Background name="NullBackground"/>
+<LeftList/>
+<CenterList/>
+<RightList/>
+</Footer>
+<RowHeight defaultValue="19">
+<![CDATA[19,19,19,19,19,19,19,19,19,19,19]]></RowHeight>
+<ColumnWidth defaultValue="72">
+<![CDATA[130,130,130,130,72,72,72,72,72,72,72]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0">
+<O>
+<![CDATA[请输入年份：]]></O>
+<Expand/>
+</C>
+<C c="1" r="0" s="5">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.NumberEditor">
+<WidgetName name="YEAR"/>
+<WidgetAttr/>
+<NumberAttr allowDecimals="false" allowNegative="false"/>
+</Widget>
+</C>
+<C c="2" r="0" s="6">
+<O>
+<![CDATA[请选择部门：]]></O>
+<Expand/>
+</C>
+<C c="3" r="0" s="6">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.TreeComboBoxEditor">
+<WidgetName name="DEPT_ID"/>
+<WidgetAttr/>
+<Listener event="click">
+<JavaScript class="com.fr.report.js.JavaScriptImpl">
+<Parameters/>
+<Content>
+<![CDATA[null]]></Content>
+</JavaScript>
+</Listener>
+<Editable>
+<![CDATA[false]]></Editable>
+<TreeAttr/>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d is null]]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@1}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@2}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@3}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+<TreeNodeAttr>
+<Dictionary class="com.fr.data.impl.DynamicSQLDict">
+<FormulaDictAttr ki="0" vi="1">
+<Condition class="com.fr.data.condition.ListCondition"/>
+</FormulaDictAttr>
+<Formula>
+<![CDATA[select * from (select t.oid as id ,t.oname as text,t_o.upid as parent_i_d from t_organization t left join t_org_org t_o on t.oid = t_o.downid and t.OID <> '1') vt where vt.parent_i_d = '${@4}']]></Formula>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[plat_Org]]></DatabaseName>
+</Connection>
+</Dictionary>
+</TreeNodeAttr>
+</Widget>
+</C>
+<C c="4" r="0">
+<O>
+<![CDATA[查询]]></O>
+<Expand/>
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+</Widget>
+</C>
+</CellElementList>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Top style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="12"/>
+<Background name="ColorBackground" color="-1577999"/>
+<Border>
+<Bottom style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<Format class="java.text.SimpleDateFormat">
+<![CDATA[yyyy年]]></Format>
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="12"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

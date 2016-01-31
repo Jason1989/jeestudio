@@ -1,0 +1,120 @@
+body {margin:0px;padding:0px;font-family: Arial,"宋体";font-size: 12px;color:#2a3939;background-color: #717171;background: url(default/images/body_bg.jpg) repeat-x left top;}
+div,ul,li,dl,dt,dd,img,h1,h2{margin:0px;padding:0px;list-style-type: none;border:0;}
+input,select,textarea{margin:0px;padding:0px; color:#565656;}
+/*编辑页表单格式*/
+/*外边框*/
+.pop_col_col,.pop_col_color {width:575px;}
+
+/*文本域*/
+.pop_col_cons {float: left;width: 530px;}
+.pop_col_cons dl {float: left;margin-top: 2px;color: #565656;}
+.pop_col_cons dd {float: left;width: 90px;text-align: right;line-height: 70px;background-color: #F5F5F5;}
+.pop_col_cons dt {float: left;width: 435px;line-height: 20px;}
+.pop_col_cons dt textarea{width: 440px;margin-left:3px;}
+.pop_col_cons input.radio {width:10px;}
+
+/*一行放两个属性*/
+.pop_col_conc {float: left;width:265px;}
+.pop_col_conc dl {color: #565656;float: left; margin-top:2px;height:25px;}
+.pop_col_conc dd {float: left;text-align: right;line-height: 23px;width: 90px;background-color: #F5F5F5;}
+.pop_col_conc dt  {float: left;line-height: 20px;width:170px;margin-left:3px;}
+.pop_col_conc dt input {width:150px;}
+.pop_col_conc input.radio {width:10px;}
+
+/*一行放一个属性*/
+.pop_col_consi {float: left;width: 530px;}
+.pop_col_consi dl {float: left;color: #565656;margin-top:2px;height:25px;}
+.pop_col_consi dd {float: left;width: 90px;text-align: right;line-height: 23px;background-color: #F5F5F5;}
+.pop_col_consi dt {float: left;width: 435px;line-height: 23px;margin-left:3px;}
+.pop_col_consi input {width:440px;}
+.pop_col_consi input.radio {width:10px;}
+
+/*查看页表单格式*/
+/*文本域*/
+.pop_col_cons2 {float: left;width: 590px;}
+.pop_col_cons2 dl {float: left;margin-top: 2px;color: #565656;}
+.pop_col_cons2 dd {float: left;width: 100px;text-align: right;line-height: 70px;background-color: #F5F5F5;}
+.pop_col_cons2 dt {float: left;width: 467px;height: 66px;border:1px solid #e9e9e9;padding-left:3px;margin-left:3px;}
+
+/*一行放两个属性*/
+.pop_col_conc2 {float: left;width:290px;}
+.pop_col_conc2 dl {color: #565656;float: left; margin-top:2px;height:25px;}
+.pop_col_conc2 dd {float: left;text-align: right;line-height: 23px;width: 100px;background-color: #F5F5F5;}
+.pop_col_conc2 dt  {float: left;line-height: 20px;width:177px;border:1px solid #e9e9e9;padding-left:3px;margin-left:3px;}
+
+/*一行放一个属性*/
+.pop_col_consi2 {float: left;width: 590px;}
+.pop_col_consi2 dl {float: left;color: #565656;margin-top:2px;height:25px;}
+.pop_col_consi2 dd {float: left;width: 100px;text-align: right;line-height: 23px;background-color: #F5F5F5;}
+.pop_col_consi2 dt {float: left;width: 467px;line-height: 23px;border:1px solid #e9e9e9;padding-left:3px;margin-left:3px;}
+
+
+
+
+
+
+/*accordion的字体颜色 通过headerCls设置*/
+.accordion-font-color{
+	font-family:'微软雅黑';
+	color:#03498e;
+}
+/*datagrid中的标题栏的背景颜色*/
+.header_cls{
+	line-height:15px;
+	color:black;
+	font-weight:normal;
+	font-size:12px;
+	background:#efefef url('images/yingji/pop_bg.jpg') repeat-x;
+	position:relative;
+	border:1px solid #E4E4E4;
+}
+
+/* 头部 */
+.head_bg {background: url(images/yingji/head_bg.jpg) no-repeat;height: 66px;border-bottom:1px solid #2a7dc6;}
+.head_logo {float: left;height: 66px;display: inline;}
+.head_t_0{float: left;width: 63px;}
+.head_t_1{width:600px;height:36px;margin:5px 0 0 0;}
+.head_t_msg {color: #fff;line-height: 30px;width:auto;min-width: 110px;float: left;margin-left:5px;}
+.head_t_if {line-height: 35px;width: 325px;float: left;margin-left:5px;}
+.head_t_img {line-height: 35px;float: left;margin-top: 10px;}
+.head_t_img2 {line-height: 35px;float: left;margin-top: 10px;}
+.head_t_font {color: #fff;line-height: 35px;float: left;padding: 0 8px 0 2px;}
+.head_t_font a {color: #fff;}
+.head_t_font a:hover {color: #fff;}
+
+.head_right {height:30px;width:auto;float:right;margin-right:5px;margin-top:5px;}
+a{TEXT-DECORATION:none}
+.head_btn1 {height: 60px;width: 87px;display: inline;float: left;background: url(images/yingji/img_grzm.png)  50% 0 no-repeat;margin-right: 0px;}
+.head_btn1 a {background: url(images/yingji/img_grzm.png)  50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+.head_btn1 a:hover, .head_btn1 a span  {background: url(images/yingji/img_grzm_b.png) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+
+.head_btn2 {height: 46px;width: 87px;display: inline;float: left;background: url(images/yingji/img_yjxt.png) 50% 0 no-repeat;margin-right: 0px;}
+.head_btn2 a {background: url(images/yingji/img_yjxt.png) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+.head_btn2 a:hover,.head_btn2 a  span {background: url(images/yingji/img_yjxt_b.png) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+
+.head_btn3 {height: 46px;width: 87px;display: inline;float: left;background: url(images/yingji/img_zhzm.png) 50% 0 no-repeat;margin-right: 0px;}
+.head_btn3 a {background: url(images/yingji/img_zhzm.png) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+.head_btn3 a:hover ,.head_btn3 a span{background: url(images/yingji/img_zhzm_b.png)  50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+
+.head_btn4 {height: 46px;width: 87px;display: inline;float: left;background: url(images/yingji/img_qdzm.png) 50% 0 no-repeat;margin-right: 0px;}
+.head_btn4 a {background: url(images/yingji/img_qdzm.png) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+.head_btn4 a:hover, .head_btn4 a span {background: url(images/yingji/img_qdzm_b.png)  50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+
+.head_btn5 {height: 46px;width: 87px;display: inline;float: left;background: url(images/yingji/img_2.gif) 50% 0 no-repeat;margin-right: 0px;}
+.head_btn5 a {background: url(images/yingji/img_2.gif) 50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+.head_btn5 a:hover, .head_btn5 a span {background: url(images/yingji/img_2_a.gif)  50% 0 no-repeat;height: 46px;width: 87px;display: block;}
+
+.head_btn1 span,.head_btn2 span,.head_btn3 span,.head_btn4 span,.head_btn5 span{
+   font-weight:bold;
+   font-size:12px;
+   color:#ffffff;
+   color_:#3ac468;
+}
+
+/* 底部 border-top: 1px solid #2a7dc6;*/
+.bottom {height: 21px;border-top: 1px solid #2a7dc6;background-color: #f5f5f5;}
+.bottom_font {background: url(images/yingji/frame_bottom_bg.jpg) repeat-x;line-height: 26px;color: #a4bcd4;padding-left: 20px;}
+.bottom_font a{color:#a4bcd4;}
+#tabselect{
+	line-height:28px;margin-left:5px;height: 28px;width: 93px;background:url(images/yingji/img_1_a.gif) 50% 0 no-repeat;font-family:'微软雅黑';color:#044877;display: inline;float: left;
+}
